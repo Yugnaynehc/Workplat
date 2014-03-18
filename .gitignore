@@ -47,7 +47,8 @@ target/
 build
 
 # Custom
-lib
+# 需要使用第三方库，所以将lib文件夹列入代码库中
+# lib
 */test-output
 temp-testng-customsuite.xml
 **pom.xml.releaseBackup
