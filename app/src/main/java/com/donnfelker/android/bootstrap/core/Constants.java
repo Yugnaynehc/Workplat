@@ -123,38 +123,36 @@ public final class Constants {
         /**
          * 巡检类型与巡检代码
          */
-	// 全面巡检
-	public static String INSPECT_NORMAL_TOTAL ="INSPECT_NORMAL_TOTAL";
-	// 日常巡检
-	public static String INSPECT_NORMAL_DAILY ="INSPECT_NORMAL_DAILY";
-	// 雷雨特殊巡检
-	public static String INSPECT_SPECIAL_THUNDERSTORM ="INSPECT_SPECIAL_THUNDERSTORM";
-	// 雪天特殊巡检
-	public static String INSPECT_SPECIAL_SNOWY ="INSPECT_SPECIAL_SNOWY";
-	// 大雾特殊巡检
-	public static String INSPECT_SPECIAL_FOGGY ="INSPECT_SPECIAL_FOGGY";
-	// 大风特殊巡检
-	public static String INSPECT_SPECIAL_WINDY ="INSPECT_SPECIAL_WINDY";
-	// 夜间熄灯特殊巡检
-	public static String INSPECT_SPECIAL_NIGHTLIGTH ="INSPECT_SPECIAL_NIGHTLIGTH";
-	// 设备异常缺陷跟踪特殊巡检
-	public static String INSPECT_SPECIAL_BUGTRACE ="INSPECT_SPECIAL_BUGTRACE";
-	// 红外线测试作业
-	public static String INSPECT_JOB_INFRAREDTESTING ="INSPECT_JOB_INFRAREDTESTING";
-	// 主变冷却器切换试验作业
-	public static String INSPECT_JOB_SWITCHCOOLER ="INSPECT_JOB_SWITCHCOOLER";
-	// 事故照明切换作业
-	public static String INSPECT_JOB_EMERGENCYLIGHTSWITCH ="INSPECT_JOB_EMERGENCYLIGHTSWITCH";
-	// 蓄电池定期测试作业
-	public static String INSPECT_JOB_BATTERYPERIODICTESTING ="INSPECT_JOB_BATTERYPERIODICTESTING";
-	// 设备定期测试、轮换作业	
+        // 全面巡检
+        public static String INSPECT_NORMAL_TOTAL ="INSPECT_NORMAL_TOTAL";
+        // 日常巡检
+        public static String INSPECT_NORMAL_DAILY ="INSPECT_NORMAL_DAILY";
+        // 雷雨特殊巡检
+        public static String INSPECT_SPECIAL_THUNDERSTORM ="INSPECT_SPECIAL_THUNDERSTORM";
+        // 雪天特殊巡检
+        public static String INSPECT_SPECIAL_SNOWY ="INSPECT_SPECIAL_SNOWY";
+        // 大雾特殊巡检
+        public static String INSPECT_SPECIAL_FOGGY ="INSPECT_SPECIAL_FOGGY";
+        // 大风特殊巡检
+        public static String INSPECT_SPECIAL_WINDY ="INSPECT_SPECIAL_WINDY";
+        // 夜间熄灯特殊巡检
+        public static String INSPECT_SPECIAL_NIGHTLIGTH ="INSPECT_SPECIAL_NIGHTLIGTH";
+        // 设备异常缺陷跟踪特殊巡检
+        public static String INSPECT_SPECIAL_BUGTRACE ="INSPECT_SPECIAL_BUGTRACE";
+        // 红外线测试作业
+        public static String INSPECT_JOB_INFRAREDTESTING ="INSPECT_JOB_INFRAREDTESTING";
+        // 主变冷却器切换试验作业
+        public static String INSPECT_JOB_SWITCHCOOLER ="INSPECT_JOB_SWITCHCOOLER";
+        // 事故照明切换作业
+        public static String INSPECT_JOB_EMERGENCYLIGHTSWITCH ="INSPECT_JOB_EMERGENCYLIGHTSWITCH";
+        // 蓄电池定期测试作业
+        public static String INSPECT_JOB_BATTERYPERIODICTESTING ="INSPECT_JOB_BATTERYPERIODICTESTING";
+        // 设备定期测试、轮换作业
         public static String INSPECT_JOB_DEVICEPERIODICTESTINGROTATION ="INSPECT_JOB_DEVICEPERIODICTESTINGROTATION";
         // 设备定期维护作业
         public static String INSPECT_JOB_DEVICEPERIODICMAINTANCE ="INSPECT_JOB_DEVICEPERIODICMAINTANCE";
-	// 道闸操作作业
-	public static String INSPECT_JOB_BARRIERGATEOPERATE ="INSPECT_JOB_BARRIERGATEOPERATE";
+        // 道闸操作作业
+        public static String INSPECT_JOB_BARRIERGATEOPERATE ="INSPECT_JOB_BARRIERGATEOPERATE";
     }
 
 }
-
-
