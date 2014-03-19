@@ -22,9 +22,11 @@ public class Work implements Serializable {
     // 申请的理由
     protected String reason;
     // 记录审批情况
-    protected String athorized;
+    protected String authorized;
     // 记录该条申请的状态
     protected String status;
+
+    protected String planid;
 
     protected String objectId;
 
@@ -84,12 +86,12 @@ public class Work implements Serializable {
         this.reason = reason;
     }
 
-    public String getAthorized() {
-        return athorized;
+    public String getAuthorized() {
+        return authorized;
     }
 
-    public void setAthorized(String athorized) {
-        this.athorized = athorized;
+    public void setAuthorized(String athorized) {
+        this.authorized = athorized;
     }
 
     public String getStatus() {
@@ -101,4 +103,12 @@ public class Work implements Serializable {
     }
 
     public String getObjectId() { return objectId; }
+
+    public String getPlanid() {
+        return planid;
+    }
+
+    public void setPlanid(String planid) {
+        this.planid = planid;
+    }
 }

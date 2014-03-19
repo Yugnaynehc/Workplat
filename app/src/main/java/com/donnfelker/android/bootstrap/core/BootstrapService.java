@@ -1,6 +1,7 @@
 
 package com.donnfelker.android.bootstrap.core;
 
+import com.donnfelker.android.bootstrap.util.Ln;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
 import com.google.gson.Gson;
@@ -10,6 +11,7 @@ import com.google.gson.JsonParseException;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import static com.donnfelker.android.bootstrap.core.Constants.Http.HEADER_PARSE_APP_ID;
@@ -38,11 +40,16 @@ public class BootstrapService {
      *         .setFieldNamingPolicy(LOWER_CASE_WITH_UNDERSCORES).create();
      */
     public static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-
     /**
      * Read and connect timeout in milliseconds
      */
     private static final int TIMEOUT = 30 * 1000;
+
+    /**
+     * PARAM_SUBSTATION
+     * 变电站ID
+     */
+    public static final String PARAM_SUBSTATION = "substation";
 
 
     private static class UsersWrapper {
@@ -58,7 +65,7 @@ public class BootstrapService {
     }
 
     private static class WorkWrapper {
-        private List<Work> results;
+        private List<Work> plan;
     }
 
     private static class JsonException extends IOException {
@@ -176,17 +183,18 @@ public class BootstrapService {
     }
 
     /**
-     * 获得所有的工作单数据，所有的数据来自于服务器（现在是本地服务器192.168.1.105:8888）
+     * 获得所有的工作单数据，所有的数据来自于服务器（现在是本地服务器192.168.1.106:8888）
      *
      * @return 非null但是有可能是空列表
      * @throws IOException
      */
     public List<Work> getWorks() throws IOException {
         try {
-            final HttpRequest request = execute(HttpRequest.get(URL_WORKS));
+            final String query = String.format("?%s=%s", PARAM_SUBSTATION, "123");
+            final HttpRequest request = execute(HttpRequest.get(URL_WORKS + query));
             final WorkWrapper response = fromJson(request, WorkWrapper.class);
-            if (response != null && response.results != null) {
-                return response.results;
+            if (response != null && response.plan != null) {
+                return response.plan;
             }
             return Collections.emptyList();
         } catch (final HttpRequestException e) {
