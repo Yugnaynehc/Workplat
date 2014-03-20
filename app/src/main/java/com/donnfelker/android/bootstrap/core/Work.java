@@ -25,6 +25,8 @@ public class Work implements Serializable {
     protected String authorized;
     // 记录该条申请的状态
     protected String status;
+    // 记录执行状态
+    protected String stage;
 
     protected String planid;
 
@@ -102,7 +104,9 @@ public class Work implements Serializable {
         this.status = status;
     }
 
-    public String getObjectId() { return objectId; }
+    public String getObjectId() {
+        return objectId;
+    }
 
     public String getPlanid() {
         return planid;
@@ -111,4 +115,8 @@ public class Work implements Serializable {
     public void setPlanid(String planid) {
         this.planid = planid;
     }
+
+    public String getStage() { return stage; }
+
+    public void setStage(String stage) { this.stage = stage; }
 }

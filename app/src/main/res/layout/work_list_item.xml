@@ -13,7 +13,8 @@
     <com.beardedhen.androidbootstrap.FontAwesomeText
         android:id="@+id/tv_icon"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:textSize="36sp">
     </com.beardedhen.androidbootstrap.FontAwesomeText>
 
     <TextView
@@ -22,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_gravity="center_vertical"
         android:textColor="@color/table_text_selector" />
 
     <TextView
@@ -30,6 +32,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_gravity="center_vertical"
         android:textColor="@color/table_text_selector" />
 
 </LinearLayout>
