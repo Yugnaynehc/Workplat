@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fontawesometext="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -9,17 +10,23 @@
     android:paddingTop="5dp"
     style="@style/ListItem">
 
-    <ImageView
-        android:id="@+id/iv_icon"
-        style="@style/AvatarLarge"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="10dp"
-        android:contentDescription="@string/avatar"
-        />
+    <com.beardedhen.androidbootstrap.FontAwesomeText
+        android:id="@+id/tv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </com.beardedhen.androidbootstrap.FontAwesomeText>
 
     <TextView
         android:id="@+id/tv_type"
+        android:gravity="left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/table_text_selector" />
+
+    <TextView
+        android:id="@+id/tv_stage"
+        android:gravity="right"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"

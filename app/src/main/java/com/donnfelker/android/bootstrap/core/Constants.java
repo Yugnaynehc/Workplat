@@ -153,6 +153,27 @@ public final class Constants {
         public static String INSPECT_JOB_DEVICEPERIODICMAINTANCE ="INSPECT_JOB_DEVICEPERIODICMAINTANCE";
         // 道闸操作作业
         public static String INSPECT_JOB_BARRIERGATEOPERATE ="INSPECT_JOB_BARRIERGATEOPERATE";
+
+        // 获得巡检类型代码（因为Java的switch不支持字符串类型，所以需要这个函数来完成转换）
+        public static int indexOf(String str) {
+            if (str.equals(INSPECT_NORMAL_TOTAL)) return 1;
+            else if (str.equals(INSPECT_NORMAL_DAILY)) return 2;
+            else if (str.equals(INSPECT_SPECIAL_THUNDERSTORM)) return 3;
+            else if (str.equals(INSPECT_SPECIAL_SNOWY)) return 4;
+            else if (str.equals(INSPECT_SPECIAL_FOGGY)) return 5;
+            else if (str.equals(INSPECT_SPECIAL_WINDY )) return 6;
+            else if (str.equals(INSPECT_SPECIAL_NIGHTLIGTH)) return 7;
+            else if (str.equals(INSPECT_SPECIAL_BUGTRACE)) return 8;
+            else if (str.equals(INSPECT_JOB_INFRAREDTESTING)) return 9;
+            else if (str.equals(INSPECT_JOB_SWITCHCOOLER)) return 10;
+            else if (str.equals(INSPECT_JOB_EMERGENCYLIGHTSWITCH)) return 11;
+            else if (str.equals(INSPECT_JOB_BATTERYPERIODICTESTING)) return 12;
+            else if (str.equals(INSPECT_JOB_DEVICEPERIODICTESTINGROTATION)) return 13;
+            else if (str.equals(INSPECT_JOB_DEVICEPERIODICMAINTANCE)) return 14;
+            else if (str.equals(INSPECT_JOB_BARRIERGATEOPERATE)) return 15;
+            else return 0;
+
+        }
     }
 
 }
