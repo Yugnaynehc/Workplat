@@ -26,7 +26,7 @@
 	<color name="bbutton_success_pressed_edge">#ff398439</color>
 	<color name="bbutton_success_disabled">#a55cb85c</color>
 	<color name="bbutton_success_disabled_edge">#a54cae4c</color>
-	
+
 
 	<color name="bbutton_warning">#fff0ad4e</color>
 	<color name="bbutton_warning_edge">#ffeea236</color>
