@@ -155,6 +155,24 @@ public final class Constants {
         // 道闸操作作业
         public static String INSPECT_JOB_BARRIERGATEOPERATE ="INSPECT_JOB_BARRIERGATEOPERATE";
 
+        public static String TYPE_LIST[] = {
+                INSPECT_NORMAL_TOTAL,
+                INSPECT_NORMAL_DAILY,
+                INSPECT_SPECIAL_THUNDERSTORM,
+                INSPECT_SPECIAL_SNOWY,
+                INSPECT_SPECIAL_FOGGY,
+                INSPECT_SPECIAL_WINDY,
+                INSPECT_SPECIAL_NIGHTLIGTH,
+                INSPECT_SPECIAL_BUGTRACE,
+                INSPECT_JOB_INFRAREDTESTING,
+                INSPECT_JOB_SWITCHCOOLER,
+                INSPECT_JOB_EMERGENCYLIGHTSWITCH,
+                INSPECT_JOB_BATTERYPERIODICTESTING,
+                INSPECT_JOB_DEVICEPERIODICTESTINGROTATION,
+                INSPECT_JOB_DEVICEPERIODICMAINTANCE,
+                INSPECT_JOB_BARRIERGATEOPERATE
+        };
+
         // 获得巡检类型代码（因为Java的switch不支持字符串类型，所以需要这个函数来完成转换）
         public static int indexOf(String str) {
             if (str.equals(INSPECT_NORMAL_TOTAL)) return 1;

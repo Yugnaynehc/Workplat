@@ -1,6 +1,5 @@
 package com.donnfelker.android.bootstrap.ui;
 
-import android.accounts.OperationCanceledException;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,12 +14,14 @@ import com.donnfelker.android.bootstrap.authenticator.LogoutService;
 import com.donnfelker.android.bootstrap.core.Work;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.WORK_ITEM;
+import static com.donnfelker.android.bootstrap.core.Constants.Substation.TYPE_LIST;
 
 /**
  * Created by Feather on 14-3-17.
@@ -73,12 +74,19 @@ public class WorkListFragment extends ItemListFragment<Work> {
             public List<Work> loadData() throws Exception {
                 try {
                     if (getActivity() != null) {
-                        return serviceProvider.getService(getActivity()).getWorks();
+                        List<Work> t = new ArrayList<Work>();
+                        for (int i=0; i<15; ++i) {
+                            t.add(new Work());
+                            t.get(i).setType(TYPE_LIST[i]);
+                        }
+                        return t;
+                        //return serviceProvider.getService(getActivity()).getWorks();
                     }
                     else {
                         return Collections.emptyList();
                     }
-                } catch (OperationCanceledException e) {
+                //} catch (OperationCanceledException e) {
+                } catch (Exception e) {
                     Activity activity = getActivity();
                     if (activity != null)
                         activity.finish();
