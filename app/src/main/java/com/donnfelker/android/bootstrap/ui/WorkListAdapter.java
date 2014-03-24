@@ -4,14 +4,14 @@ import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 
+import com.beardedhen.androidbootstrap.FontAwesomeText;
+import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.Work;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
-import com.donnfelker.android.bootstrap.R;
-
-import static com.donnfelker.android.bootstrap.core.Constants.*;
-import com.beardedhen.androidbootstrap.FontAwesomeText;
 
 import java.util.List;
+
+import static com.donnfelker.android.bootstrap.core.Constants.Substation;
 
 /**
  * Created by Feather on 14-3-17.
@@ -63,7 +63,7 @@ public class WorkListAdapter extends SingleTypeAdapter<Work> {
         case 4:
             str = "雪天特殊巡检"; icon = "fa-spinner"; break;
         case 5:
-            str = "大雾特殊巡检"; icon = "fa-cog"; break;
+            str = "大雾特殊巡检"; icon = "fa-eye"; break;
         case 6:
             str = "大风特殊巡检"; icon = "fa-cog"; break;
         case 7:
@@ -71,7 +71,7 @@ public class WorkListAdapter extends SingleTypeAdapter<Work> {
         case 8:
             str = "设备异常缺陷跟踪特殊巡检"; icon = "fa-bell"; break;
         case 9:
-            str = "红外线测试作业"; icon = "fa-long-arrow-up"; break;
+            str = "红外线测试作业"; icon = "fa-arrow-up"; break;
         case 10:
             str = "主变冷却器切换试验作业"; icon = "fa-exchange"; break;
         case 11:

@@ -3,12 +3,18 @@
 package com.donnfelker.android.bootstrap.authenticator;
 
 import android.accounts.AccountManager;
+import android.accounts.AccountManagerFuture;
 import android.accounts.AccountsException;
 import android.app.Activity;
+import android.os.Bundle;
 
 import java.io.IOException;
 
 import javax.inject.Inject;
+
+import static android.accounts.AccountManager.KEY_AUTHTOKEN;
+import static com.donnfelker.android.bootstrap.core.Constants.Auth.AUTHTOKEN_TYPE;
+import static com.donnfelker.android.bootstrap.core.Constants.Auth.BOOTSTRAP_ACCOUNT_TYPE;
 
 /**
  * Bridge class that obtains a API key for the currently configured account
@@ -34,7 +40,7 @@ public class ApiKeyProvider {
      * @throws IOException
      */
 
-    /*
+
     public String getAuthKey(final Activity activity) throws AccountsException, IOException {
         final AccountManagerFuture<Bundle> accountManagerFuture
                 = accountManager.getAuthTokenByFeatures(BOOTSTRAP_ACCOUNT_TYPE,
@@ -42,10 +48,10 @@ public class ApiKeyProvider {
 
         return accountManagerFuture.getResult().getString(KEY_AUTHTOKEN);
     }
-    */
 
+    /*
     public String getAuthKey(final Activity activity) throws AccountsException, IOException {
         return "foo";
     }
-
+    */
 }

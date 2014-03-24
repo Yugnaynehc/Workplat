@@ -58,6 +58,21 @@ public final class Constants {
         public static final String URL_WORKS = URL_BASE + "/planAction";
 
         /**
+         *  获取缺陷信息的URL
+         */
+        public static final String URL_DEFECT = URL_BASE + "/bugAction";
+
+        /**
+         *  申请工作单的URL
+         */
+        public static final String URL_APPLY = URL_BASE + "/applySaveAction";
+
+        /**
+         *  上传结果的URL
+         */
+        public static final String URL_UPLOAD = URL_BASE + "uploadAction";
+
+        /**
          * List Users URL
          */
         public static final String URL_USERS = URL_BASE + "/1/users";
