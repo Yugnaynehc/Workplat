@@ -1,5 +1,6 @@
 package com.donnfelker.android.bootstrap.ui;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -87,7 +88,8 @@ public class WorkListAdapter extends SingleTypeAdapter<Work> {
         default:
             break;
         }
-        work.setStage("待完成");
+        if (work.getStage() == null)
+            work.setStage("待完成");
         fat.setIcon(icon);
         fat.setTextColor(color);
         setText(1, String.format("%s", str));

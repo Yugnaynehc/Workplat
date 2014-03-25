@@ -50,4 +50,23 @@
     <string name="title_home">Home</string>
     <string name="title_work">Work</string>
 
+
+    <!-- Inspect Type -->
+    <string name="inspect_normal_total">全面巡检</string>
+    <string name="inspect_normal_daily">日常巡检</string>
+    <string name="inspect_special_thunderstorm">雷雨特殊巡检</string>
+    <string name="inspect_special_snowy">雪天特殊巡检</string>
+    <string name="inspect_special_foggy">大雾特殊巡检</string>
+    <string name="inspect_special_windy">大风特殊巡检</string>
+    <string name="inspect_special_nightlight">夜间熄灯特殊巡检</string>
+    <string name="inspect_special_bugtrace">设备异常缺陷跟踪特殊巡检</string>
+    <string name="inspect_job_infraredtesting">红外线测试作业</string>
+    <stirng name="inspect_job_switchcooler">主变冷却器切换实验作业</stirng>
+    <string name="inspect_job_emergencylightswitch">事故照明灯切换作业</string>
+    <string name="inspect_job_batteryperiodictesting">蓄电池定期测试作业</string>
+    <string name="inspect_job_deviceperiodictestingrotation">设备定期测试、轮换作业</string>
+    <string name="inspect_job_deviceperiodicmaintance">设备定期维护作业</string>
+    <string name="inspect_job_barriergateoperate">道闸操作作业</string>
+
+
 </resources>
