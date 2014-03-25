@@ -21,7 +21,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.WORK_ITEM;
-import static com.donnfelker.android.bootstrap.core.Constants.Substation.TYPE_LIST;
+import static com.donnfelker.android.bootstrap.core.Constants.Substation.INSPECT_TYPE_LIST;
 
 /**
  * Created by Feather on 14-3-17.
@@ -77,7 +77,7 @@ public class WorkListFragment extends ItemListFragment<Work> {
                         List<Work> t = new ArrayList<Work>();
                         for (int i=0; i<15; ++i) {
                             t.add(new Work());
-                            t.get(i).setType(TYPE_LIST[i]);
+                            t.get(i).setType(INSPECT_TYPE_LIST[i]);
                         }
                         return t;
                         //return serviceProvider.getService(getActivity()).getWorks();

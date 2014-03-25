@@ -151,8 +151,8 @@ public final class Constants {
         public static String INSPECT_SPECIAL_FOGGY ="INSPECT_SPECIAL_FOGGY";
         // 大风特殊巡检
         public static String INSPECT_SPECIAL_WINDY ="INSPECT_SPECIAL_WINDY";
-        // 夜间熄灯特殊巡检
-        public static String INSPECT_SPECIAL_NIGHTLIGTH ="INSPECT_SPECIAL_NIGHTLIGTH";
+        // 夜间熄灯特殊巡检(数据库定义文档出现typo，把light写成了ligth)
+        public static String INSPECT_SPECIAL_NIGHTLIGHT ="INSPECT_SPECIAL_NIGHTLIGTH";
         // 设备异常缺陷跟踪特殊巡检
         public static String INSPECT_SPECIAL_BUGTRACE ="INSPECT_SPECIAL_BUGTRACE";
         // 红外线测试作业
@@ -170,14 +170,14 @@ public final class Constants {
         // 道闸操作作业
         public static String INSPECT_JOB_BARRIERGATEOPERATE ="INSPECT_JOB_BARRIERGATEOPERATE";
 
-        public static String TYPE_LIST[] = {
+        public static String INSPECT_TYPE_LIST[] = {
                 INSPECT_NORMAL_TOTAL,
                 INSPECT_NORMAL_DAILY,
                 INSPECT_SPECIAL_THUNDERSTORM,
                 INSPECT_SPECIAL_SNOWY,
                 INSPECT_SPECIAL_FOGGY,
                 INSPECT_SPECIAL_WINDY,
-                INSPECT_SPECIAL_NIGHTLIGTH,
+                INSPECT_SPECIAL_NIGHTLIGHT,
                 INSPECT_SPECIAL_BUGTRACE,
                 INSPECT_JOB_INFRAREDTESTING,
                 INSPECT_JOB_SWITCHCOOLER,
@@ -196,7 +196,7 @@ public final class Constants {
             else if (str.equals(INSPECT_SPECIAL_SNOWY)) return 4;
             else if (str.equals(INSPECT_SPECIAL_FOGGY)) return 5;
             else if (str.equals(INSPECT_SPECIAL_WINDY )) return 6;
-            else if (str.equals(INSPECT_SPECIAL_NIGHTLIGTH)) return 7;
+            else if (str.equals(INSPECT_SPECIAL_NIGHTLIGHT)) return 7;
             else if (str.equals(INSPECT_SPECIAL_BUGTRACE)) return 8;
             else if (str.equals(INSPECT_JOB_INFRAREDTESTING)) return 9;
             else if (str.equals(INSPECT_JOB_SWITCHCOOLER)) return 10;
