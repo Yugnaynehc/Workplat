@@ -75,7 +75,7 @@ public class WorkListFragment extends ItemListFragment<Work> {
                 try {
                     if (getActivity() != null) {
                         List<Work> t = new ArrayList<Work>();
-                        for (int i=0; i<15; ++i) {
+                        for (int i=0; i<INSPECT_TYPE_LIST.length-10; ++i) {
                             t.add(new Work());
                             t.get(i).setType(INSPECT_TYPE_LIST[i]);
                         }

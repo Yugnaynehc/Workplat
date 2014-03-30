@@ -17,22 +17,26 @@ import static com.donnfelker.android.bootstrap.core.Constants.Substation;
 /**
  * Created by Feather on 14-3-17.
  */
-public class WorkListAdapter extends SingleTypeAdapter<Work> {
+public class WorkListAdapter extends AlternatingColorListAdapter<Work> {
+
+    /**
+     * @param inflater
+     * @param items
+     * @param selectable
+     */
+    public WorkListAdapter(final LayoutInflater inflater, final List<Work> items,
+                           final boolean selectable) {
+        super(R.layout.work_list_item, inflater, items, selectable);
+
+        setItems(items);
+    }
 
     /**
      * @param inflater
      * @param items
      */
     public WorkListAdapter(final LayoutInflater inflater, final List<Work> items) {
-        super(inflater, R.layout.work_list_item);
-
-        setItems(items);
-    }
-    /**
-     * @param inflater
-     */
-    public WorkListAdapter(final LayoutInflater inflater) {
-        this(inflater, null);
+        super(R.layout.work_list_item, inflater, items);
     }
 
     @Override
@@ -50,9 +54,10 @@ public class WorkListAdapter extends SingleTypeAdapter<Work> {
     
     @Override
     protected void update(final int position, final Work work) {
+        super.update(position,  work);
         String str = "无";
         String icon = "fa-question";
-        int color = Color.rgb(255, 0, 0);
+        int color = Color.rgb(0, 150, 0);
         FontAwesomeText fat = getView(0, FontAwesomeText.class);
         switch (Substation.indexOf(work.getType())) {
         case 1:

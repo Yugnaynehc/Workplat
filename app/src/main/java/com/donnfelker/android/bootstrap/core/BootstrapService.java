@@ -1,6 +1,7 @@
 
 package com.donnfelker.android.bootstrap.core;
 
+import com.donnfelker.android.bootstrap.core.inspect.object.Device;
 import com.donnfelker.android.bootstrap.util.Ln;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
@@ -19,6 +20,7 @@ import static com.donnfelker.android.bootstrap.core.Constants.Http.HEADER_PARSE_
 import static com.donnfelker.android.bootstrap.core.Constants.Http.PARSE_APP_ID;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.PARSE_REST_API_KEY;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.URL_CHECKINS;
+import static com.donnfelker.android.bootstrap.core.Constants.Http.URL_DEFECT;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.URL_NEWS;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.URL_USERS;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.URL_WORKS;
@@ -49,7 +51,9 @@ public class BootstrapService {
      * PARAM_SUBSTATION
      * 变电站ID
      */
-    public static final String PARAM_SUBSTATION = "substation";
+    private static final String PARAM_SUBSTATION = "substation";
+
+    private static final String PARAM_DEVICEID = "deviceid";
 
 
     private static class UsersWrapper {
@@ -66,6 +70,10 @@ public class BootstrapService {
 
     private static class WorkWrapper {
         private List<Work> plan;
+    }
+
+    private static class DefectWrapper {
+        private List<Defect> bug;
     }
 
     private static class JsonException extends IOException {
@@ -190,11 +198,30 @@ public class BootstrapService {
      */
     public List<Work> getWorks() throws IOException {
         try {
+            // TODO 传入subtation id
             final String query = String.format("?%s=%s", PARAM_SUBSTATION, "123");
             final HttpRequest request = execute(HttpRequest.get(URL_WORKS + query));
             final WorkWrapper response = fromJson(request, WorkWrapper.class);
             if (response != null && response.plan != null) {
                 return response.plan;
+            }
+            return Collections.emptyList();
+        } catch (final HttpRequestException e) {
+            throw e.getCause();
+        }
+    }
+
+    /**
+     * 获取设备的历史缺陷信息
+     */
+    public List<Defect> getDefect() throws IOException {
+        try {
+            // TODO 传入device id
+            final String query = String.format("?%s=%s", PARAM_DEVICEID, "123");
+            final HttpRequest request = execute(HttpRequest.get(URL_DEFECT + query));
+            final DefectWrapper response = fromJson(request, DefectWrapper.class);
+            if (response != null && response.bug != null) {
+                return response.bug;
             }
             return Collections.emptyList();
         } catch (final HttpRequestException e) {
