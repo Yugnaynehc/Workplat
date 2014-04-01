@@ -7,6 +7,7 @@ import com.donnfelker.android.bootstrap.authenticator.BootstrapAuthenticatorActi
 import com.donnfelker.android.bootstrap.authenticator.LogoutService;
 import com.donnfelker.android.bootstrap.core.TimerService;
 import com.donnfelker.android.bootstrap.ui.BootstrapTimerActivity;
+import com.donnfelker.android.bootstrap.ui.DefectListFragment;
 import com.donnfelker.android.bootstrap.ui.MainActivity;
 import com.donnfelker.android.bootstrap.ui.CheckInsListFragment;
 import com.donnfelker.android.bootstrap.ui.NavigationDrawerFragment;
@@ -43,6 +44,7 @@ import dagger.Provides;
                 UserListFragment.class,
                 WorkActivity.class,
                 WorkListFragment.class,
+                DefectListFragment.class,
                 TimerService.class
         }
 )

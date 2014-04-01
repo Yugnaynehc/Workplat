@@ -2,6 +2,7 @@ package com.donnfelker.android.bootstrap.ui;
 
 import android.os.Bundle;
 import android.widget.TextView;
+import android.support.v4.app.FragmentManager;
 
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.Work;
@@ -15,9 +16,9 @@ import static com.donnfelker.android.bootstrap.core.Constants.Extra.WORK_ITEM;
  * Created by Feather on 14-3-12.
  */
 
-public class WorkActivity extends BootstrapActivity {
+public class WorkActivity extends BootstrapFragmentActivity {
 
-    @InjectView(R.id.tv_name) protected TextView name;
+    protected FragmentManager fragmentManager;
 
     private Work work;
 
@@ -26,7 +27,8 @@ public class WorkActivity extends BootstrapActivity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.work_view);
+        fragmentManager = this.getSupportFragmentManager();
+        setContentView(R.layout.work_activity);
         Views.inject(this);
         if (getIntent() != null && getIntent().getExtras() != null) {
             work = (Work) getIntent().getExtras().getSerializable(WORK_ITEM);
@@ -34,7 +36,10 @@ public class WorkActivity extends BootstrapActivity {
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        name.setText(String.format("%s", work.getType()));
+
+        fragmentManager.beginTransaction().
+                replace(R.id.container, new DefectListFragment()).
+                commit();
 
     }
 

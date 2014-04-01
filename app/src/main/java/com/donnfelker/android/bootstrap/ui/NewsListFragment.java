@@ -84,7 +84,7 @@ public class NewsListFragment extends ItemListFragment<News> {
                         activity.finish();
                     return initialItems;
                 }
-            }
+    }
         };
     }
 

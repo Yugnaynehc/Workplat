@@ -1,6 +1,5 @@
 package com.donnfelker.android.bootstrap.ui;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -8,7 +7,6 @@ import android.view.LayoutInflater;
 import com.beardedhen.androidbootstrap.FontAwesomeText;
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.Work;
-import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 
 import java.util.List;
 
@@ -27,8 +25,6 @@ public class WorkListAdapter extends AlternatingColorListAdapter<Work> {
     public WorkListAdapter(final LayoutInflater inflater, final List<Work> items,
                            final boolean selectable) {
         super(R.layout.work_list_item, inflater, items, selectable);
-
-        setItems(items);
     }
 
     /**
@@ -54,7 +50,7 @@ public class WorkListAdapter extends AlternatingColorListAdapter<Work> {
     
     @Override
     protected void update(final int position, final Work work) {
-        super.update(position,  work);
+        super.update(position, work);
         String str = "无";
         String icon = "fa-question";
         int color = Color.rgb(0, 150, 0);

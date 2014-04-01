@@ -1,14 +1,17 @@
 package com.donnfelker.android.bootstrap.core;
 
+import java.io.Serializable;
+
 /**
  * Created by Feather on 14-3-30.
  */
-public class Defect {
+public class Defect implements Serializable  {
 
     protected String bugid;
     protected String description;
     protected String deviceid;
     protected String resultid;
+    protected String objectId;
 
     public String getDescription() {
         return description;
@@ -40,5 +43,13 @@ public class Defect {
 
     public void setResultid(String resultid) {
         this.resultid = resultid;
+    }
+
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
     }
 }
