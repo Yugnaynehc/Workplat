@@ -11,6 +11,10 @@
     <string name="page_users">Users</string>
     <string name="page_checkins">Check In\'s</string>
     <string name="page_works">Works</string>
+    <string name="page_defect">Defect</string>
+    <string name="page_weather">Weather</string>
+    <string name="page_tools">Tools</string>
+    <string name="page_security">Security</string>
     <string name="title_column">Title</string>
     <string name="location_column">Location</string>
     <string name="user_column">User</string>

@@ -17,9 +17,9 @@ import java.util.List;
 public abstract class AlternatingColorListAdapter<V> extends
         SingleTypeAdapter<V> {
 
-    private final int primaryResource;
+    private int primaryResource;
 
-    private final int secondaryResource;
+    private int secondaryResource;
 
     /**
      * Create adapter with alternating row colors
@@ -62,5 +62,15 @@ public abstract class AlternatingColorListAdapter<V> extends
             updater.view.setBackgroundResource(primaryResource);
         else
             updater.view.setBackgroundResource(secondaryResource);
+    }
+
+    // TODO 增加修改背景样式的接口
+    public void setPrimaryResource(int primaryResource) {
+        this.primaryResource = primaryResource;
+
+    }
+
+    public void setSecondaryResource(int secondaryResource) {
+        this.secondaryResource = secondaryResource;
     }
 }

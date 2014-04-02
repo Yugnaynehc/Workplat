@@ -3,6 +3,7 @@ package com.donnfelker.android.bootstrap.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.OperationCanceledException;
 import android.support.v4.content.Loader;
 import android.view.View;
 import android.widget.ListView;
