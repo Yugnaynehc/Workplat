@@ -43,6 +43,4 @@ public class CarouselFragment extends Fragment {
         // Thanks!
         pager.setOffscreenPageLimit(3);
     }
-
-
 }

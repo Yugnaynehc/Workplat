@@ -3,7 +3,9 @@ package com.donnfelker.android.bootstrap.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import com.donnfelker.android.bootstrap.R;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.donnfelker.android.bootstrap.Injector;
 import com.squareup.otto.Bus;
@@ -27,7 +29,8 @@ public class BootstrapFragmentActivity extends ActionBarActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.back));
         Injector.inject(this);
     }
 

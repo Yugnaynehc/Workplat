@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.donnfelker.android.bootstrap.Injector;
+import com.donnfelker.android.bootstrap.R;
 
 import butterknife.Views;
 
@@ -20,7 +22,8 @@ public abstract class BootstrapActivity extends ActionBarActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.back));
         Injector.inject(this);
     }
 

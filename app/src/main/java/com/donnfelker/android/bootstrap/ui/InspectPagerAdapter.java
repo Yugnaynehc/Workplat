@@ -10,6 +10,7 @@ import com.donnfelker.android.bootstrap.R;
 
 /**
  * Created by Feather on 14-4-2.
+ * 巡检流程的页面适配器
  */
 public class InspectPagerAdapter extends FragmentPagerAdapter {
 
@@ -33,13 +34,13 @@ public class InspectPagerAdapter extends FragmentPagerAdapter {
                 result = new DefectListFragment();
                 break;
             case 1:
-                result = new DefectListFragment();
+                result = new WeatherFragment();
                 break;
             case 2:
-                result = new DefectListFragment();
+                result = new WeatherFragment();
                 break;
             case 3:
-                result = new DefectListFragment();
+                result = new WeatherFragment();
                 break;
             default:
                 result = null;
