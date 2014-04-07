@@ -1,4 +1,4 @@
-package com.donnfelker.android.bootstrap.ui;
+package com.donnfelker.android.bootstrap.ui.step;
 
 import android.content.res.Resources;
 import android.os.Bundle;

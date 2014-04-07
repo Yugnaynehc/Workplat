@@ -2,19 +2,14 @@ package com.donnfelker.android.bootstrap.ui;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.Window;
 
-import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.Work;
+import com.donnfelker.android.bootstrap.ui.step.ProcessCarouselFragment;
 import com.donnfelker.android.bootstrap.util.UIUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.InjectView;
 import butterknife.Views;
 
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.WORK_ITEM;
@@ -63,8 +58,6 @@ public class WorkActivity extends BootstrapFragmentActivity {
         super.onConfigurationChanged(newConfig);
     }
 
-    private boolean isTablet() {
-        return UIUtils.isTablet(this);
-    }
+    public Work getWork() { return this.work; }
 }
 

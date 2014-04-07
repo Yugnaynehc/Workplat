@@ -1,10 +1,12 @@
-package com.donnfelker.android.bootstrap.ui;
+package com.donnfelker.android.bootstrap.ui.step;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.Defect;
+import com.donnfelker.android.bootstrap.ui.AlternatingColorListAdapter;
+
 import java.util.List;
 
 /**

@@ -76,5 +76,11 @@
     <string name="inspect_job_deviceperiodicmaintance">设备定期维护作业</string>
     <string name="inspect_job_barriergateoperate">道闸操作作业</string>
 
+    <!-- 天气信息输入 -->
+    <string name="weather_time">时间</string>
+    <string name="weather_temperature">温度（℃）：</string>
+    <string name="weather_humidity">时间（RH）</string>
+    <string name="weather_person">负责人</string>
+
 
 </resources>

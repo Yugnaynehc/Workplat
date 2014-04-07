@@ -1,4 +1,4 @@
-package com.donnfelker.android.bootstrap.ui;
+package com.donnfelker.android.bootstrap.ui.step;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

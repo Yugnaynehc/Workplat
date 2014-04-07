@@ -1,6 +1,5 @@
-package com.donnfelker.android.bootstrap.ui;
+package com.donnfelker.android.bootstrap.ui.step;
 
-import android.accounts.OperationCanceledException;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.content.Loader;
@@ -12,6 +11,8 @@ import com.donnfelker.android.bootstrap.Injector;
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.authenticator.LogoutService;
 import com.donnfelker.android.bootstrap.core.Defect;
+import com.donnfelker.android.bootstrap.ui.ItemListFragment;
+import com.donnfelker.android.bootstrap.ui.ThrowableLoader;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import javax.inject.Inject;
 /**
  * Created by Feather on 14-4-1.
  */
-public class DefectListFragment extends  ItemListFragment<Defect> {
+public class DefectListFragment extends ItemListFragment<Defect> {
 
     @Inject protected BootstrapServiceProvider serviceProvider;
     @Inject protected LogoutService logoutService;

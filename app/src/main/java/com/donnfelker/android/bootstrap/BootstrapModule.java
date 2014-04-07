@@ -7,7 +7,7 @@ import com.donnfelker.android.bootstrap.authenticator.BootstrapAuthenticatorActi
 import com.donnfelker.android.bootstrap.authenticator.LogoutService;
 import com.donnfelker.android.bootstrap.core.TimerService;
 import com.donnfelker.android.bootstrap.ui.BootstrapTimerActivity;
-import com.donnfelker.android.bootstrap.ui.DefectListFragment;
+import com.donnfelker.android.bootstrap.ui.step.DefectListFragment;
 import com.donnfelker.android.bootstrap.ui.MainActivity;
 import com.donnfelker.android.bootstrap.ui.CheckInsListFragment;
 import com.donnfelker.android.bootstrap.ui.NavigationDrawerFragment;

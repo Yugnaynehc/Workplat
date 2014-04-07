@@ -45,7 +45,7 @@ public final class Constants {
          */
         //public static final String URL_BASE = "https://api.parse.com";
         //public static final String URL_BASE = "http://192.168.1.106:8888/Inspect";
-        public static final String URL_BASE = "http://15da4a5f.ngrok.com/Inspect";
+        public static final String URL_BASE = "http://29fc774.ngrok.com/Inspect";
 
         /**
          * Authentication URL
@@ -70,7 +70,7 @@ public final class Constants {
         /**
          *  上传结果的URL
          */
-        public static final String URL_UPLOAD = URL_BASE + "uploadAction";
+        public static final String URL_UPLOAD = URL_BASE + "/uploadPro";
 
         /**
          * List Users URL
