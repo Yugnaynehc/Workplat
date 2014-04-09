@@ -4,8 +4,10 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
@@ -54,6 +56,7 @@ import static com.donnfelker.android.bootstrap.core.Constants.Http.HEADER_PARSE_
 import static com.donnfelker.android.bootstrap.core.Constants.Http.PARSE_APP_ID;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.PARSE_REST_API_KEY;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.URL_AUTH;
+import static com.donnfelker.android.bootstrap.core.Constants.UPreference.*;
 import static com.github.kevinsawicki.http.HttpRequest.get;
 
 /**
@@ -281,7 +284,8 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
                             Strings.toString(request.buffer()),
                             User.class
                     );
-
+                    SharedPreferences userInfo = getSharedPreferences(USER_INFO, Context.MODE_PRIVATE);
+                    userInfo.edit().putString(USER_INFO_NAME, model.getName()).commit();
                     token = model.getSessionToken();
                     Ln.d("user.post=%s",  new Gson().toJson(model));
                 }

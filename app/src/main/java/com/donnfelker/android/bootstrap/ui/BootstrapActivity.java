@@ -22,8 +22,6 @@ public abstract class BootstrapActivity extends ActionBarActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = this.getWindow().getDecorView();
-        view.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.back));
         Injector.inject(this);
     }
 

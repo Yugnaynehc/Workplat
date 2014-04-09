@@ -1,6 +1,8 @@
 package com.donnfelker.android.bootstrap.ui.step;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -19,8 +21,10 @@ import android.widget.TextView;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.util.Ln;
+import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
 import com.github.kevinsawicki.http.HttpRequest;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.*;
+import static com.donnfelker.android.bootstrap.core.Constants.UPreference.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -40,6 +44,8 @@ public class WeatherFragment extends Fragment {
     @InjectView(R.id.upload) Button bupload;
     @InjectView(R.id.date) EditText date;
     @InjectView(R.id.person) EditText person;
+    private SafeAsyncTask<Boolean> authenticationTask;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -66,12 +72,21 @@ public class WeatherFragment extends Fragment {
                     Ln.d("upload %s ", e.toString());
                 }
                 */
-                final String query = String.format("?%s=%s", "filename", "123");
-                int request = HttpRequest.post(URL_UPLOAD + query).send("hahah").code();
-                Ln.d("upload return code = %s", request);
+                authenticationTask = new SafeAsyncTask<Boolean>() {
+                    @Override
+                    public Boolean call() throws Exception {
+                        HttpRequest request = HttpRequest.post(URL_UPLOAD);
+                        request.part("upload", "testfile.txt", "text/plain", "this is a testfile");
+                        return request.ok();
+                        //Ln.d("upload return code = %s", request);
+                    }
+                };
+                authenticationTask.execute();
             }
         });
         date.setText(new SimpleDateFormat("yyyy-M-d").format(new Date()));
+        sharedPreferences = this.getActivity().getSharedPreferences(USER_INFO, Context.MODE_PRIVATE);
+        person.setText(sharedPreferences.getString(USER_INFO_NAME, ""));
 
         return view;
     }
