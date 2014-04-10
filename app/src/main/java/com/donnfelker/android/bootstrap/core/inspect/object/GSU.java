@@ -11,8 +11,6 @@ import java.util.List;
  */
 public class GSU extends Device {
 
-    private List<SubDevice> subDevice;
-
     public GSU() {
         setName("主变");
         subDevice = new ArrayList<SubDevice>();

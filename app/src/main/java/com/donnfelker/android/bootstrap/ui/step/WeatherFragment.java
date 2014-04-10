@@ -20,13 +20,16 @@ import android.widget.TextView;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
+import com.donnfelker.android.bootstrap.core.inspect.object.GSU;
 import com.donnfelker.android.bootstrap.util.Ln;
 import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
+import com.donnfelker.android.bootstrap.util.XMLBuilder;
 import com.github.kevinsawicki.http.HttpRequest;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.*;
 import static com.donnfelker.android.bootstrap.core.Constants.UPreference.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -46,6 +49,7 @@ public class WeatherFragment extends Fragment {
     @InjectView(R.id.person) EditText person;
     private SafeAsyncTask<Boolean> authenticationTask;
     private SharedPreferences sharedPreferences;
+    private File xmlFile;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -76,7 +80,7 @@ public class WeatherFragment extends Fragment {
                     @Override
                     public Boolean call() throws Exception {
                         HttpRequest request = HttpRequest.post(URL_UPLOAD);
-                        request.part("upload", "testfile.txt", "text/plain", "this is a testfile");
+                        request.part("upload", "test.xml", "text/plain", xmlFile);
                         return request.ok();
                         //Ln.d("upload return code = %s", request);
                     }
@@ -87,6 +91,14 @@ public class WeatherFragment extends Fragment {
         date.setText(new SimpleDateFormat("yyyy-M-d").format(new Date()));
         sharedPreferences = this.getActivity().getSharedPreferences(USER_INFO, Context.MODE_PRIVATE);
         person.setText(sharedPreferences.getString(USER_INFO_NAME, ""));
+        xmlFile = new File(getActivity().getFilesDir(), "test.xml");
+        try {
+            FileOutputStream outputStream = new FileOutputStream(xmlFile);
+            XMLBuilder.buildXML("Total", new GSU(), outputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         return view;
     }
