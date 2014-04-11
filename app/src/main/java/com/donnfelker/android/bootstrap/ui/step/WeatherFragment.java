@@ -20,11 +20,15 @@ import android.widget.TextView;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
+import com.donnfelker.android.bootstrap.core.Work;
 import com.donnfelker.android.bootstrap.core.inspect.object.GSU;
+import com.donnfelker.android.bootstrap.ui.WorkActivity;
 import com.donnfelker.android.bootstrap.util.Ln;
 import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
 import com.donnfelker.android.bootstrap.util.XMLBuilder;
 import com.github.kevinsawicki.http.HttpRequest;
+
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.WORK_ITEM;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.*;
 import static com.donnfelker.android.bootstrap.core.Constants.UPreference.*;
 
@@ -65,24 +69,12 @@ public class WeatherFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Ln.d("upload click");
-                /*
-                try {
-                    InputStream in = getActivity().getResources().getAssets().open("fontawesome-webfont.ttf");
-                    final String query = String.format("?%s=%s", "filename", "123");
-                    int request = HttpRequest.post(URL_UPLOAD + query).send(in).code();
-                    Ln.d("upload return code = %s", request);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Ln.d("upload %s ", e.toString());
-                }
-                */
                 authenticationTask = new SafeAsyncTask<Boolean>() {
                     @Override
                     public Boolean call() throws Exception {
                         HttpRequest request = HttpRequest.post(URL_UPLOAD);
                         request.part("upload", "test.xml", "text/plain", xmlFile);
                         return request.ok();
-                        //Ln.d("upload return code = %s", request);
                     }
                 };
                 authenticationTask.execute();
@@ -98,8 +90,7 @@ public class WeatherFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
+        Work work = ((WorkActivity)getActivity()).getWork();
         return view;
     }
 

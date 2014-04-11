@@ -23,7 +23,7 @@ public class InspectPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 5;
     }
 
     @Override
@@ -37,9 +37,12 @@ public class InspectPagerAdapter extends FragmentPagerAdapter {
                 result = new WeatherFragment();
                 break;
             case 2:
-                result = new WeatherFragment();
+                result = new ToolsPrepareFragment();
                 break;
             case 3:
+                result = new SecurityFragment();
+                break;
+            case 4:
                 result = new WeatherFragment();
                 break;
             default:
@@ -63,6 +66,8 @@ public class InspectPagerAdapter extends FragmentPagerAdapter {
                 return resources.getString(R.string.page_tools);
             case 3:
                 return resources.getString(R.string.page_security);
+            case 4:
+                return resources.getString(R.string.page_scan);
             default:
                 return null;
         }

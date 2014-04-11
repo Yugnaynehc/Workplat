@@ -72,7 +72,7 @@ public class DefectListFragment extends ItemListFragment<Defect> {
                         for (int i=0; i<5; ++i) {
                             t.add(new Defect());
                             t.get(i).setDeviceid("主变");
-                            t.get(i).setDescription("设备劳损设备劳损设备劳损设备劳损设备劳损设备劳损设备劳损设备劳损设备劳损设备劳损设备劳损设备劳损设备劳损设备劳损设备劳损设备劳损设备劳损设备劳损");
+                            t.get(i).setDescription("设备劳损设备劳损设备劳损设备劳损");
                         }
                       return t;
                         //return serviceProvider.getService(getActivity()).getDefect();
