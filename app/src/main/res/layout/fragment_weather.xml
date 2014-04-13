@@ -19,11 +19,11 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/black"
-            android:editable="false"
             android:text="@string/weather_time"/>
 
         <EditText
             android:id="@+id/date"
+            android:editable="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
@@ -86,11 +86,11 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/black"
-            android:editable="false"
             android:text="@string/weather_person"/>
 
         <EditText
             android:id="@+id/person"
+            android:editable="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"

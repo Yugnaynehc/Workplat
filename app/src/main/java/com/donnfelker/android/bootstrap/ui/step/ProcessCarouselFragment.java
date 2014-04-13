@@ -50,8 +50,8 @@ public class ProcessCarouselFragment extends Fragment {
         // pager.setOnPageChangeListener() 需要放在 indicator.setViewPager(pager) 的上面
         // 否则会使得title不跟随页面动
         pager.setOnPageChangeListener(new MyOnPageChangeListener());
-        pager.setOnTouchListener(myOnTouchListener);
-        indicator.setOnTouchListener(myOnTouchListener);
+        //pager.setOnTouchListener(myOnTouchListener);
+        //indicator.setOnTouchListener(myOnTouchListener);
         indicator.setViewPager(pager);
         pager.setCurrentItem(0);
         // 以下这一行代码解决了在平板电脑上ActinBar的menu显示不正常的问题。
@@ -80,21 +80,6 @@ public class ProcessCarouselFragment extends Fragment {
         public boolean onTouch(View view, MotionEvent motionEvent) {
             // TODO judge move direction 判断滑动的方向
             if (!validation()) {
-                /*
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    x1 = motionEvent.getX();
-                    Ln.d("在第%d页", pager.getCurrentItem() + 1);
-                    return true;
-                }
-                else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    x2 = motionEvent.getX();
-                    if (x1 - x2 > 50) {
-                        Toast.makeText(getActivity(), "信息填写不完整", Toast.LENGTH_LONG).show();
-                        Ln.d("尝试跳过第%d页", pager.getCurrentItem() + 1);
-                        return true;
-                    }
-                }
-                */
                 Toast.makeText(getActivity(), "信息填写不完整", Toast.LENGTH_LONG).show();
                 return true;
             }

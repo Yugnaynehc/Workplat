@@ -92,6 +92,35 @@
     <string name="tool_num">数量</string>
     <string name="tool_remark">备注</string>
 
+    <string name="tool_name_helmet">安全帽</string>
+    <string name="tool_name_gloves">绝缘手套</string>
+    <string name="tool_name_boots">绝缘靴</string>
+    <string name="tool_name_telescope">望远镜</string>
+    <string name="tool_name_thermodetector">测温仪</string>
+    <string name="tool_name_lamp">应急灯</string>
+    <string name="tool_name_key">钥匙</string>
+    <string name="tool_name_goggle">护目镜</string>
+    <string name="tool_name_interphone">对讲机</string>
+
+    <string name="tool_unit_ding">顶</string>
+    <string name="tool_unit_shuang">双</string>
+    <string name="tool_unit_fu">副</string>
+    <string name="tool_unit_tai">台</string>
+    <string name="tool_unit_zhan">盏</string>
+    <string name="tool_unit_tao">套</string>
+    <string name="tool_unit_ge">个</string>
+
+    <string name="tool_remark_helmet">视巡检人员数量定</string>
+    <string name="tool_remark_gloves">根据巡检需要，视巡检人员数量定</string>
+    <string name="tool_remark_boots">视巡检人员数量定，特殊天气及接地网接地电阻不合格时使用</string>
+    <string name="tool_remark_telescope">根据现场需要定</string>
+    <string name="tool_remark_thermodetector">根据现场需要定</string>
+    <string name="tool_remark_lamp">根据现场需要定</string>
+    <string name="tool_remark_key">根据现场需要定</string>
+    <string name="tool_remark_goggle">视巡检人员数量定</string>
+    <string name="tool_remark_interphone">（无）</string>
+
+
     <!-- 危险点及安全控制措施输入 -->
     <string name="security_item">危险点</string>
     <string name="security_measure">控制措施</string>

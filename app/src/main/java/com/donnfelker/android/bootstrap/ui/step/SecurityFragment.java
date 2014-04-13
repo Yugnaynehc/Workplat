@@ -6,15 +6,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.donnfelker.android.bootstrap.R;
 
+import butterknife.InjectView;
 import butterknife.Views;
 
 /**
  * Created by feather on 14-4-11.
  */
 public class SecurityFragment extends Fragment implements ValidationFragment {
+
+    @InjectView(R.id.security_list) protected ListView securityList;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
