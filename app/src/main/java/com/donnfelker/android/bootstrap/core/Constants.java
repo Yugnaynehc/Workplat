@@ -45,7 +45,7 @@ public final class Constants {
          */
         //public static final String URL_BASE = "https://api.parse.com";
         //public static final String URL_BASE = "http://192.168.1.106:8888/Inspect";
-        public static final String URL_BASE = "http://a2bef63.ngrok.com/Inspect";
+        public static final String URL_BASE = "http://3ef4f924.ngrok.com/Inspect";
 
         /**
          * Authentication URL

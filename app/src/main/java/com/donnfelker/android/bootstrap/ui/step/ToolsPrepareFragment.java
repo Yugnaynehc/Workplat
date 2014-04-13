@@ -33,7 +33,7 @@ import static com.donnfelker.android.bootstrap.core.Constants.UPreference.USER_I
 /**
  * Created by feather on 14-4-11.
  */
-public class ToolsPrepareFragment extends Fragment {
+public class ToolsPrepareFragment extends Fragment implements ValidationFragment {
 
     @InjectView(R.id.tools_list) protected ListView toolsList;
 
@@ -69,6 +69,14 @@ public class ToolsPrepareFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+    }
+
+    public boolean validation() {
+        return true;
+    }
+
+    public void saveResult() {
+
     }
 
 }

@@ -14,7 +14,7 @@ import butterknife.Views;
 /**
  * Created by feather on 14-4-11.
  */
-public class SecurityFragment extends Fragment {
+public class SecurityFragment extends Fragment implements ValidationFragment {
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -48,5 +48,13 @@ public class SecurityFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+    }
+
+    public boolean validation() {
+        return true;
+    }
+
+    public void saveResult() {
+
     }
 }

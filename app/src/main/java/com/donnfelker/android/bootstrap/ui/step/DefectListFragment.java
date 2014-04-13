@@ -25,7 +25,7 @@ import javax.inject.Inject;
 /**
  * Created by Feather on 14-4-1.
  */
-public class DefectListFragment extends ItemListFragment<Defect> {
+public class DefectListFragment extends ItemListFragment<Defect> implements ValidationFragment{
 
     @Inject protected BootstrapServiceProvider serviceProvider;
     @Inject protected LogoutService logoutService;
@@ -111,4 +111,13 @@ public class DefectListFragment extends ItemListFragment<Defect> {
     protected SingleTypeAdapter<Defect> createAdapter(final List<Defect> items) {
         return new DefectListAdapter(getActivity().getLayoutInflater(), items);
     }
+
+    public boolean validation() {
+        return true;
+    }
+
+    public void saveResult() {
+
+    }
+
 }

@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/black"
+            android:editable="false"
             android:text="@string/weather_time"/>
 
         <EditText
@@ -85,6 +86,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/black"
+            android:editable="false"
             android:text="@string/weather_person"/>
 
         <EditText
@@ -94,14 +96,5 @@
             android:maxLines="1"
             android:singleLine="true"/>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/upload"
-        android:text="upload"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:textSize="20sp"
-        android:layout_marginTop="15dp"
-        />
 
 </LinearLayout>

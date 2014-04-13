@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -22,6 +23,7 @@ import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.Work;
 import com.donnfelker.android.bootstrap.core.inspect.object.GSU;
+import com.donnfelker.android.bootstrap.core.inspect.result.InspectEnvironment;
 import com.donnfelker.android.bootstrap.ui.WorkActivity;
 import com.donnfelker.android.bootstrap.util.Ln;
 import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
@@ -46,14 +48,15 @@ import butterknife.Views;
 /**
  * Created by Feather on 14-4-3.
  */
-public class WeatherFragment extends Fragment {
+public class WeatherFragment extends Fragment implements  ValidationFragment {
 
-    @InjectView(R.id.upload) Button bupload;
     @InjectView(R.id.date) EditText date;
+    @InjectView(R.id.temperature) EditText temp;
+    @InjectView(R.id.humidity) EditText humi;
     @InjectView(R.id.person) EditText person;
     private SafeAsyncTask<Boolean> authenticationTask;
     private SharedPreferences sharedPreferences;
-    private File xmlFile;
+    private InspectEnvironment env;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -65,32 +68,10 @@ public class WeatherFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceStete);
         View view = inflater.inflate(R.layout.fragment_weather, container, false);
         Views.inject(this, view);
-        bupload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Ln.d("upload click");
-                authenticationTask = new SafeAsyncTask<Boolean>() {
-                    @Override
-                    public Boolean call() throws Exception {
-                        HttpRequest request = HttpRequest.post(URL_UPLOAD);
-                        request.part("upload", "test.xml", "text/plain", xmlFile);
-                        return request.ok();
-                    }
-                };
-                authenticationTask.execute();
-            }
-        });
         date.setText(new SimpleDateFormat("yyyy-M-d").format(new Date()));
         sharedPreferences = this.getActivity().getSharedPreferences(USER_INFO, Context.MODE_PRIVATE);
         person.setText(sharedPreferences.getString(USER_INFO_NAME, ""));
-        xmlFile = new File(getActivity().getFilesDir(), "test.xml");
-        try {
-            FileOutputStream outputStream = new FileOutputStream(xmlFile);
-            XMLBuilder.buildXML("Total", new GSU(), outputStream);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Work work = ((WorkActivity)getActivity()).getWork();
+
         return view;
     }
 
@@ -113,4 +94,16 @@ public class WeatherFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
     }
+
+    public boolean validation() {
+        if (temp.getText().toString().equals("")) return false;
+        if (humi.getText().toString().equals("")) return false;
+        return true;
+    }
+
+    public void saveResult() {
+        env = new InspectEnvironment(date.toString(), temp.toString(), humi.toString(), person.toString());
+        ((WorkActivity)getActivity()).getResult().setEnv(env);
+    }
+
 }

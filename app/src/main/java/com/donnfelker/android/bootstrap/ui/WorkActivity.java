@@ -7,6 +7,7 @@ import android.view.Window;
 
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.Work;
+import com.donnfelker.android.bootstrap.core.inspect.result.Result;
 import com.donnfelker.android.bootstrap.ui.step.ProcessCarouselFragment;
 import com.donnfelker.android.bootstrap.util.UIUtils;
 
@@ -23,6 +24,7 @@ public class WorkActivity extends BootstrapFragmentActivity {
     protected FragmentManager fragmentManager;
 
     private Work work;
+    private Result result;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -36,6 +38,8 @@ public class WorkActivity extends BootstrapFragmentActivity {
         if (getIntent() != null && getIntent().getExtras() != null) {
             work = (Work) getIntent().getExtras().getSerializable(WORK_ITEM);
         }
+        result = new Result();
+        result.setType(work.getType());
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -59,5 +63,7 @@ public class WorkActivity extends BootstrapFragmentActivity {
     }
 
     public Work getWork() { return this.work; }
+
+    public Result getResult() { return this.result; }
 }
 
