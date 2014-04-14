@@ -85,14 +85,14 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
     }
 
     public boolean validation() {
+        Ln.d("tools prepare fragment validation");
         return true;
     }
 
     public void saveResult() {
         List<InspectTool> toolsList = null;
         InspectTool tool;
-
-        Ln.d("result tool saved");
+        Ln.d("tools prepare fragment save result");
         for (int i=0;  i<toolsName.size(); ++i) {
             if (selectMap.get(i)) {
                 tool = new InspectTool(toolsName.get(i), typeMap.get(i), numMap.get(i));

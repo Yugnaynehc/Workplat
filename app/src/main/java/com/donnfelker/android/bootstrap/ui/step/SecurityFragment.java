@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.donnfelker.android.bootstrap.R;
+import com.donnfelker.android.bootstrap.util.Ln;
 
 import butterknife.InjectView;
 import butterknife.Views;
@@ -59,11 +60,12 @@ public class SecurityFragment extends Fragment implements ValidationFragment {
     }
 
     public boolean validation() {
+        Ln.d("security fragment validation");
         return true;
     }
 
     public void saveResult() {
-
+        Ln.d("security fragment save result");
     }
 
     private class SecurityAdapter extends BaseAdapter {

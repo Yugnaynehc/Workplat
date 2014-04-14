@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@drawable/back"
@@ -18,6 +19,36 @@
         android:id="@+id/vp_pages"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="8" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="center|bottom"
+        android:gravity="bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/prev"
+            android:text="@string/button_prev"
+            android:layout_width="wrap_content"
+            bootstrapbutton:bb_roundedCorners="true"
+            bootstrapbutton:bb_type="info"
+            bootstrapbutton:bb_icon_left="fa-chevron-left"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"/>
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/next"
+            android:text="@string/button_next"
+            android:layout_width="wrap_content"
+            bootstrapbutton:bb_roundedCorners="true"
+            bootstrapbutton:bb_type="success"
+            bootstrapbutton:bb_icon_right="fa-chevron-right"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -76,6 +76,7 @@
         <activity
             android:name=".ui.WorkActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustPan"
             android:label="@string/app_name" />
 
     </application>

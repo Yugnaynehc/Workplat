@@ -71,7 +71,6 @@ public class WeatherFragment extends Fragment implements  ValidationFragment {
         date.setText(new SimpleDateFormat("yyyy-M-d").format(new Date()));
         sharedPreferences = this.getActivity().getSharedPreferences(USER_INFO, Context.MODE_PRIVATE);
         person.setText(sharedPreferences.getString(USER_INFO_NAME, ""));
-
         return view;
     }
 
@@ -96,12 +95,14 @@ public class WeatherFragment extends Fragment implements  ValidationFragment {
     }
 
     public boolean validation() {
+        Ln.d("Weather fragment validation");
         if (temp.getText().toString().equals("")) return false;
         if (humi.getText().toString().equals("")) return false;
         return true;
     }
 
     public void saveResult() {
+        Ln.d("Weather fragment save result");
         env = new InspectEnvironment(date.toString(), temp.toString(), humi.toString(), person.toString());
         ((WorkActivity)getActivity()).getResult().setEnv(env);
     }

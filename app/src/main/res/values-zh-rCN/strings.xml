@@ -11,6 +11,11 @@
     <string name="page_users">用户</string>
     <string name="page_checkins">申请</string>
     <string name="page_works">工作单</string>
+    <string name="page_defect">缺陷信息</string>
+    <string name="page_weather">天气信息</string>
+    <string name="page_tools">工具准备</string>
+    <string name="page_security">危险点</string>
+    <string name="page_scan">设备扫描</string>
     <string name="title_column">标题</string>
     <string name="location_column">地点</string>
     <string name="user_column">用户</string>
@@ -26,6 +31,8 @@
     <string name="no_works">无工作单</string>
     <string name="avatar">Avatar</string>
     <string name="choose">Choose</string>
+    <string name="button_prev">上一步</string>
+    <string name="button_next">下一步</string>
 
     <!-- AuthenticatorActivity -->
     <string name="label_email_address">用户名</string>

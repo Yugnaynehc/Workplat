@@ -35,6 +35,8 @@
     <string name="no_defects">No Defects</string>
     <string name="avatar">Avatar</string>
     <string name="choose">Choose</string>
+    <string name="button_prev">prev</string>
+    <string name="button_next">next</string>
 
     <!-- AuthenticatorActivity -->
     <string name="label_email_address">Email Address</string>
