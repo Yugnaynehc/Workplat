@@ -59,4 +59,8 @@ public class Result {
         else
             this.devices.add(device);
     }
+
+    public List<InspectTool> getTools() {
+        return tools;
+    }
 }

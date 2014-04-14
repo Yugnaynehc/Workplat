@@ -13,4 +13,8 @@ public class InspectTool {
         this.type = type;
         this.num = num;
     }
+
+    public String toString() {
+        return "name: " + name + "  type: " + type + "  num: " + num;
+    }
 }
