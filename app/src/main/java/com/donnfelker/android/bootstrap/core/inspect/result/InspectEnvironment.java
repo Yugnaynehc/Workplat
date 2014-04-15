@@ -15,4 +15,20 @@ public class InspectEnvironment {
         this.humidity = humidity;
         this.personName = personName;
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getTemperature() {
+        return temperature;
+    }
+
+    public String getHumidity() {
+        return humidity;
+    }
+
+    public String getPersonName() {
+        return personName;
+    }
 }

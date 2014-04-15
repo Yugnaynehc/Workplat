@@ -60,7 +60,23 @@ public class Result {
             this.devices.add(device);
     }
 
+    public String getType() {
+        return type;
+    }
+
     public List<InspectTool> getTools() {
         return tools;
+    }
+
+    public InspectEnvironment getEnv() {
+        return env;
+    }
+
+    public Security getSecurity() {
+        return security;
+    }
+
+    public List<Device> getDevices() {
+        return devices;
     }
 }

@@ -31,7 +31,8 @@ public abstract class SubDevice extends Device {
     protected abstract void setInspectStandard();
 
     public void setInspectResult(List<String> result) {
-        inspectResult = new ArrayList<String>(result);
+        // TODO instead of reference by clone?
+        inspectResult = result;
     }
     
 }

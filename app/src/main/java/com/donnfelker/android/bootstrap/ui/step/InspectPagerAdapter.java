@@ -43,7 +43,7 @@ public class InspectPagerAdapter extends FragmentPagerAdapter {
                 result = new SecurityFragment();
                 break;
             case 4:
-                result = new WeatherFragment();
+                result = new RfidScanFragment();
                 break;
             default:
                 result = null;

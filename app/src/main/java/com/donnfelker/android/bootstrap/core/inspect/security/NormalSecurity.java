@@ -3,9 +3,10 @@ package com.donnfelker.android.bootstrap.core.inspect.security;
 /**
  * Created by Feather on 14-3-25.
  */
+
+// TODO change class structure 改变类的结构，之前在定义时存在错误，或许不应该使用静态字符串。
 public class NormalSecurity extends Security {
     public static String danger[] = {
-        "",
         "擅自打开设备网门，擅自移动临时安全围栏，擅自跨越设备固定围栏。",
         "发现缺陷及异常单人处理",
         "发现缺陷及异常时未及时汇报",
@@ -32,7 +33,6 @@ public class NormalSecurity extends Security {
     };
 
     public static String measure[] = {
-        "",
         "巡检检查时，不得进行其他工作，严禁移开或越过遮拦，严禁擅自打开安全网门。若有必要移开遮拦时，必须有监护人在场，并与带电设备保持足够的安全距离，10kV—0.7m,110kV—1.5m,220kV—3m。",
         "发现设备缺陷及异常时，及时汇报，不得在失去监护的情况下单人处理。",
         "发现设备缺陷及异常时，及时汇报，不得在失去监护的情况下单人处理。",
@@ -57,4 +57,14 @@ public class NormalSecurity extends Security {
         "提前开启通风设备15分钟后，方可进入蓄电池室。",
         "室内严禁烟火。",
     };
+
+    public String[] getPoint() {
+        return danger;
+    }
+
+    public String[] getMeasure() {
+        return measure;
+    }
+
+    public int getCount() { return 13; }
 }

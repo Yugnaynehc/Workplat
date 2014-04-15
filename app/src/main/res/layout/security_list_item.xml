@@ -16,17 +16,17 @@
     <TextView
         android:id="@+id/tv_security_point"
         android:layout_gravity="center"
-        android:gravity="center"
+        android:gravity="left|center_vertical"
         android:layout_width="0dp"
-        android:layout_weight="5"
+        android:layout_weight="4"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tv_security_measure"
         android:layout_gravity="center"
-        android:gravity="center"
+        android:gravity="left|center_vertical"
         android:layout_width="0dp"
-        android:layout_weight="5"
+        android:layout_weight="4"
         android:layout_height="wrap_content" />
 
     <CheckBox

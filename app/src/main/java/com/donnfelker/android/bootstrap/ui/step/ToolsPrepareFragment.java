@@ -48,8 +48,8 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceStete) {
-        super.onCreateView(inflater, container, savedInstanceStete);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_tools, container, false);
         toolsList = (ListView)view.findViewById(R.id.tools_list);
         numMap = new SparseArray<String>();
@@ -107,8 +107,10 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
         ((WorkActivity)getActivity()).getResult().setTools(toolsList);
 
         toolsList = ((WorkActivity)getActivity()).getResult().getTools();
-        for (int i=0; i<toolsList.size(); ++i) {
-            Ln.d("result tool %d %s", i, toolsList.get(i).toString());
+        if (toolsList != null) {
+            for (int i=0; i<toolsList.size(); ++i) {
+                Ln.d("result tool %d %s", i, toolsList.get(i).toString());
+            }
         }
     }
 
@@ -199,7 +201,7 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
         }
 
         @Override
-        public View getView(final int position, View converView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
 
             final ToolsViewHolder holder;
 
@@ -209,25 +211,24 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
             String toolRemark = toolsRemark.get(position);
 
             //Ln.d("getView %d", position);
-            if (converView == null) {
-                converView = inflater.inflate(R.layout.tools_list_item, null);
+            if (convertView == null) {
+                convertView = inflater.inflate(R.layout.tools_list_item, null);
                 holder = new ToolsViewHolder();
-                holder.no = (TextView)converView.findViewById(R.id.tv_tool_no);
-                holder.name = (TextView)converView.findViewById(R.id.tv_tool_name);
-                holder.type = (EditText)converView.findViewById(R.id.et_tool_type);
-                holder.unit = (TextView)converView.findViewById(R.id.tv_tool_unit);
-                holder.num = (EditText)converView.findViewById(R.id.et_tool_num);
-                holder.remark = (TextView)converView.findViewById(R.id.tv_tool_remark);
-                holder.select = (CheckBox)converView.findViewById(R.id.cb_tool_select);
-                converView.setTag(holder);
+                holder.no = (TextView)convertView.findViewById(R.id.tv_tool_no);
+                holder.name = (TextView)convertView.findViewById(R.id.tv_tool_name);
+                holder.type = (EditText)convertView.findViewById(R.id.et_tool_type);
+                holder.unit = (TextView)convertView.findViewById(R.id.tv_tool_unit);
+                holder.num = (EditText)convertView.findViewById(R.id.et_tool_num);
+                holder.remark = (TextView)convertView.findViewById(R.id.tv_tool_remark);
+                holder.select = (CheckBox)convertView.findViewById(R.id.cb_tool_select);
+                convertView.setTag(holder);
             }
             else {
-                holder = (ToolsViewHolder)converView.getTag();
+                holder = (ToolsViewHolder)convertView.getTag();
             }
 
             holder.no.setText(toolNo);
             holder.name.setText(toolName);
-            holder.type.setOnEditorActionListener(null);
             holder.type.setText(typeMap.get(position));
             holder.type.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -300,7 +301,7 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
                     holder.num.requestFocus();
             }
 
-            return converView;
+            return convertView;
         }
     }
 

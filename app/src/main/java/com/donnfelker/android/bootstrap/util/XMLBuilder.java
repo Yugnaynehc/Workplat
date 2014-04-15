@@ -53,5 +53,4 @@ public class XMLBuilder {
         serializer.endDocument();
         out.close();
     }
-
 }

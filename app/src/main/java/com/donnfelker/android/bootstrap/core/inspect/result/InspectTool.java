@@ -14,6 +14,18 @@ public class InspectTool {
         this.num = num;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getNum() {
+        return num;
+    }
+
     public String toString() {
         return "name: " + name + "  type: " + type + "  num: " + num;
     }

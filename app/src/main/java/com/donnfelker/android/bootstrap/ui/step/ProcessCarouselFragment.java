@@ -69,6 +69,7 @@ public class ProcessCarouselFragment extends Fragment {
                 if (index > 0) {
                     pager.setCurrentItem(index - 1);
                     next.setBootstrapButtonEnabled(true);
+                    next.setText(getResources().getString(R.string.button_next));
                 }
                 if (pager.getCurrentItem() == 0)
                     prev.setBootstrapButtonEnabled(false);
@@ -83,8 +84,11 @@ public class ProcessCarouselFragment extends Fragment {
                         prev.setBootstrapButtonEnabled(true);
                     }
                     currentFragment.saveResult();
-                    if (pager.getCurrentItem() == pagerAdapter.getCount() - 1)
+                    if (pager.getCurrentItem() == pagerAdapter.getCount() - 1) {
                         next.setBootstrapButtonEnabled(false);
+                        next.setText(getResources().getString(R.string.button_submit));
+                    }
+
                     //pager.arrowScroll(2);
                     Ln.d("next clicked");
                 }

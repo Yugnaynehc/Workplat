@@ -54,7 +54,8 @@
     <TextView
         android:id="@+id/tv_tool_remark"
         android:layout_gravity="center"
-        android:gravity="center"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="2dp"
         android:maxLines="3"
         android:layout_width="0dp"
         android:layout_weight="4"

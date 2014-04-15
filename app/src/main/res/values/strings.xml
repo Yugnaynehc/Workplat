@@ -37,6 +37,7 @@
     <string name="choose">Choose</string>
     <string name="button_prev">prev</string>
     <string name="button_next">next</string>
+    <string name="button_submit">submit</string>
 
     <!-- AuthenticatorActivity -->
     <string name="label_email_address">Email Address</string>
