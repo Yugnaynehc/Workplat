@@ -1,6 +1,7 @@
 package com.donnfelker.android.bootstrap.ui.step;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
@@ -83,10 +84,15 @@ public class ProcessCarouselFragment extends Fragment {
                         pager.setCurrentItem(index + 1);
                         prev.setBootstrapButtonEnabled(true);
                     }
+                    // if this is scan fragment, then start a new inspect page
+                    else {
+                        //startActivityForResult(new Intent(getActivity(), DeviceActivity), RFID.getDeviceCode());
+                        startActivityForResult(new Intent(getActivity(), DeviceActivity.class), 1);
+                    }
                     currentFragment.saveResult();
                     if (pager.getCurrentItem() == pagerAdapter.getCount() - 1) {
                         next.setBootstrapButtonEnabled(false);
-                        next.setText(getResources().getString(R.string.button_submit));
+                        next.setText(getResources().getString(R.string.button_scan));
                     }
 
                     //pager.arrowScroll(2);

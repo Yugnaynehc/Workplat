@@ -16,6 +16,7 @@
     <string name="page_tools">Tools</string>
     <string name="page_security">Security</string>
     <string name="page_scan">Scan</string>
+    <String name="page_result">Result</String>
     <string name="title_column">Title</string>
     <string name="location_column">Location</string>
     <string name="user_column">User</string>
@@ -37,6 +38,7 @@
     <string name="choose">Choose</string>
     <string name="button_prev">prev</string>
     <string name="button_next">next</string>
+    <string name="button_scan">scan</string>
     <string name="button_submit">submit</string>
 
     <!-- AuthenticatorActivity -->
@@ -86,7 +88,7 @@
     <string name="weather_humidity">湿度（RH）:</string>
     <string name="weather_person">负责人:</string>
 
-    <string name="no">序号</string>
+    <string name="no.">序号</string>
 
     <!-- 工具信息输入 -->
     <string name="tool_name">名称</string>
@@ -128,5 +130,9 @@
     <string name="security_item">危险点</string>
     <string name="security_measure">控制措施</string>
 
+    <!-- 设备巡检结果输入 -->
+    <string name="device_content">巡检内容</string>
+    <string name="device_standard">巡检标准</string>
+    <string name="device_result">填写结果</string>
 
 </resources>

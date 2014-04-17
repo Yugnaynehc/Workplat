@@ -16,6 +16,7 @@
     <string name="page_tools">工具准备</string>
     <string name="page_security">危险点</string>
     <string name="page_scan">设备扫描</string>
+    <string name="page_result">巡检结果</string>
     <string name="title_column">标题</string>
     <string name="location_column">地点</string>
     <string name="user_column">用户</string>
@@ -35,6 +36,7 @@
     <string name="choose">Choose</string>
     <string name="button_prev">上一步</string>
     <string name="button_next">下一步</string>
+    <string name="button_scan">扫描</string>
     <string name="button_submit">提交</string>
 
     <!-- AuthenticatorActivity -->
