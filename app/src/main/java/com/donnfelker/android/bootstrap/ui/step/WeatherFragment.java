@@ -96,8 +96,8 @@ public class WeatherFragment extends Fragment implements  ValidationFragment {
 
     public boolean validation() {
         Ln.d("Weather fragment validation");
-        if (temp.getText().toString().equals("")) return false;
-        if (humi.getText().toString().equals("")) return false;
+        //if (temp.getText().toString().equals("")) return false;
+        //if (humi.getText().toString().equals("")) return false;
         return true;
     }
 

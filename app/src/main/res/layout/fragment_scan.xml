@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -18,7 +19,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textColor="@color/black"
-            android:text="@string/weather_time"/>
+            android:text="@string/scan_label"/>
 
         <EditText
             android:id="@+id/date"
@@ -27,6 +28,36 @@
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:singleLine="true"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/button_test"
+            android:minWidth="50dp"
+            bootstrapbutton:bb_type="info"
+            bootstrapbutton:bb_roundedCorners="true"
+            android:text="@string/scan_button_test"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/button_scan"
+            android:minWidth="50dp"
+            bootstrapbutton:bb_type="info"
+            bootstrapbutton:bb_roundedCorners="true"
+            android:text="@string/scan_button_scan"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

@@ -130,9 +130,15 @@
     <string name="security_item">危险点</string>
     <string name="security_measure">控制措施</string>
 
+    <!-- RFID扫描相关字符串 -->
+    <string name="scan_label">扫描标签</string>
+    <string name="scan_button_test">测试</string>
+    <string name="scan_button_scan">扫描</string>
+
     <!-- 设备巡检结果输入 -->
     <string name="device_content">巡检内容</string>
     <string name="device_standard">巡检标准</string>
     <string name="device_result">填写结果</string>
+
 
 </resources>
