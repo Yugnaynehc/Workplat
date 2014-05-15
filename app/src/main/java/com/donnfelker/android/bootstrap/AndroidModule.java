@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
 import android.view.inputmethod.InputMethodManager;
@@ -75,6 +76,11 @@ public class AndroidModule {
     @Provides
     NotificationManager provideNotificationManager(final Context context) {
         return (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    }
+
+    @Provides
+    LocationManager provideLocationManager(final Context context) {
+        return (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
     }
 
 }

@@ -5,6 +5,9 @@ package com.donnfelker.android.bootstrap.ui;
 import android.accounts.OperationCanceledException;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +15,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.donnfelker.android.bootstrap.BootstrapServiceProvider;
 import com.donnfelker.android.bootstrap.R;
@@ -36,6 +40,7 @@ import butterknife.Views;
 public class MainActivity extends BootstrapFragmentActivity {
 
     @Inject protected BootstrapServiceProvider serviceProvider;
+    @Inject protected LocationManager locationManager;
 
     private boolean userHasAuthenticated = false;
 
@@ -105,6 +110,34 @@ public class MainActivity extends BootstrapFragmentActivity {
 
         checkAuth();
 
+
+        String locationProvider = LocationManager.GPS_PROVIDER;
+        locationManager.requestLocationUpdates(locationProvider, 200, 0, new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                uploadLocation(location);
+                Ln.d("GPS: location changed");
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+                //uploadLocation(null);
+                Ln.d("GPS: status changed");
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+                //uploadLocation(locationManager.getLastKnownLocation(provider));
+                Ln.d("GPS: provider enabled");
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+                //uploadLocation(null);
+                Ln.d("GPS: provider disabled");
+            }
+        });
+
     }
 
     private boolean isTablet() {
@@ -141,6 +174,28 @@ public class MainActivity extends BootstrapFragmentActivity {
                     .commit();
         }
 
+    }
+
+    private void uploadLocation(Location location) {
+        if (location != null) {
+            StringBuffer sb = new StringBuffer();
+            sb.append("实时的位置信息：\n经度：");
+            sb.append(location.getLongitude());
+            sb.append("\n纬度：");
+            sb.append(location.getLatitude());
+            sb.append("\n高度：");
+            sb.append(location.getAltitude());
+            sb.append("\n速度：");
+            sb.append(location.getSpeed());
+            sb.append("\n方向：");
+            sb.append(location.getBearing());
+            sb.append("\n精度：");
+            sb.append(location.getAccuracy());
+            Ln.d("GPS: %s", sb.toString());
+            Toast.makeText(this, sb.toString(), Toast.LENGTH_LONG);
+        } else {
+            Ln.d("GPS: %s", "无法获得数据");
+        }
     }
 
     private void checkAuth() {
