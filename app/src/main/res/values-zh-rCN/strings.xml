@@ -9,7 +9,8 @@
     <string name="logout_action">登出</string>
     <string name="page_news">新闻</string>
     <string name="page_users">用户</string>
-    <string name="page_checkins">申请</string>
+    <string name="page_checkins">打卡</string>
+    <string name="page_apply">申请</string>
     <string name="page_works">工作单</string>
     <string name="page_defect">缺陷信息</string>
     <string name="page_weather">天气信息</string>
@@ -38,6 +39,9 @@
     <string name="button_next">下一步</string>
     <string name="button_scan">扫描</string>
     <string name="button_submit">提交</string>
+    <string name="apply_date">执行日期</string>
+    <string name="apply_type">申请类型</string>
+    <string name="apply_reason">申请理由</string>
 
     <!-- AuthenticatorActivity -->
     <string name="label_email_address">用户名</string>

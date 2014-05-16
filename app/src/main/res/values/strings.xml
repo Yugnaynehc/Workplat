@@ -11,6 +11,7 @@
     <string name="page_users">Users</string>
     <string name="page_checkins">Check In\'s</string>
     <string name="page_works">Works</string>
+    <string name="page_apply">Apply</string>
     <string name="page_defect">Defect</string>
     <string name="page_weather">Weather</string>
     <string name="page_tools">Tools</string>
@@ -40,6 +41,9 @@
     <string name="button_next">next</string>
     <string name="button_scan">scan</string>
     <string name="button_submit">submit</string>
+    <string name="apply_date">Apply Date</string>
+    <string name="apply_type">Apply Type</string>
+    <string name="apply_reason">Apply Reason</string>
 
     <!-- AuthenticatorActivity -->
     <string name="label_email_address">Email Address</string>

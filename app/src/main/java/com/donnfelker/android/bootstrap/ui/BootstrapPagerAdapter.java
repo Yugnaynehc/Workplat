@@ -44,7 +44,8 @@ public class BootstrapPagerAdapter extends FragmentPagerAdapter {
                 result = new WorkListFragment();
                 break;
             case 2:
-                result = new CheckInsListFragment();
+                //result = new CheckInsListFragment();
+                result = new ApplyFragment();
                 break;
             default:
                 result = null;
@@ -64,7 +65,7 @@ public class BootstrapPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return resources.getString(R.string.page_works);
             case 2:
-                return resources.getString(R.string.page_checkins);
+                return resources.getString(R.string.page_apply);
             default:
                 return null;
         }
