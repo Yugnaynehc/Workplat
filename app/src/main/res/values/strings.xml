@@ -17,7 +17,7 @@
     <string name="page_tools">Tools</string>
     <string name="page_security">Security</string>
     <string name="page_scan">Scan</string>
-    <String name="page_result">Result</String>
+    <string name="page_result">Result</string>
     <string name="title_column">Title</string>
     <string name="location_column">Location</string>
     <string name="user_column">User</string>
@@ -41,6 +41,7 @@
     <string name="button_next">next</string>
     <string name="button_scan">scan</string>
     <string name="button_submit">submit</string>
+    <string name="button_upload">upload</string>
     <string name="apply_date">Apply Date</string>
     <string name="apply_type">Apply Type</string>
     <string name="apply_reason">Apply Reason</string>
@@ -79,7 +80,7 @@
     <string name="inspect_special_nightlight">夜间熄灯特殊巡检</string>
     <string name="inspect_special_bugtrace">设备异常缺陷跟踪特殊巡检</string>
     <string name="inspect_job_infraredtesting">红外线测试作业</string>
-    <stirng name="inspect_job_switchcooler">主变冷却器切换实验作业</stirng>
+    <string name="inspect_job_switchcooler">主变冷却器切换实验作业</string>
     <string name="inspect_job_emergencylightswitch">事故照明灯切换作业</string>
     <string name="inspect_job_batteryperiodictesting">蓄电池定期测试作业</string>
     <string name="inspect_job_deviceperiodictestingrotation">设备定期测试、轮换作业</string>
@@ -139,7 +140,8 @@
     <string name="scan_button_test">测试</string>
     <string name="scan_button_scan">扫描</string>
 
-    <!-- 设备巡检结果输入 -->
+    <!-- 设备巡检结果相关 -->
+    <string name="inspect_result">巡检结果</string>
     <string name="device_content">巡检内容</string>
     <string name="device_standard">巡检标准</string>
     <string name="device_result">填写结果</string>

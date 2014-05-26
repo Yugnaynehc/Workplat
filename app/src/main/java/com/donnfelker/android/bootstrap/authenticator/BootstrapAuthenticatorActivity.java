@@ -232,7 +232,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
     }
 
     /**
-     * “提交”按钮的事件处理。讲用户名/密码传到远程服务器用于身份验证
+     * “提交”按钮的事件处理。将用户名/密码传到远程服务器用于身份验证
      * 在布局的XML定义中使用android:onClick定义最为简便
      * Handles onClick event on the Submit button. Sends username/password to
      * the server for authentication.

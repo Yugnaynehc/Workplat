@@ -26,49 +26,34 @@ public class SecurityFactory {
     static public Security get(String type) {
         switch (Constants.Substation.indexOf(type)) {
             //case 1:
-                //str = "全面巡检"; icon = "fa-check-square"; break;
                 //return new 全面巡检危险点()
             case 2:
-                //str = "日常巡检"; icon = "fa-tag"; break;
                 return new NormalSecurity();
             case 3:
-                //str = "雷雨特殊巡检"; icon = "fa-bolt"; break;
                 return new ThunderstormSecurity();
             case 4:
-                //str = "雪天特殊巡检"; icon = "fa-spinner"; break;
                 return new SnowySecurity();
             case 5:
-                //str = "大雾特殊巡检"; icon = "fa-eye"; break;
                 return new FoggySecurity();
             case 6:
-                //str = "大风特殊巡检"; icon = "fa-cog"; break;
                 return new WindySecurity();
             case 7:
-                //str = "夜间熄灯特殊巡检"; icon = "fa-lightbulb-o"; break;
                 return new NightLightSecurity();
             case 8:
-                //str = "设备异常缺陷跟踪特殊巡检"; icon = "fa-bell"; break;
                 return new BugTraceSecurity();
             case 9:
-                //str = "红外线测试作业"; icon = "fa-arrow-up"; break;
                 return new InfraredTestingSecurity();
             case 10:
-                //str = "主变冷却器切换试验作业"; icon = "fa-exchange"; break;
                 return new SwitchCoolerSecurity();
             case 11:
-                //str = "事故照明切换作业"; icon = "fa-sun-o"; break;
                 return new EmergencyLightSwitchSecurity();
             case 12:
-                //str = "蓄电池定期测试作业"; icon = "fa-adjust"; break;
                 return new BatteryPeriodicTestingSecurity();
             case 13:
-                //str = "轮换作业"; icon = "fa-refresh"; break;
                 return new DevicePeriodicTestingRotationSecurity();
             case 14:
-                //str = "设备定期维护作业"; icon = "fa-wrench"; break;
                 return new DevicePeriodicMaintanceSecurity();
             case 15:
-                //str = "道闸操作作业"; icon = "fa-random"; break;
                 return new BarrierGateOperateSecurity();
             default:
                 return null;

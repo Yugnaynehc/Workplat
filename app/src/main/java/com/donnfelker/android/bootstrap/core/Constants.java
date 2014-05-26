@@ -45,7 +45,7 @@ public final class Constants {
          */
         //public static final String URL_BASE = "https://api.parse.com";
         //public static final String URL_BASE = "http://192.168.1.106:8888/Inspect";
-        public static final String URL_BASE = "http://3ef4f924.ngrok.com/Inspect";
+        public static final String URL_BASE = "http://2bf294a0.ngrok.com/Inspect";
 
         /**
          * Authentication URL
@@ -190,21 +190,21 @@ public final class Constants {
 
         // 获得巡检类型代码（因为Java的switch不支持字符串类型，所以需要这个函数来完成转换）
         public static int indexOf(String str) {
-            if (str.equals(INSPECT_NORMAL_TOTAL)) return 1;
-            else if (str.equals(INSPECT_NORMAL_DAILY)) return 2;
-            else if (str.equals(INSPECT_SPECIAL_THUNDERSTORM)) return 3;
-            else if (str.equals(INSPECT_SPECIAL_SNOWY)) return 4;
-            else if (str.equals(INSPECT_SPECIAL_FOGGY)) return 5;
-            else if (str.equals(INSPECT_SPECIAL_WINDY )) return 6;
-            else if (str.equals(INSPECT_SPECIAL_NIGHTLIGHT)) return 7;
-            else if (str.equals(INSPECT_SPECIAL_BUGTRACE)) return 8;
-            else if (str.equals(INSPECT_JOB_INFRAREDTESTING)) return 9;
-            else if (str.equals(INSPECT_JOB_SWITCHCOOLER)) return 10;
-            else if (str.equals(INSPECT_JOB_EMERGENCYLIGHTSWITCH)) return 11;
-            else if (str.equals(INSPECT_JOB_BATTERYPERIODICTESTING)) return 12;
-            else if (str.equals(INSPECT_JOB_DEVICEPERIODICTESTINGROTATION)) return 13;
-            else if (str.equals(INSPECT_JOB_DEVICEPERIODICMAINTANCE)) return 14;
-            else if (str.equals(INSPECT_JOB_BARRIERGATEOPERATE)) return 15;
+            if (str.equals(INSPECT_NORMAL_TOTAL) || str.equals("全面巡检")) return 1;
+            else if (str.equals(INSPECT_NORMAL_DAILY) || str.equals("日常巡检")) return 2;
+            else if (str.equals(INSPECT_SPECIAL_THUNDERSTORM) || str.equals("雷雨特殊巡检")) return 3;
+            else if (str.equals(INSPECT_SPECIAL_SNOWY) || str.equals("雪天特殊巡检")) return 4;
+            else if (str.equals(INSPECT_SPECIAL_FOGGY) || str.equals("大雾特殊巡检")) return 5;
+            else if (str.equals(INSPECT_SPECIAL_WINDY ) || str.equals("大风特殊巡检")) return 6;
+            else if (str.equals(INSPECT_SPECIAL_NIGHTLIGHT) || str.equals("夜间熄灯特殊巡检")) return 7;
+            else if (str.equals(INSPECT_SPECIAL_BUGTRACE) || str.equals("设备异常缺陷跟踪特殊巡检")) return 8;
+            else if (str.equals(INSPECT_JOB_INFRAREDTESTING) || str.equals("红外线测试作业")) return 9;
+            else if (str.equals(INSPECT_JOB_SWITCHCOOLER) || str.equals("主变冷却器切换试验作业")) return 10;
+            else if (str.equals(INSPECT_JOB_EMERGENCYLIGHTSWITCH) || str.equals("事故照明切换作业")) return 11;
+            else if (str.equals(INSPECT_JOB_BATTERYPERIODICTESTING) || str.equals("蓄电池定期测试作业")) return 12;
+            else if (str.equals(INSPECT_JOB_DEVICEPERIODICTESTINGROTATION) || str.equals("轮换作业")) return 13;
+            else if (str.equals(INSPECT_JOB_DEVICEPERIODICMAINTANCE) || str.equals("设备定期维护作业")) return 14;
+            else if (str.equals(INSPECT_JOB_BARRIERGATEOPERATE) || str.equals("道闸操作作业")) return 15;
             else return 0;
 
         }

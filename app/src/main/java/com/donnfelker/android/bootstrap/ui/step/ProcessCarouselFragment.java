@@ -92,7 +92,7 @@ public class ProcessCarouselFragment extends Fragment {
                     currentFragment.saveResult();
                     if (pager.getCurrentItem() == pagerAdapter.getCount() - 1) {
                         next.setBootstrapButtonEnabled(false);
-                        next.setText(getResources().getString(R.string.button_scan));
+                        next.setText(getResources().getString(R.string.button_upload));
                     }
 
                     //pager.arrowScroll(2);

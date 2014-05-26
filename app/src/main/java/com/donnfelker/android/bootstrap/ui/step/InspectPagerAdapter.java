@@ -23,30 +23,30 @@ public class InspectPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 6;
+        return 5;
     }
 
     @Override
     public Fragment getItem(final int position) {
         final Fragment result;
         switch (position) {
+            //case 0:
+                //result = new DefectListFragment();
+                //break;
             case 0:
-                result = new DefectListFragment();
-                break;
-            case 1:
                 result = new WeatherFragment();
                 break;
-            case 2:
+            case 1:
                 result = new ToolsPrepareFragment();
                 break;
-            case 3:
+            case 2:
                 result = new SecurityFragment();
                 break;
-            case 4:
+            case 3:
                 result = new RfidScanFragment();
                 break;
-            case 5:
-                result = new RfidScanFragment();
+            case 4:
+                result = new ResultFragment();
                 break;
             default:
                 result = null;
@@ -61,17 +61,17 @@ public class InspectPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(final int position) {
         switch (position) {
+            //case 0:
+                //return resources.getString(R.string.page_defect);
             case 0:
-                return resources.getString(R.string.page_defect);
-            case 1:
                 return resources.getString(R.string.page_weather);
-            case 2:
+            case 1:
                 return resources.getString(R.string.page_tools);
-            case 3:
+            case 2:
                 return resources.getString(R.string.page_security);
-            case 4:
+            case 3:
                 return resources.getString(R.string.page_scan);
-            case 5:
+            case 4:
                 return resources.getString(R.string.page_result);
             default:
                 return null;
