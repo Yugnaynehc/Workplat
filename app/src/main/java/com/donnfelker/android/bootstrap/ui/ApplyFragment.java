@@ -1,13 +1,16 @@
 package com.donnfelker.android.bootstrap.ui;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -15,6 +18,7 @@ import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.InjectView;
@@ -55,11 +59,40 @@ public class ApplyFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceStete) {
-        super.onCreateView(inflater, container, savedInstanceStete);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_apply, container, false);
         Views.inject(this, view);
-        date.setText(new SimpleDateFormat("yyyy-M-d").format(new Date()));
+
+        //date.setText(new SimpleDateFormat("yyyy-M-d").format(new Date()));
+        date.setInputType(InputType.TYPE_NULL);
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar c = Calendar.getInstance();
+                new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        date.setText(year + "-" + (month + 1) + "-" + day);
+                    }
+                }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+        date.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                    Calendar c = Calendar.getInstance();
+                    new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                            date.setText(year + "-" + (month + 1) + "-" + day);
+                        }
+                    }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
+                }
+            }
+        });
+
         //设置下拉列表风格
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //将adapter添加到spinner中
@@ -75,18 +108,16 @@ public class ApplyFragment extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {}
         });
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
                 if (submitApplication()) {
                     reason.setText("");
                     type.setSelection(0);
                 }
                 else
                     showError();
-                */
-
             }
         });
         return view;
@@ -112,11 +143,9 @@ public class ApplyFragment extends Fragment {
         super.onAttach(activity);
     }
 
-    /*
     private boolean submitApplication() {
-
+        return true;
     }
-    */
 
     private void showError() {
 

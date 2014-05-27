@@ -23,7 +23,7 @@
 
         <EditText
             android:id="@+id/date"
-            android:editable="false"
+            android:inputType="none"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
