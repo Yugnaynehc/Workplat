@@ -73,6 +73,7 @@
             android:textColor="@color/black"
             android:gravity="top"
             android:cursorVisible="true"
+            android:textCursorDrawable="@null"
             bootstrapbutton:be_roundedCorners="true"
             bootstrapbutton:be_state="success"
             />
