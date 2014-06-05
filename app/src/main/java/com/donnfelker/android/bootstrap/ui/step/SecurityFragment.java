@@ -141,7 +141,6 @@ public class SecurityFragment extends Fragment implements ValidationFragment {
             holder.no.setText(securityNo);
             holder.point.setText(securityPoint);
             holder.measure.setText(securityMeasure);
-            holder.select.setChecked(selectMap.get(position));
             holder.select.setOnCheckedChangeListener(null);
             holder.select.setChecked(selectMap.get(position));
             holder.select.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

@@ -2,6 +2,7 @@ package com.donnfelker.android.bootstrap.ui.step;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -21,7 +22,8 @@ import butterknife.Views;
  */
 public class RfidScanFragment extends Fragment implements ValidationFragment {
 
-    private UHFReaderClass UHFRFID;
+    private static final int DEVICEACTIVITY = 1;
+
     @InjectView(R.id.button_test)protected BootstrapButton test;
     @InjectView(R.id.button_scan)protected BootstrapButton scan;
 
@@ -35,50 +37,36 @@ public class RfidScanFragment extends Fragment implements ValidationFragment {
         super.onCreateView(inflater, container, savedInstanceStete);
         View view = inflater.inflate(R.layout.fragment_scan, container, false);
         Views.inject(this, view);
-        UHFRFID = new UHFReaderClass();
 
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Ln.d("scan test click");
-                int result = UHFRFID.SetPower(true);
-                Ln.d("scan rfid setpower = %d", result);
+                Intent scanDevice = new Intent(getActivity(), DeviceActivity.class);
+                scanDevice.putExtra("device_name", "benti");
+                startActivityForResult(scanDevice, DEVICEACTIVITY);
             }
         });
 
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Ln.d("scan scan click");
-                int result = UHFRFID.Connect();
-                Ln.d("scan rfid connect result = %d", result);
-                if (result == 0) {
-                    new AlertDialog.Builder(getActivity())
-                            .setTitle("测试")
-                            .setMessage("")
-                            .setPositiveButton("确定", null)
-                            .show();
-                }
 
             }
         });
-        /*
-        int result;
-        result = UHFRFID.SetPower(true);
-        Ln.d("scan set power result = %d", result);
-        result = UHFRFID.Connect();
-        Ln.d("scan connect result = %d", result);
-        result = UHFRFID.SetReaderMode(0);
-        Ln.d("scan set read mode result = %d", result);
-        result = UHFRFID.GetReaderMode();
-        Ln.d("scan get read mode result = %d", result);
-        result = UHFRFID.GetRFAttenuation();
-        Ln.d("scan get rf attenuation result = %d", result);
-        result = UHFRFID.GetFrequency();
-        Ln.d("scan get frequency result = %d", result);
-        */
-
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch(requestCode) {
+            case DEVICEACTIVITY:
+                if (resultCode == Activity.RESULT_OK) {
+
+                }
+                break;
+            default:
+                return;
+        }
     }
 
     @Override
@@ -94,8 +82,6 @@ public class RfidScanFragment extends Fragment implements ValidationFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        UHFRFID.DisConnect();
-        UHFRFID.SetPower(false);
     }
 
     @Override

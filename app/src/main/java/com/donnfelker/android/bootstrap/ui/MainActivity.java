@@ -116,25 +116,25 @@ public class MainActivity extends BootstrapFragmentActivity {
             @Override
             public void onLocationChanged(Location location) {
                 uploadLocation(location);
-                Ln.d("GPS: location changed");
+                Ln.d("LBS: location changed");
             }
 
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
                 //uploadLocation(null);
-                Ln.d("GPS: status changed");
+                Ln.d("LBS: status changed");
             }
 
             @Override
             public void onProviderEnabled(String provider) {
                 //uploadLocation(locationManager.getLastKnownLocation(provider));
-                Ln.d("GPS: provider enabled");
+                Ln.d("LBS: provider enabled");
             }
 
             @Override
             public void onProviderDisabled(String provider) {
                 //uploadLocation(null);
-                Ln.d("GPS: provider disabled");
+                Ln.d("LBS: provider disabled");
             }
         });
 
@@ -192,7 +192,7 @@ public class MainActivity extends BootstrapFragmentActivity {
             sb.append("\n精度：");
             sb.append(location.getAccuracy());
             Ln.d("GPS: %s", sb.toString());
-            Toast.makeText(this, sb.toString(), Toast.LENGTH_LONG);
+            Toast.makeText(this, sb.toString(), Toast.LENGTH_LONG).show();
         } else {
             Ln.d("GPS: %s", "无法获得数据");
         }
