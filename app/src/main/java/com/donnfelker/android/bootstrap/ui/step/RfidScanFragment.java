@@ -41,7 +41,7 @@ public class RfidScanFragment extends Fragment implements ValidationFragment {
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent scanDevice = new Intent(getActivity(), DeviceActivity.class);
+                final Intent scanDevice = new Intent(getActivity(), DeviceActivity.class);
                 scanDevice.putExtra("device_name", "benti");
                 startActivityForResult(scanDevice, DEVICEACTIVITY);
             }

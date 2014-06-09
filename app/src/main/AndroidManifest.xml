@@ -82,7 +82,9 @@
             android:windowSoftInputMode="adjustPan"
             android:label="@string/app_name" />
 
-        <activity android:name=".ui.step.DeviceActivity"/>
+        <activity android:name=".ui.step.DeviceActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:label="@string/app_name"/>
 
     </application>
 

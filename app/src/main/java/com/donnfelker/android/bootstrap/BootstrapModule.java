@@ -17,6 +17,7 @@ import com.donnfelker.android.bootstrap.ui.UserActivity;
 import com.donnfelker.android.bootstrap.ui.UserListFragment;
 import com.donnfelker.android.bootstrap.ui.WorkActivity;
 import com.donnfelker.android.bootstrap.ui.WorkListFragment;
+import com.donnfelker.android.bootstrap.ui.step.DeviceActivity;
 import com.squareup.otto.Bus;
 
 import javax.inject.Singleton;
@@ -45,7 +46,8 @@ import dagger.Provides;
                 WorkActivity.class,
                 WorkListFragment.class,
                 DefectListFragment.class,
-                TimerService.class
+                TimerService.class,
+                DeviceActivity.class
         }
 )
 public class BootstrapModule {

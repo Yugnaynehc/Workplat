@@ -232,13 +232,9 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
             holder.type.setText(typeMap.get(position));
             holder.type.addTextChangedListener(new TextWatcher() {
                 @Override
-                public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
-                }
-
+                public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {}
                 @Override
-                public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-                }
-
+                public void onTextChanged(CharSequence charSequence, int start, int before, int count) {}
                 @Override
                 public void afterTextChanged(Editable editable) {
                     typeMap.put(position, holder.type.getText().toString());
@@ -258,13 +254,9 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
             holder.unit.setText(toolUnit);
             holder.num.addTextChangedListener(new TextWatcher() {
                 @Override
-                public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
-                }
-
+                public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {}
                 @Override
-                public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-                }
-
+                public void onTextChanged(CharSequence charSequence, int start, int before, int count) {}
                 @Override
                 public void afterTextChanged(Editable editable) {
                     numMap.put(position, holder.num.getText().toString());

@@ -2,14 +2,21 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    >
 
     <LinearLayout
         android:layout_width="fill_parent"
+        android:background="@drawable/stripe_repeat"
+        android:textSize="18sp"
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/tv_no"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -17,6 +24,8 @@
 
         <TextView
             android:id="@+id/tv_content"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
@@ -24,6 +33,8 @@
 
         <TextView
             android:id="@+id/tv_standard"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
@@ -31,6 +42,8 @@
 
         <TextView
             android:id="@+id/tv_result"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
@@ -38,33 +51,22 @@
 
     </LinearLayout>
 
-    <ScrollView
+    <ListView
+        android:id="@+id/inspect_detail"
         android:layout_width="fill_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="8"/>
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:orientation="vertical"
-            android:layout_height="fill_parent">
-
-            <ListView
-                android:id="@+id/inspect_detail"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"/>
-
-            <com.beardedhen.androidbootstrap.BootstrapButton
-                android:id="@+id/next"
-                android:text="@string/button_submit"
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                bootstrapbutton:bb_roundedCorners="true"
-                bootstrapbutton:bb_type="default"
-                bootstrapbutton:bb_icon_right="fa_check"
-                android:layout_marginBottom="5dp"
-                android:layout_height="wrap_content"/>
-
-        </LinearLayout>
-
-    </ScrollView>
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:id="@+id/next"
+        android:text="@string/button_submit"
+        android:layout_gravity="center"
+        bootstrapbutton:bb_roundedCorners="true"
+        bootstrapbutton:bb_type="default"
+        bootstrapbutton:bb_icon_right="fa_check"
+        android:layout_marginBottom="5dp"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
