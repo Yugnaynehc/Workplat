@@ -110,34 +110,6 @@ public class MainActivity extends BootstrapFragmentActivity {
 
         checkAuth();
 
-
-        String locationProvider = LocationManager.GPS_PROVIDER;
-        locationManager.requestLocationUpdates(locationProvider, 200, 0, new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                uploadLocation(location);
-                Ln.d("LBS: location changed");
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-                //uploadLocation(null);
-                Ln.d("LBS: status changed");
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-                //uploadLocation(locationManager.getLastKnownLocation(provider));
-                Ln.d("LBS: provider enabled");
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-                //uploadLocation(null);
-                Ln.d("LBS: provider disabled");
-            }
-        });
-
     }
 
     private boolean isTablet() {
@@ -174,6 +146,33 @@ public class MainActivity extends BootstrapFragmentActivity {
                     .commit();
         }
 
+        String locationProvider = LocationManager.NETWORK_PROVIDER;
+        int interval = 1000 * 2;
+        locationManager.requestLocationUpdates(locationProvider, interval, 0, new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                uploadLocation(location);
+                Ln.d("LBS: location changed");
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+                //uploadLocation(null);
+                Ln.d("LBS: status changed");
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+                //uploadLocation(locationManager.getLastKnownLocation(provider));
+                Ln.d("LBS: provider enabled");
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+                //uploadLocation(null);
+                Ln.d("LBS: provider disabled");
+            }
+        });
     }
 
     private void uploadLocation(Location location) {
@@ -191,10 +190,10 @@ public class MainActivity extends BootstrapFragmentActivity {
             sb.append(location.getBearing());
             sb.append("\n精度：");
             sb.append(location.getAccuracy());
-            Ln.d("GPS: %s", sb.toString());
+            Ln.d("LBS: %s", sb.toString());
             Toast.makeText(this, sb.toString(), Toast.LENGTH_LONG).show();
         } else {
-            Ln.d("GPS: %s", "无法获得数据");
+            Ln.d("LBS: %s", "无法获得数据");
         }
     }
 
