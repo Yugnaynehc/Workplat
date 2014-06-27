@@ -191,7 +191,7 @@ public class MainActivity extends BootstrapFragmentActivity {
             sb.append("\n精度：");
             sb.append(location.getAccuracy());
             Ln.d("LBS: %s", sb.toString());
-            Toast.makeText(this, sb.toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, sb.toString(), Toast.LENGTH_SHORT).show();
         } else {
             Ln.d("LBS: %s", "无法获得数据");
         }

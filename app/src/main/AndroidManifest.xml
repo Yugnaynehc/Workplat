@@ -80,6 +80,9 @@
             android:windowSoftInputMode="adjustPan"
             android:label="@string/app_name"/>
 
+        <activity android:name=".ui.step.ScanActivity"
+            android:label="@string/app_name"/>
+
     </application>
 
 </manifest>
