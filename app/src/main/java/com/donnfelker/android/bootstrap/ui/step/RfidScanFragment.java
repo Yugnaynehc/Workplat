@@ -3,6 +3,7 @@ package com.donnfelker.android.bootstrap.ui.step;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import butterknife.Views;
 public class RfidScanFragment extends Fragment implements ValidationFragment {
 
     private static final int DEVICEACTIVITY = 1;
+    private NfcAdapter mNfcAdapter = null;
 
     @InjectView(R.id.button_test)protected BootstrapButton test;
     @InjectView(R.id.button_scan)protected BootstrapButton scan;
@@ -61,7 +63,7 @@ public class RfidScanFragment extends Fragment implements ValidationFragment {
         switch(requestCode) {
             case DEVICEACTIVITY:
                 if (resultCode == Activity.RESULT_OK) {
-
+                    nfcCheck();
                 }
                 break;
             default:
@@ -87,6 +89,15 @@ public class RfidScanFragment extends Fragment implements ValidationFragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+    }
+
+    private void nfcCheck() {
+        mNfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
+        if (mNfcAdapter == null) {
+            Ln.d("NFC: No device");
+        } else if (!mNfcAdapter.isEnabled()) {
+            Ln.d("NFC: No open");
+        }
     }
 
     public boolean validation() {
