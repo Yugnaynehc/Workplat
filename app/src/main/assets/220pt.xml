@@ -1,0 +1,125 @@
+     <device name="二二零母PT间隔">
+            <device name="二二零母PT">
+                <item name="瓷套">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="本体">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="油色油位">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="引线及接触部位">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="膨胀器">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="二次接线及二次电压">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="基础">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="接地线">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="声响">
+                    <standard>
+
+                    </standard>
+                </item>
+            </device>
+            <device name="二二零母PT间隔避雷">
+                <item name="瓷质部分">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="本体">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="避雷器泄漏电流">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="放电计数器">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="避雷器引线">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="接地">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="均压环">
+                    <standard>
+
+                    </standard>
+                </item>
+            </device>
+            <device name="二二零母PT隔离开关">
+                <item name="触头引线线夹等主接触部位">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="瓷质部分">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="接地刀闸">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="机构箱">
+                    <standard>
+
+                    </standard>
+                </item>
+            </device>
+            <device name="二二零母线">
+                <item name="母线及接头">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="绝缘子">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="架构">
+                    <standard>
+
+                    </standard>
+                </item>
+            </device>
+        </device>

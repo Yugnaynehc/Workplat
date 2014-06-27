@@ -1,0 +1,142 @@
+ <device name="三五母线PT间隔">
+            <device name="三五母线PT">
+                <item name="设备编号">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="外表">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="瓷质">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="引线及各接头">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="内部">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="端子箱">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="基础">
+                    <standard>
+
+                    </standard>
+                </item>
+            </device>
+            <device name="三五母线PT避雷器">
+                <item name="设备编号">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="支柱绝缘子">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="引线及各接头">
+                    <standard>
+
+                    </standard>
+                </item>
+                <device name="计数器">
+                    <item name="A">
+                        <standard>
+
+                        </standard>
+                    </item>
+                    <item name="B">
+                        <standard>
+
+                        </standard>
+                    </item>
+                    <item name="C">
+                        <standard>
+
+                        </standard>
+                    </item>
+                </device>
+            </device>
+            <device name="三五母线PT刀闸">
+                <item name="设备编号">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="分合闸位置指示器">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="支柱瓷瓶接头">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="引线及各接头">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="操作机构">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="刀闸触头">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="防误闭锁装置">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="机构箱">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="基础">
+                    <standard>
+
+                    </standard>
+                </item>
+            </device>
+            <device name="三五母线">
+                <item name="设备编号标志">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="外表">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="接头">
+                    <standard>
+
+                    </standard>
+                </item>
+                <item name="支持瓷瓶">
+                    <standard>
+
+                    </standard>
+                </item>
+            </device>
+        </device>

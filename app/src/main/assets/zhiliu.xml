@@ -1,0 +1,13 @@
+<device name="直流系统">
+            <item name="GZDW直流电源馈电柜">
+                <standard>
+
+                </standard>
+            </item>
+            <item name="GZDW直流电源充电柜">
+                <standard>
+
+                </standard>
+            </item>
+        </device>
+    </device>
