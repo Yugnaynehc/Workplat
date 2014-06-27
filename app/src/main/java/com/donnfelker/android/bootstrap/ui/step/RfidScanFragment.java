@@ -58,7 +58,7 @@ public class RfidScanFragment extends Fragment implements ValidationFragment {
             @Override
             public void onClick(View view) {
                 final Intent scanDevice = new Intent(getActivity(), ScanActivity.class);
-                startActivity(scanDevice);
+                startActivityForResult(scanDevice, DEVICEACTIVITY);
             }
         });
         return view;
@@ -70,6 +70,7 @@ public class RfidScanFragment extends Fragment implements ValidationFragment {
             case DEVICEACTIVITY:
                 if (resultCode == Activity.RESULT_OK) {
                     // TODO 将填写好的表格数据存入巡检结果列表中
+                    Ln.d("Scan Result:", resultCode);
                 }
                 break;
             default:

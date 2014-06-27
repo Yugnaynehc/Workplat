@@ -58,7 +58,7 @@
         android:layout_weight="8"/>
 
     <com.beardedhen.androidbootstrap.BootstrapButton
-        android:id="@+id/next"
+        android:id="@+id/submit"
         android:text="@string/button_submit"
         android:layout_gravity="center"
         bootstrapbutton:bb_roundedCorners="true"

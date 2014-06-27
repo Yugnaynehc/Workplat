@@ -15,7 +15,9 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.inspect.object.Device;
 import com.donnfelker.android.bootstrap.ui.BootstrapFragmentActivity;
@@ -37,11 +39,11 @@ import butterknife.Views;
 public class DeviceActivity extends BootstrapFragmentActivity {
 
     @InjectView(R.id.inspect_detail)protected ListView list;
-    private Device device;
+    @InjectView(R.id.submit)protected BootstrapButton submit;
     private DeviceAdapter adapter;
     private String deviceName;
-    private List<String> inspectContent;
-    private List<String> inspectStandard;
+    private ArrayList<String> inspectContent;
+    private ArrayList<String> inspectStandard;
     private SparseArray<String> inspectResult;
 
     @Override
@@ -51,6 +53,7 @@ public class DeviceActivity extends BootstrapFragmentActivity {
         Intent scanDevice = getIntent();
 
         deviceName = scanDevice.getStringExtra("device_name");
+        setTitle(deviceName);
         inspectContent = new ArrayList<String>();
         inspectStandard = new ArrayList<String>();
         inspectResult = new SparseArray<String>();
@@ -62,7 +65,18 @@ public class DeviceActivity extends BootstrapFragmentActivity {
         list.setAdapter(adapter);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(DeviceActivity.this, "click", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putStringArrayList("content", inspectContent);
+                bundle.putStringArrayList("standard", inspectStandard);
+                bundle.putStringArrayList("result", inspectResult);
+                intent.putExtras(bundle);
+            }
+        });
     }
 
     private void initInspectData() {

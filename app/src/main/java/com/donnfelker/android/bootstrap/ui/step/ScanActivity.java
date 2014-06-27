@@ -4,11 +4,19 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.drawable.BitmapDrawable;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.MifareClassic;
 import android.nfc.tech.NfcF;
 import android.os.Bundle;
+import android.view.SurfaceHolder;
 import android.widget.Toast;
 
 import com.donnfelker.android.bootstrap.R;
@@ -91,7 +99,9 @@ public class ScanActivity extends Activity{
             e.printStackTrace();
         }
         final Intent scanDevice = new Intent(this, DeviceActivity.class);
-        scanDevice.putExtra("device_name", "benti");
+        int random = (int)(Math.random()*5);
+        String deviceNameList[] = {"0dian4", "10jiange", "10pt", "35jiange", "jiankong"};
+        scanDevice.putExtra("device_name", deviceNameList[random]);
         startActivityForResult(scanDevice, DEVICEACTIVITY);
     }
 
