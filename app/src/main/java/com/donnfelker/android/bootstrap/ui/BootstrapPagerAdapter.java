@@ -38,7 +38,8 @@ public class BootstrapPagerAdapter extends FragmentPagerAdapter {
         final Fragment result;
         switch (position) {
             case 0:
-                result = new NewsListFragment();
+                //result = new NewsListFragment();
+                result = new ForecastFragment();
                 break;
             case 1:
                 result = new WorkListFragment();
@@ -61,7 +62,7 @@ public class BootstrapPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(final int position) {
         switch (position) {
             case 0:
-                return resources.getString(R.string.page_news);
+                return resources.getString(R.string.page_forecast);
             case 1:
                 return resources.getString(R.string.page_works);
             case 2:

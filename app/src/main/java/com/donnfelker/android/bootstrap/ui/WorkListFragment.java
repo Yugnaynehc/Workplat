@@ -81,7 +81,7 @@ public class WorkListFragment extends ItemListFragment<Work> {
                             t.get(i).setType(INSPECT_TYPE_LIST[i]);
                         }
                         return t;
-                        //dreturn serviceProvider.getService(getActivity()).getWorks();
+                        //return serviceProvider.getService(getActivity()).getWorks();
                     }
                     else {
                         return Collections.emptyList();

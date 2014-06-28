@@ -23,6 +23,7 @@ import static com.donnfelker.android.bootstrap.core.Constants.Http.URL_CHECKINS;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.URL_DEFECT;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.URL_NEWS;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.URL_USERS;
+import static com.donnfelker.android.bootstrap.core.Constants.Http.URL_WEATHER;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.URL_WORKS;
 /**
  * Bootstrap API service
@@ -54,6 +55,10 @@ public class BootstrapService {
     private static final String PARAM_SUBSTATION = "substation";
 
     private static final String PARAM_DEVICEID = "deviceid";
+
+    private static final String PARM_LONGITUDE = "longtitude";
+
+    private static final String PARM_LATITUDE = "latitude";
 
 
     private static class UsersWrapper {
@@ -211,8 +216,11 @@ public class BootstrapService {
         }
     }
 
+
     /**
-     * 获取设备的历史缺陷信息
+     * 获得设备的历史缺陷信息
+     * @return bug
+     * @throws IOException
      */
     public List<Defect> getDefect() throws IOException {
         try {
@@ -228,6 +236,24 @@ public class BootstrapService {
             throw e.getCause();
         }
     }
+
+
+    public Forecast getWeather(String longitude, String latitude) throws IOException {
+        try {
+            final String query = String.format("?%s=%s&%s=%s", PARM_LONGITUDE, longitude, PARM_LATITUDE, latitude);
+            final HttpRequest request = execute(HttpRequest.get(URL_WEATHER + query));
+            final Forecast response = fromJson(request, Forecast.class);
+            Ln.d("Weather: request %s", URL_WEATHER + query);
+            if (response != null ) {
+                return response;
+            }
+            // TODO 返回null是不是不太好？
+            return null;
+        } catch (final HttpRequestException e) {
+            throw e.getCause();
+        }
+    }
+
 
 
     /**

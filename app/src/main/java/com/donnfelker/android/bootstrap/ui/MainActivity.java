@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.donnfelker.android.bootstrap.BootstrapServiceProvider;
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.BootstrapService;
+import com.donnfelker.android.bootstrap.core.Forecast;
 import com.donnfelker.android.bootstrap.events.NavItemSelectedEvent;
 import com.donnfelker.android.bootstrap.util.Ln;
 import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
@@ -41,6 +42,7 @@ public class MainActivity extends BootstrapFragmentActivity {
 
     @Inject protected BootstrapServiceProvider serviceProvider;
     @Inject protected LocationManager locationManager;
+    protected Forecast weather;
 
     private boolean userHasAuthenticated = false;
 
@@ -107,7 +109,6 @@ public class MainActivity extends BootstrapFragmentActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-
         checkAuth();
 
     }
@@ -147,7 +148,7 @@ public class MainActivity extends BootstrapFragmentActivity {
         }
 
         String locationProvider = LocationManager.NETWORK_PROVIDER;
-        int interval = 1000 * 2;
+        int interval = (int)(0.2 * 60 * 1000);
         locationManager.requestLocationUpdates(locationProvider, interval, 0, new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
@@ -175,7 +176,7 @@ public class MainActivity extends BootstrapFragmentActivity {
         });
     }
 
-    private void uploadLocation(Location location) {
+    private void uploadLocation(final Location location) {
         if (location != null) {
             StringBuffer sb = new StringBuffer();
             sb.append("实时的位置信息：\n经度：");
@@ -192,6 +193,22 @@ public class MainActivity extends BootstrapFragmentActivity {
             sb.append(location.getAccuracy());
             Ln.d("LBS: %s", sb.toString());
             Toast.makeText(this, sb.toString(), Toast.LENGTH_SHORT).show();
+            try {
+                SafeAsyncTask<Boolean> forecastTask;
+                forecastTask = new SafeAsyncTask<Boolean>() {
+                    @Override
+                    public Boolean call() throws Exception {
+                        weather = serviceProvider.getService(MainActivity.this).
+                                getWeather(String.valueOf(location.getLongitude()),
+                                        String.valueOf(location.getLatitude()));
+                        return weather != null;
+                    }
+                };
+                forecastTask.execute();
+                Ln.d("Weather: get weather %s %s ", weather.getStatus(), weather.getDate());
+            } catch (Exception e) {
+                e. printStackTrace();
+            }
         } else {
             Ln.d("LBS: %s", "无法获得数据");
         }
@@ -264,5 +281,9 @@ public class MainActivity extends BootstrapFragmentActivity {
                 navigateToTimer();
                 break;
         }
+    }
+
+    public Forecast getWeather() {
+        return this.weather;
     }
 }
