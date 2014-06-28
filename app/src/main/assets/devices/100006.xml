@@ -1,0 +1,22 @@
+<device name="结合滤波器">
+    <item name="设备编号">
+        <standard>
+            名称标志齐全、完好
+        </standard>
+    </item>
+    <item name="外表">
+        <standard>
+            清洁、完好，固定牢固，箱门关闭良好
+        </standard>
+    </item>
+    <item name="接地刀闸">
+        <standard>
+            在“分”位，闸口接触良好，接地装置完好
+        </standard>
+    </item>
+    <item name="地刀支持瓷瓶">
+        <standard>
+            固定牢固，无破裂、损伤现象
+        </standard>
+    </item>
+</device>

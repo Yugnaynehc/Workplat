@@ -1,0 +1,43 @@
+<device name="电流互感器">
+    <item name="油位">
+        <standard>
+            油位指示在上下限之间，无渗漏
+        </standard>
+    </item>
+    <item name="瓷套">
+        <standard>
+            完好，无裂纹、损伤、放电现象，无影响设备运行的异物
+        </standard>
+    </item>
+    <item name="接头">
+        <standard>
+            无变色，压接良好，无过热变色现象
+        </standard>
+    </item>
+    <item name="二次接线盒放油阀">
+        <standard>
+            1.放油阀关闭严密，无渗漏油
+            2.二次接线盒无油迹
+        </standard>
+    </item>
+    <item name="末屏">
+        <standard>
+            接地良好，无渗油
+        </standard>
+    </item>
+    <item name="引线接地">
+        <standard>
+            高压引线、接地线等连接正常
+        </standard>
+    </item>
+    <item name="声响">
+        <standard>
+            本体无异常声响或放电声
+        </standard>
+    </item>
+    <item name="膨胀器">
+        <standard>
+            膨胀器无异常升高
+        </standard>
+    </item>
+</device>

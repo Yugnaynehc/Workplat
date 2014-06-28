@@ -1,0 +1,27 @@
+<device name="线路PT">
+    <item name="设备编号">
+        <standard>
+            名称标志齐全、完好无锈蚀
+        </standard>
+    </item>
+    <item name="瓷瓶">
+        <standard>
+            清洁完好，无破裂、无损伤放电现象，油位正确，无渗、漏油现象，内部无异音、异味
+        </standard>
+    </item>
+    <item name="引线及各接头">
+        <standard>
+            引线无断股、无散股，各接头压接良好、无过热变色现象
+        </standard>
+    </item>
+    <item name="二次接线及二次电压">
+        <standard>
+            PT的二次接线盒应密封良好，不能有任何螺丝脱落现象，二次电压应正常，带电指示灯指示正确，电压继电器动作正确，二次空气开关位置正确。
+        </standard>
+    </item>
+    <item name="基础">
+        <standard>
+            接地装置完好，基础无下沉、倾斜
+        </standard>
+    </item>
+</device>

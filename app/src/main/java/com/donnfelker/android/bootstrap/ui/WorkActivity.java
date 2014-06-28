@@ -62,6 +62,7 @@ public class WorkActivity extends BootstrapFragmentActivity {
         if (!nfcCheck()) {
             Toast.makeText(this, "NFC error", Toast.LENGTH_SHORT).show();
         } else {
+            // TODO 规范需要拦截的NFC卡片的类型（现在是所有的Mifare Classic卡都被拦截）
             pendingIntent = PendingIntent.getActivity(this,
                     0,
                     new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP),
@@ -146,9 +147,8 @@ public class WorkActivity extends BootstrapFragmentActivity {
             e.printStackTrace();
         }
         final Intent scanDevice = new Intent(this, DeviceActivity.class);
-        //int random = (int)(Math.random()*5);
-        //String deviceNameList[] = {"0dian4", "10jiange", "10pt", "35jiange", "jiankong"};
-        scanDevice.putExtra(DEVICE_NAME, "benti");
+        int random = 100000 + (int)(Math.random()*20);
+        scanDevice.putExtra(DEVICE_NAME, String.valueOf(random));
         startActivityForResult(scanDevice, ADD_NEW_RESULT);
     }
 

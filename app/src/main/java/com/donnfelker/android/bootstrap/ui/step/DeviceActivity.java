@@ -120,7 +120,7 @@ public class DeviceActivity extends BootstrapFragmentActivity {
              * 用户登录->检查服务器是否发出XML文件更新指令->检查本地XML文件是否完整->
              * 读取某一个巡检任务(设备)对应的XML文件->将XML文件的内容呈现至屏幕
              */
-            inStream = getAssets().open(deviceName + ".xml");
+            inStream = getAssets().open("devices/" + deviceName + ".xml");
             parser.setInput(inStream, "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
