@@ -286,4 +286,8 @@ public class MainActivity extends BootstrapFragmentActivity {
     public Forecast getWeather() {
         return this.weather;
     }
+
+    public BootstrapServiceProvider getServiceProvider() {
+        return this.serviceProvider;
+    }
 }

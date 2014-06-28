@@ -13,18 +13,20 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
+import com.donnfelker.android.bootstrap.util.Ln;
+import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
+import com.github.kevinsawicki.http.HttpRequest;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import butterknife.InjectView;
 import butterknife.Views;
 
-import static com.donnfelker.android.bootstrap.core.Constants.Substation;
+import static com.donnfelker.android.bootstrap.core.Constants.Http.URL_APPLY;
 
 /**
  * Created by feather on 14-5-16.
@@ -112,12 +114,8 @@ public class ApplyFragment extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (submitApplication()) {
-                    reason.setText("");
-                    type.setSelection(0);
-                }
-                else
-                    showError();
+                if (validate())
+                    submitApplication();
             }
         });
         return view;
@@ -143,12 +141,49 @@ public class ApplyFragment extends Fragment {
         super.onAttach(activity);
     }
 
-    private boolean submitApplication() {
-        return true;
+    private void submitApplication() {
+        SafeAsyncTask<Boolean> submitTask;
+
+        submitTask = new SafeAsyncTask<Boolean>() {
+            public Boolean call() throws Exception {
+                final String query = String.format("?%s=%s&%s=%s&%s=%s", "type", type.getSelectedItem().toString(), "excutedate", date.getText().toString(), "reason", reason.getText().toString());
+                final HttpRequest request = HttpRequest.get(URL_APPLY  + query);
+                Ln.d("Apply: %s", URL_APPLY + query);
+                Ln.d("Authentication response=%s", request.code());
+                return request.ok();
+            }
+
+            @Override
+            protected void onException(final Exception e) throws RuntimeException {
+                super.onException(e);
+            }
+
+            @Override
+            public void onSuccess(final Boolean authSuccess) {
+                reason.setText("");
+                type.setSelection(0);
+                date.setText("");
+            }
+
+            @Override
+            protected void onFinally() throws RuntimeException {
+
+            }
+        };
+        submitTask.execute();
     }
 
-    private void showError() {
-
+    private boolean validate() {
+        try {
+            if (date.getText().toString().equals("") || reason.getText().toString().equals("")) {
+                Toast.makeText(getActivity(), "请输入完整信息", Toast.LENGTH_SHORT).show();
+                return false;
+            } else
+                return true;
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }

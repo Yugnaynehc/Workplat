@@ -5,24 +5,24 @@ package com.donnfelker.android.bootstrap.core;
  */
 public class WeatherData {
 
-    private String[] data;
+    private String[] date;
     private String[] weather;
     private String[] wind;
     private String[] temperature;
 
-    public WeatherData(String[] data, String[] weather, String[] wind, String[] temperature) {
-        this.data = data;
+    public WeatherData(String[] date, String[] weather, String[] wind, String[] temperature) {
+        this.date = date;
         this.weather = weather;
         this.wind = wind;
         this.temperature = temperature;
     }
 
-    public String[] getData() {
-        return data;
+    public String[] getDate() {
+        return date;
     }
 
-    public void setData(String[] data) {
-        this.data = data;
+    public void setDate(String[] date) {
+        this.date = date;
     }
 
     public String[] getWeather() {
