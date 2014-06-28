@@ -111,6 +111,12 @@ public final class Constants {
 
         public static final String WORK_ITEM = "work_item";
 
+        public static final String DEVICE_NAME = "device_name";
+
+        public static final String DEVICE_RESULT = "device_result";
+
+        public static final String DEVICE_NO = "device_no";
+
     }
 
     public static final class Intent {
@@ -120,6 +126,10 @@ public final class Constants {
          * Action prefix for all intents created
          */
         public static final String INTENT_PREFIX = "com.donnfelker.android.bootstrap.";
+
+        public static final int ADD_NEW_RESULT = 1;
+
+        public static final int EDIT_EXISTENT_RESULT = 2;
 
     }
 

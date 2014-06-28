@@ -1,6 +1,5 @@
 package com.donnfelker.android.bootstrap.core.inspect.result;
 
-import com.donnfelker.android.bootstrap.core.inspect.object.Device;
 import com.donnfelker.android.bootstrap.core.inspect.security.Security;
 
 import java.util.ArrayList;
@@ -17,66 +16,66 @@ public class Result {
     private List<InspectTool> tools;         // using tools list of inspect
     private InspectEnvironment env;     // environment information of inspect
     private Security security;          // security information of inspect
-    private List<Device> devices;        // inspectd devices information list of inspect
+    private List<DeviceResult> deviceResults;        // inspectd devices information list of inspect
 
     public Result() {
 
     }
 
-    public Result(String type, List<InspectTool> tools, InspectEnvironment env, Security security, List<Device> device) {
+    public Result(String type, List<InspectTool> tools, InspectEnvironment env, Security security, List<DeviceResult> deviceResults) {
         this.type = type;
         this.tools = tools;
         this.env = env;
         this.security = security;
-        this.devices = device;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setTools(List<InspectTool> tools) {
-        this.tools = tools;
-    }
-
-    public void setDevices(List<Device> devices) {
-        this.devices = devices;
-    }
-
-    public void setSecurity(Security security) {
-        this.security = security;
-    }
-
-    public void setEnv(InspectEnvironment env) {
-        this.env = env;
-    }
-
-    public void addDevice(Device device) {
-        if (this.devices == null) {
-            this.devices = new ArrayList<Device>();
-            this.devices.add(device);
-        }
-        else
-            this.devices.add(device);
+        this.deviceResults = deviceResults;
     }
 
     public String getType() {
         return type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public List<InspectTool> getTools() {
         return tools;
+    }
+
+    public void setTools(List<InspectTool> tools) {
+        this.tools = tools;
     }
 
     public InspectEnvironment getEnv() {
         return env;
     }
 
+    public void setEnv(InspectEnvironment env) {
+        this.env = env;
+    }
+
     public Security getSecurity() {
         return security;
     }
 
-    public List<Device> getDevices() {
-        return devices;
+    public void setSecurity(Security security) {
+        this.security = security;
+    }
+
+    public List<DeviceResult> getDeviceResults() {
+        return deviceResults;
+    }
+
+    public void setDeviceResults(List<DeviceResult> deviceResults) {
+        this.deviceResults = deviceResults;
+    }
+
+    public void addDeviceResult(DeviceResult deviceResult) {
+        if (this.deviceResults == null) {
+            this.deviceResults = new ArrayList<DeviceResult>();
+            this.deviceResults.add(deviceResult);
+        }
+        else
+            this.deviceResults.add(deviceResult);
     }
 }

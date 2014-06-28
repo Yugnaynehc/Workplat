@@ -1,12 +1,7 @@
 package com.donnfelker.android.bootstrap.ui.step;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.nfc.NfcAdapter;
-import android.nfc.tech.NfcF;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,11 +10,7 @@ import android.view.ViewGroup;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
-import com.donnfelker.android.bootstrap.core.Constants;
 import com.donnfelker.android.bootstrap.util.Ln;
-import com.cetc7.UHFReader.UHFReaderClass;
-
-import java.nio.charset.MalformedInputException;
 
 import butterknife.InjectView;
 import butterknife.Views;

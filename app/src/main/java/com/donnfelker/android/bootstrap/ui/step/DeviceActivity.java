@@ -15,11 +15,9 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
-import com.donnfelker.android.bootstrap.core.inspect.object.Device;
 import com.donnfelker.android.bootstrap.ui.BootstrapFragmentActivity;
 import com.donnfelker.android.bootstrap.util.Ln;
 
@@ -28,11 +26,13 @@ import org.xmlpull.v1.XmlPullParser;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.InjectView;
 import butterknife.Views;
 
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NAME;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NO;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_RESULT;
 /**
  * Created by feather on 14-4-17.
  */
@@ -42,6 +42,7 @@ public class DeviceActivity extends BootstrapFragmentActivity {
     @InjectView(R.id.submit)protected BootstrapButton submit;
     private DeviceAdapter adapter;
     private String deviceName;
+    private int deviceNo;
     private ArrayList<String> inspectContent;
     private ArrayList<String> inspectStandard;
     private SparseArray<String> inspectResult;
@@ -50,17 +51,22 @@ public class DeviceActivity extends BootstrapFragmentActivity {
     protected void onCreate(final Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        Intent scanDevice = getIntent();
+        setContentView(R.layout.device_activity);
+        Views.inject(this);
 
-        deviceName = scanDevice.getStringExtra("device_name");
+        Intent scanDevice = getIntent();
+        deviceName = scanDevice.getStringExtra(DEVICE_NAME);
+        deviceNo = scanDevice.getIntExtra(DEVICE_NO, -1);
         setTitle(deviceName);
         inspectContent = new ArrayList<String>();
         inspectStandard = new ArrayList<String>();
-        inspectResult = new SparseArray<String>();
+        if (deviceNo != -1) {
+            initInspectResult(scanDevice.getStringArrayListExtra(DEVICE_RESULT));
+            submit.setText(this.getResources().getString(R.string.button_edit));
+        } else {
+            inspectResult = new SparseArray<String>();
+        }
         initInspectData();
-
-        setContentView(R.layout.device_activity);
-        Views.inject(this);
         adapter = new DeviceAdapter(this);
         list.setAdapter(adapter);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -68,15 +74,38 @@ public class DeviceActivity extends BootstrapFragmentActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(DeviceActivity.this, "click", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
-                Bundle bundle = new Bundle();
-                bundle.putStringArrayList("content", inspectContent);
-                bundle.putStringArrayList("standard", inspectStandard);
-                bundle.putStringArrayList("result", inspectResult);
-                intent.putExtras(bundle);
+                intent.putExtra(DEVICE_NAME, deviceName);
+                intent.putExtra(DEVICE_NO, deviceNo);
+                intent.putExtra(DEVICE_RESULT, getResultList());
+                DeviceActivity.this.setResult(RESULT_OK, intent);
+                DeviceActivity.this.finish();
             }
         });
+    }
+
+    private void initInspectResult(ArrayList<String> list) {
+        inspectResult = new SparseArray<String>();
+        int index = 0;
+        for (String s : list) {
+            if (!s.equals("")) {
+                inspectResult.put(index, s);
+            }
+            index++;
+        }
+    }
+
+    private ArrayList<String> getResultList() {
+        ArrayList<String> result = new ArrayList<String>();
+
+        for (int i=0; i<inspectContent.size(); ++i) {
+            String item = inspectResult.get(i);
+            if (item == null)
+                result.add("");
+            else
+                result.add(item);
+        }
+        return result;
     }
 
     private void initInspectData() {
@@ -168,6 +197,8 @@ public class DeviceActivity extends BootstrapFragmentActivity {
             String no = String.valueOf(position + 1 );
             String context = inspectContent.get(position);
             String standard = inspectStandard.get(position);
+
+            Ln.d("getView %d", position);
 
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.device_list_item, null);

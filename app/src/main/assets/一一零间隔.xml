@@ -1,0 +1,288 @@
+﻿ <device name="一一零间隔">
+        <device name="一一零开关间隔">
+            <device name="一一零开关">
+                <item name="设备编号">
+                    <standard>
+名称标志齐全、完好
+                    </standard>
+                </item>
+                <item name="断路器">
+                    <standard>
+无放电和其它异常声音、异味；无渗漏油现象；油位应在正常范围内，油色透明无碳黑悬浮物
+                    </standard>
+                </item>
+                <item name="支柱瓷瓶套管">
+                    <standard>
+无破损、裂纹，无严重污垢和打火现象；套管表面应清洁无渗漏油痕迹，放油阀关闭紧密
+                    </standard>
+                </item>
+                <item name="分合闸位置指示器">
+                    <standard>
+记录开关位置（   ）（合“1”，分“0”），与实际运行方式相符，与后台遥测一致
+                    </standard>
+                </item>
+                <item name="引线及各接头">
+                    <standard>
+引线无断股、无散股，各接头压接良好、无过热变色现象，安全净距应≥*****米
+                    </standard>
+                </item>
+                <item name="负荷电流">
+                    <standard>
+应不大于断路器的额定电流，负荷电流（ ）A
+                    </standard>
+                </item>
+                <item name="气体压力表">
+                    <standard>
+记录实际压力值（    ）MPa。（写出合格压力）。
+                    </standard>
+                </item>
+                <item name="机构箱">
+                    <standard>
+1.油路无渗漏油现象；行程开关接点无卡涩和变形；油泵电源开关完好，名称标注齐全，封堵良好，箱内照明完好，电缆吊牌齐全、完好，箱门关闭严密
+2.分、合闸弹簧储能正常，电机电源正常开启，方式开关在“远方”位置，断路器动作次数（  ）次
+                    </standard>
+                </item>
+                <item name="油泵">
+                    <standard>
+液压机构油泵打压时间不得超过3分钟，且运行平稳、声音正常，每天的启动次数不得大于1次
+                    </standard>
+                </item>
+                <item name="端子箱">
+                    <standard>
+无凝露锈蚀现象，二次线压接良好，无烧焦及异味；名称标注齐全，封堵良好，箱内照明完好，电缆吊牌齐全，箱门关闭严密
+                    </standard>
+                </item>
+                <item name="放油阀">
+                    <standard>
+关闭严密，无渗漏油
+                    </standard>
+                </item>
+                <item name="基础">
+                    <standard>
+接地装置完好，固定螺丝压接良好，基础无下沉、倾斜
+                    </standard>
+                </item>
+            </device>
+            <device name="一一零开关CT">
+                <item name="设备编号">
+                    <standard>
+名称标志齐全、完好
+                    </standard>
+                </item>
+                <item name="金属膨胀器">
+                    <standard>
+位置指示与环境温度应与标尺刻度符合，无变形
+                    </standard>
+                </item>
+                <item name="瓷套管">
+                    <standard>
+清洁、完好，无渗油，无裂纹、损伤放电现象
+                    </standard>
+                </item>
+                <item name="引线及各接头">
+                    <standard>
+引线无断股、无散股，各接头压接良好、无过热变色现象，安全净距应≥********米
+                    </standard>
+                </item>
+                <item name="放油阀">
+                    <standard>
+关闭严密，无渗漏油
+                    </standard>
+                </item>
+                <item name="二次接线盒">
+                    <standard>
+封堵良好，二次电缆绝缘无损伤
+                    </standard>
+                </item>
+                <item name="基础">
+                    <standard>
+接地装置完好，基础无下沉、倾斜
+                    </standard>
+                </item>
+                <item name="末屏">
+                    <standard>
+末屏接地良好，无渗、漏油现象
+                    </standard>
+                </item>
+            </device>
+            <device name="一一零线刀闸">
+                <item name="设备编号">
+                    <standard>
+名称标志齐全、完好
+                    </standard>
+                </item>
+                <item name="分合闸位置指示器">
+                    <standard>
+记录刀闸实际位置（   ）(合“1”，分“0”)，与机构指示位置相同，巡检时标出实际位置
+                    </standard>
+                </item>
+                <item name="支柱瓷瓶接头">
+                    <standard>
+无破损、损伤放电现象，接头压接良好
+                    </standard>
+                </item>
+                <item name="引线及各接头">
+                    <standard>
+引线无断股、无散股，各接头压接良好、无过热变色现象，安全净距应≥******米
+                    </standard>
+                </item>
+                <item name="操作机构">
+                    <standard>
+操作连杆及部件无开焊、变形、锈蚀、松脱现象。机构箱内控制电源、电机电源、加热电源正常开启，分、合指示正常、远方/就地方式正确
+                    </standard>
+                </item>
+                <item name="刀闸触头">
+                    <standard>
+无过热、变色及移位现象，接触良好并过死点
+                    </standard>
+                </item>
+                <item name="防误闭锁装置">
+                    <standard>
+完好，齐全，无锈蚀，闭锁良好
+                    </standard>
+                </item>
+                <item name="接地刀闸">
+                    <standard>
+记录刀闸位置（   ）（合“1”，分“0”），助力弹簧无断股，闭锁良好，接地装置完好，接地辫子无断股和散股，接地刀杆应完全放平
+                    </standard>
+                </item>
+                <item name="刀闸辅助接点箱">
+                    <standard>
+外壳密闭良好，电缆绝缘良好
+                    </standard>
+                </item>
+                <item name="基础">
+                    <standard>
+接地装置完好，基础无下沉、倾斜
+                    </standard>
+                </item>
+            </device>
+            <device name="一一零线旁母刀闸">
+                <item name="设备编号">
+                    <standard>
+名称标志齐全、完好
+                    </standard>
+                </item>
+                <item name="分合闸位置指示器">
+                    <standard>
+记录刀闸实际位置（   ）(合“1”，分“0”)，与机构指示位置相同
+                    </standard>
+                </item>
+                <item name="支柱瓷瓶接头">
+                    <standard>
+无破损、损伤放电现象，接头压接良好
+                    </standard>
+                </item>
+                <item name="引线及各接头">
+                    <standard>
+引线无断股、无散股，各接头压接良好、无过热变色现象，安全净距应≥*******米
+                    </standard>
+                </item>
+                <item name="操作机构">
+                    <standard>
+操作连杆及部件无开焊、变形、锈蚀、松脱现象。箱内控制电源、电机电源、加热电源正常开启，分、合指示正常、远方/就地方式正确
+                    </standard>
+                </item>
+                <item name="刀闸触头">
+                    <standard>
+无过热、变色及移位现象，接触良好并过死点
+                    </standard>
+                </item>
+                <item name="防误闭锁装置">
+                    <standard>
+完好，齐全，无锈蚀，闭锁良好
+                    </standard>
+                </item>
+                <item name="刀闸辅助接点箱">
+                    <standard>
+外壳密闭良好，电缆绝缘良好
+                    </standard>
+                </item>
+                <item name="基础">
+                    <standard>
+接地装置完好，基础无下沉、倾斜
+                    </standard>
+                </item>
+            </device>
+            <device name="耦合电容器">
+                <item name="设备编号">
+                    <standard>
+名称标志齐全、完好
+                    </standard>
+                </item>
+                <item name="瓷瓶">
+                    <standard>
+完好，无破裂，无损伤放电现象，无渗漏油现象
+                    </standard>
+                </item>
+                <item name="引线及各接头">
+                    <standard>
+引线无断股、无散股，各接头压接良好、无过热变色现象，安全净距应≥*****米
+                    </standard>
+                </item>
+                <item name="基础">
+                    <standard>
+接地装置完好，基础无下沉、倾斜
+                    </standard>
+                </item>
+            </device>
+            <device name="结合滤波器">
+                <item name="设备编号">
+                    <standard>
+名称标志齐全、完好
+                    </standard>
+                </item>
+                <item name="外表">
+                    <standard>
+清洁、完好，固定牢固，箱门关闭良好
+                    </standard>
+                </item>
+                <item name="接地刀闸">
+                    <standard>
+记录刀闸位置（   ）（合“1”，分“0”），闸口接触良好，接地装置完好
+                    </standard>
+                </item>
+                <item name="地刀支持瓷瓶">
+                    <standard>
+固定牢固，无破裂、损伤现象
+                    </standard>
+                </item>
+            </device>
+            <device name="阻波器">
+                <item name="设备编号">
+                    <standard>
+名称标志齐全、完好
+                    </standard>
+                </item>
+                <item name="外表瓷质">
+                    <standard>
+完好，无破裂、损伤放电现象
+                    </standard>
+                </item>
+                <item name="引线及各接头">
+                    <standard>
+引线无断股、无散股，各接头压接良好、无过热变色现象，安全净距应≥******米
+                    </standard>
+                </item>
+                <item name="内部">
+                    <standard>
+无异常响声，内部无蜂窝、鸟巢，内部电容器及避雷器无倾倒现象
+                    </standard>
+                </item>
+                <item name="基础">
+                    <standard>
+接地装置完好，基础无下沉、倾斜
+                    </standard>
+                </item>
+                <item name="外表">
+                    <standard>
+固定牢固，无较大摆动
+                    </standard>
+                </item>
+                <item name="引线及各接头">
+                    <standard>
+引线无断股、无散股，各接头压接良好、无过热变色现象，安全净距应≥*****米
+                    </standard>
+                </item>
+            </device>
+        </device>

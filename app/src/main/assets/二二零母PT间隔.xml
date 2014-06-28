@@ -1,0 +1,147 @@
+﻿     <device name="二二零母PT间隔">
+            <device name="二二零母PT">
+                <item name="瓷套">
+                    <standard>
+1.清洁.无损.无放电现象、无裂纹、破损，无影响运行的异物
+                    </standard>
+                </item>
+                <item name="本体">
+                    <standard>
+1.无渗漏油，均压环完好无裂纹无倾斜
+2.内部无异音、异味
+3.名称标志齐全、完好无锈蚀
+                    </standard>
+                </item>
+                <item name="油色油位">
+                    <standard>
+1.油标的油位指示、应和环境温度标志线相对应,无大偏差
+2.正常油色应为透明的淡黄色
+3.油位计应无破损和渗漏油,没有影响察看油位的油垢
+                    </standard>
+                </item>
+                <item name="引线及接触部位">
+                    <standard>
+1.检查引线线夹压接应牢固,接触良好,无变色、变形，铜铝过渡部位无裂纹
+                    </standard>
+                </item>
+                <item name="膨胀器">
+                    <standard>
+1.无异常,指示正确
+                    </standard>
+                </item>
+                <item name="二次接线及二次电压">
+                    <standard>
+PT的二次接线盒应密封良好，不能有任何螺丝脱落现象，二次电压应正常，带电指示灯指示正确，电压继电器动作正确，二次空气开关位置正确。
+                    </standard>
+                </item>
+                <item name="基础">
+                    <standard>
+接地装置完好，基础无下沉、倾斜
+                    </standard>
+                </item>
+                <item name="接地线">
+                    <standard>
+接地线连接是否正常、牢固
+                    </standard>
+                </item>
+                <item name="声响">
+                    <standard>
+本体无异常声响或放电声
+                    </standard>
+                </item>
+            </device>
+            <device name="二二零母PT间隔避雷">
+                <item name="瓷质部分">
+                    <standard>
+1清洁无损,无放电现象,法兰无裂纹锈蚀,进水等现象，无异物附着
+                    </standard>
+                </item>
+                <item name="本体">
+                    <standard>
+1.内部应无响声,本体无倾斜
+2.基础无裂纹,固定螺丝无松动.锈蚀
+3.名称标志齐全、完好无锈蚀
+4.均压环无错位
+                    </standard>
+                </item>
+                <item name="避雷器泄漏电流">
+                    <standard>
+1.检查泄漏电流值应在正常允许范围(写出允许电流值)
+                    </standard>
+                </item>
+                <item name="放电计数器">
+                    <standard>
+2.放电计数器是否完好,记录动作次数
+                    </standard>
+                </item>
+                <item name="避雷器引线">
+                    <standard>
+1.引线完好,接触牢固,线夹无裂纹
+                    </standard>
+                </item>
+                <item name="接地">
+                    <standard>
+1.接地良好,接地无锈蚀
+                    </standard>
+                </item>
+                <item name="均压环">
+                    <standard>
+1.无松动.锈蚀
+                    </standard>
+                </item>
+            </device>
+            <device name="二二零母PT隔离开关">
+                <item name="触头引线线夹等主接触部位">
+                    <standard>
+1.导线无断股
+2.触头接触良好
+3.观察接头有无热气流、变色严重、氧化加剧现象
+4.以上检查，若需要鉴定，应使用测温仪对设备进行检测
+5.无挂落异物
+                    </standard>
+                </item>
+                <item name="瓷质部分">
+                    <standard>
+1.应完好、清洁、无破损、放电痕迹
+                    </standard>
+                </item>
+                <item name="接地刀闸">
+                    <standard>
+记录刀闸位置（     ）（合“1”，分“0”），与后台遥测一致，助力弹簧无断股，闭锁良好，接地装置完好，接地辫子无断股和散股，接地刀杆应完全放平
+                    </standard>
+                </item>
+                <item name="机构箱">
+                    <standard>
+1.机构箱内清洁、门关闭严密，名称标志齐全、完好无锈蚀
+2.二次线无松脱及发热变色现象
+3.电缆二次线孔洞封堵严密
+4.二次接线元件、电缆、隔离开关、断路器、电流互感器等标志正确、清晰
+5.机构箱接地良好
+6.箱内控制电源、电机电源、加热电源正常开启，分、合指示正常、远方/就地方式正确
+                    </standard>
+                </item>
+            </device>
+            <device name="二二零母线">
+                <item name="母线及接头">
+                    <standard>
+1.检查接头有无松动、断股、散股
+2.用观察接头有无热气流、变色严重、氧化加剧、夜间熄灯察看有无发红等方法，检查是否发热
+3.雨雪天气，检查设备引线、线夹主导流接触部位，看有无积雪融化、水蒸气现象
+4.以上检查，若需要鉴定，应使用测温仪对设备进行检测
+5.无挂落异物
+6.名称标志齐全、完好无锈蚀
+                    </standard>
+                </item>
+                <item name="绝缘子">
+                    <standard>
+1.无脏污、裂纹、破损及放电现象
+                    </standard>
+                </item>
+                <item name="架构">
+                    <standard>
+1.无锈蚀、变形、裂纹、损坏
+2.接地扁铁接地良好
+                    </standard>
+                </item>
+            </device>
+        </device>

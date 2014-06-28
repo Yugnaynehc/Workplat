@@ -26,15 +26,18 @@
     <string name="work_state_column">State</string>
     <string name="defect_device_column">Device</string>
     <string name="defect_description_column">Description</string>
+    <string name="result_device_column">Device</string>
     <string name="error_loading_users">Loading users failed</string>
     <string name="error_loading_news">Loading news failed</string>
     <string name="error_loading_checkins">Loading check-ins failed</string>
     <string name="error_loading_works">Loading works failed</string>
     <string name="error_loading_defects">Loading defects failed</string>
+    <string name="error_loading_device_results">Loading device results failed</string>
     <string name="no_users">No Users</string>
     <string name="no_news">No News</string>
     <string name="no_works">No Works</string>
     <string name="no_defects">No Defects</string>
+    <string name="no_device_results">No Device Results</string>
     <string name="avatar">Avatar</string>
     <string name="choose">Choose</string>
     <string name="button_prev">prev</string>
@@ -42,6 +45,7 @@
     <string name="button_scan">scan</string>
     <string name="button_submit">submit</string>
     <string name="button_upload">upload</string>
+    <string name="button_edit">edit</string>
     <string name="apply_date">Apply Date</string>
     <string name="apply_type">Apply Type</string>
     <string name="apply_reason">Apply Reason</string>

@@ -2,18 +2,13 @@ package com.donnfelker.android.bootstrap.util;
 
 import android.util.Xml;
 
-import com.donnfelker.android.bootstrap.core.inspect.object.Device;
-import com.donnfelker.android.bootstrap.core.inspect.object.subdevice.SubDevice;
-import com.donnfelker.android.bootstrap.core.inspect.result.InspectEnvironment;
 import com.donnfelker.android.bootstrap.core.inspect.result.InspectTool;
 import com.donnfelker.android.bootstrap.core.inspect.result.Result;
-import com.donnfelker.android.bootstrap.core.inspect.security.Security;
 
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.List;
 
 /**
  * Created by feather on 14-4-13.
@@ -65,6 +60,7 @@ public class ResultXmlBuilder {
         }
 
         // start printing device inspected information
+        /*
         for (Device device : result.getDevices())
         {
             serializer.startTag(null, "device");
@@ -95,6 +91,7 @@ public class ResultXmlBuilder {
             }
             serializer.endTag(null, "device");
         }
+        */
 
         serializer.endTag(null, result.getType());
         serializer.endDocument();

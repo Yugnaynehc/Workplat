@@ -26,13 +26,16 @@
     <string name="work_state_column">状态</string>
     <string name="defect_device_column">设备名称</string>
     <string name="defect_description_column">缺陷描述</string>
+    <string name="result_device_column">设备名称</string>
     <string name="error_loading_users">获取用户列表失败</string>
     <string name="error_loading_news">获取新闻列表失败</string>
     <string name="error_loading_checkins">获取地理信息失败</string>
     <string name="error_loading_works">获取工作单失败</string>
+    <string name="error_loading_device_results">获取设备巡检结果失败</string>
     <string name="no_users">无用户</string>
     <string name="no_news">无新闻</string>
     <string name="no_works">无工作单</string>
+    <string name="no_device_results">无设备巡检结果</string>
     <string name="avatar">Avatar</string>
     <string name="choose">Choose</string>
     <string name="button_prev">上一步</string>
@@ -40,6 +43,7 @@
     <string name="button_scan">扫描</string>
     <string name="button_submit">提交</string>
     <string name="button_upload">上传结果</string>
+    <string name="button_edit">确认修改</string>
     <string name="apply_date">执行日期</string>
     <string name="apply_type">申请类型</string>
     <string name="apply_reason">申请理由</string>

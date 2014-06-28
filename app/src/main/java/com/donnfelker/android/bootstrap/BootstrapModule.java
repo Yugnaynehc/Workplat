@@ -7,9 +7,8 @@ import com.donnfelker.android.bootstrap.authenticator.BootstrapAuthenticatorActi
 import com.donnfelker.android.bootstrap.authenticator.LogoutService;
 import com.donnfelker.android.bootstrap.core.TimerService;
 import com.donnfelker.android.bootstrap.ui.BootstrapTimerActivity;
-import com.donnfelker.android.bootstrap.ui.step.DefectListFragment;
-import com.donnfelker.android.bootstrap.ui.MainActivity;
 import com.donnfelker.android.bootstrap.ui.CheckInsListFragment;
+import com.donnfelker.android.bootstrap.ui.MainActivity;
 import com.donnfelker.android.bootstrap.ui.NavigationDrawerFragment;
 import com.donnfelker.android.bootstrap.ui.NewsActivity;
 import com.donnfelker.android.bootstrap.ui.NewsListFragment;
@@ -17,7 +16,9 @@ import com.donnfelker.android.bootstrap.ui.UserActivity;
 import com.donnfelker.android.bootstrap.ui.UserListFragment;
 import com.donnfelker.android.bootstrap.ui.WorkActivity;
 import com.donnfelker.android.bootstrap.ui.WorkListFragment;
+import com.donnfelker.android.bootstrap.ui.step.DefectListFragment;
 import com.donnfelker.android.bootstrap.ui.step.DeviceActivity;
+import com.donnfelker.android.bootstrap.ui.step.ResultListFragment;
 import com.squareup.otto.Bus;
 
 import javax.inject.Singleton;
@@ -47,7 +48,8 @@ import dagger.Provides;
                 WorkListFragment.class,
                 DefectListFragment.class,
                 TimerService.class,
-                DeviceActivity.class
+                DeviceActivity.class,
+                ResultListFragment.class
         }
 )
 public class BootstrapModule {

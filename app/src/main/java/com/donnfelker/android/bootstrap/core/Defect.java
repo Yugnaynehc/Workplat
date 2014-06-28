@@ -7,6 +7,8 @@ import java.io.Serializable;
  */
 public class Defect implements Serializable  {
 
+    private static final long serialVersionUID = -6783542855551752036L;
+
     protected String bugid;
     protected String description;
     protected String deviceid;
