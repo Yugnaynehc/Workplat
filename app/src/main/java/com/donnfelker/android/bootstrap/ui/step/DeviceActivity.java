@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import butterknife.InjectView;
 import butterknife.Views;
 
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ID;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NAME;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NO;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_RESULT;
@@ -41,6 +42,7 @@ public class DeviceActivity extends BootstrapFragmentActivity {
     @InjectView(R.id.inspect_detail)protected ListView list;
     @InjectView(R.id.submit)protected BootstrapButton submit;
     private DeviceAdapter adapter;
+    private String deviceID;
     private String deviceName;
     private int deviceNo;
     private ArrayList<String> inspectContent;
@@ -55,9 +57,8 @@ public class DeviceActivity extends BootstrapFragmentActivity {
         Views.inject(this);
 
         Intent scanDevice = getIntent();
-        deviceName = scanDevice.getStringExtra(DEVICE_NAME);
+        deviceID = scanDevice.getStringExtra(DEVICE_ID);
         deviceNo = scanDevice.getIntExtra(DEVICE_NO, -1);
-        setTitle(deviceName);
         inspectContent = new ArrayList<String>();
         inspectStandard = new ArrayList<String>();
         if (deviceNo != -1) {
@@ -67,6 +68,7 @@ public class DeviceActivity extends BootstrapFragmentActivity {
             inspectResult = new SparseArray<String>();
         }
         initInspectData();
+        setTitle(deviceName);
         adapter = new DeviceAdapter(this);
         list.setAdapter(adapter);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -75,6 +77,7 @@ public class DeviceActivity extends BootstrapFragmentActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
+                intent.putExtra(DEVICE_ID, deviceID);
                 intent.putExtra(DEVICE_NAME, deviceName);
                 intent.putExtra(DEVICE_NO, deviceNo);
                 intent.putExtra(DEVICE_RESULT, getResultList());
@@ -120,7 +123,7 @@ public class DeviceActivity extends BootstrapFragmentActivity {
              * 用户登录->检查服务器是否发出XML文件更新指令->检查本地XML文件是否完整->
              * 读取某一个巡检任务(设备)对应的XML文件->将XML文件的内容呈现至屏幕
              */
-            inStream = getAssets().open("devices/" + deviceName + ".xml");
+            inStream = getAssets().open("devices/" + deviceID + ".xml");
             parser.setInput(inStream, "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
@@ -143,6 +146,8 @@ public class DeviceActivity extends BootstrapFragmentActivity {
                                 inspectStandard.add(parser.getText());
                                 Ln.d("inspect standard %s", parser.getText());
                             }
+                        } else if (name.equalsIgnoreCase("device")) {
+                            deviceName = parser.getAttributeValue(0);
                         }
                         break;
                     case XmlPullParser.END_TAG:

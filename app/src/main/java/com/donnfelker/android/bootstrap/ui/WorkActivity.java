@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import butterknife.Views;
 
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NAME;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ID;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NO;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_RESULT;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.WORK_ITEM;
@@ -148,7 +149,7 @@ public class WorkActivity extends BootstrapFragmentActivity {
         }
         final Intent scanDevice = new Intent(this, DeviceActivity.class);
         int random = 100000 + (int)(Math.random()*20);
-        scanDevice.putExtra(DEVICE_NAME, String.valueOf(random));
+        scanDevice.putExtra(DEVICE_ID, String.valueOf(random));
         startActivityForResult(scanDevice, ADD_NEW_RESULT);
     }
 
@@ -159,13 +160,13 @@ public class WorkActivity extends BootstrapFragmentActivity {
                 Ln.d("Activity Result: ADD");
                 if (resultCode == RESULT_OK) {
                     String deviceName = data.getStringExtra(DEVICE_NAME);
+                    String deviceID = data.getStringExtra(DEVICE_ID);
                     ArrayList<String> inspectResult = data.getStringArrayListExtra(DEVICE_RESULT);
-                    DeviceResult deviceResult = new DeviceResult(deviceName, inspectResult);
+                    DeviceResult deviceResult = new DeviceResult(deviceName, deviceID, inspectResult);
                     result.addDeviceResult(deviceResult);
                 }
                 break;
             case EDIT_EXISTENT_RESULT:
-
                 if (resultCode == RESULT_OK) {
                     int deviceNo = data.getIntExtra(DEVICE_NO, -1);
                     Ln.d("Activity Result: deviceNo = %s", deviceNo);

@@ -21,7 +21,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NAME;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ID;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NO;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_RESULT;
 import static com.donnfelker.android.bootstrap.core.Constants.Intent.EDIT_EXISTENT_RESULT;
@@ -87,7 +87,7 @@ public class ResultListFragment extends ItemListFragment<DeviceResult> {
     public void onListItemClick(final ListView l, final View v, final int position, final long id) {
         DeviceResult deviceResult = ((DeviceResult) l.getItemAtPosition(position));
         Intent intent = new Intent(getActivity(), DeviceActivity.class);
-        intent.putExtra(DEVICE_NAME, deviceResult.getDeviceName());
+        intent.putExtra(DEVICE_ID, deviceResult.getDeviceID());
         intent.putExtra(DEVICE_RESULT, deviceResult.getInspectResult());
         intent.putExtra(DEVICE_NO, position - 1);
         getActivity().startActivityForResult(intent, EDIT_EXISTENT_RESULT);

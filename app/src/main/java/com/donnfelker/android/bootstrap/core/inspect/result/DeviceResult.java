@@ -12,11 +12,21 @@ public class DeviceResult implements Serializable {
 
     private String deviceName;
     private ArrayList<String> inspectResult;
+    private String deviceID;
     private String objectId;
 
-    public DeviceResult(String deviceName, ArrayList<String> inspectResult) {
+    public DeviceResult(String deviceName, String deviceID, ArrayList<String> inspectResult) {
         this.deviceName = deviceName;
+        this.deviceID = deviceID;
         this.inspectResult = inspectResult;
+    }
+
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
     }
 
     public ArrayList<String> getInspectResult() {
@@ -27,19 +37,19 @@ public class DeviceResult implements Serializable {
         this.inspectResult = inspectResult;
     }
 
+    public String getDeviceID() {
+        return deviceID;
+    }
+
+    public void setDeviceID(String deviceID) {
+        this.deviceID = deviceID;
+    }
+
     public String getObjectId() {
         return objectId;
     }
 
     public void setObjectId(String objectId) {
         this.objectId = objectId;
-    }
-
-    public String getDeviceName() {
-        return deviceName;
-    }
-
-    public void setDeviceName(String deviceName) {
-        this.deviceName = deviceName;
     }
 }
