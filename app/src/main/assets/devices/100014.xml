@@ -1,42 +1,42 @@
 <device name="一一零开关CT">
     <item name="设备编号">
         <standard>
-            名称标志齐全、完好
+名称标志齐全、完好
         </standard>
     </item>
     <item name="金属膨胀器">
         <standard>
-            位置指示与环境温度应与标尺刻度符合，无变形
+位置指示与环境温度应与标尺刻度符合，无变形
         </standard>
     </item>
     <item name="瓷套管">
         <standard>
-            清洁、完好，无渗油，无裂纹、损伤放电现象
+清洁、完好，无渗油，无裂纹、损伤放电现象
         </standard>
     </item>
     <item name="引线及各接头">
         <standard>
-            引线无断股、无散股，各接头压接良好、无过热变色现象，安全净距应≥********米
+引线无断股、无散股，各接头压接良好、无过热变色现象，安全净距应≥********米
         </standard>
     </item>
     <item name="放油阀">
         <standard>
-            关闭严密，无渗漏油
+关闭严密，无渗漏油
         </standard>
     </item>
     <item name="二次接线盒">
         <standard>
-            封堵良好，二次电缆绝缘无损伤
+封堵良好，二次电缆绝缘无损伤
         </standard>
     </item>
     <item name="基础">
         <standard>
-            接地装置完好，基础无下沉、倾斜
+接地装置完好，基础无下沉、倾斜
         </standard>
     </item>
     <item name="末屏">
         <standard>
-            末屏接地良好，无渗、漏油现象
+末屏接地良好，无渗、漏油现象
         </standard>
     </item>
 </device>

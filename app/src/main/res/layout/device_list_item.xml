@@ -11,7 +11,8 @@
         android:gravity="center"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:textColor="@color/black"/>
 d
     <TextView
         android:id="@+id/tv_device_content"
@@ -19,15 +20,17 @@ d
         android:gravity="center"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="4"/>
+        android:layout_weight="4"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/tv_device_standard"
         android:layout_gravity="center"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="4"/>
-
+        android:layout_weight="6"
+        android:textColor="@color/black"/>
+<!--
     <EditText
         android:id="@+id/et_device_result"
         android:layout_gravity="center"
@@ -35,5 +38,27 @@ d
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="4"/>
-
+        -->
+<RadioGroup
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_weight="4"
+    android:id="@+id/rg_device_result"
+    >
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/device_ok"
+        android:text="正常"
+        android:checked="true"
+        android:textColor="@color/black"/>
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/device_problem"
+        android:text="异常"
+        android:textColor="@color/black"
+        />
+    </RadioGroup>
 </LinearLayout>

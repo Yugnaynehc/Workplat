@@ -84,11 +84,13 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
         super.onResume();
     }
 
+    @Override
     public boolean validation() {
         Ln.d("tools prepare fragment validation");
         return true;
     }
 
+    @Override
     public void saveResult() {
         List<InspectTool> toolsList = null;
         InspectTool tool;

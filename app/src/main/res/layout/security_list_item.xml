@@ -11,7 +11,9 @@
         android:gravity="center"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/tv_security_point"
@@ -19,7 +21,9 @@
         android:gravity="left|center_vertical"
         android:layout_width="0dp"
         android:layout_weight="4"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/tv_security_measure"
@@ -27,7 +31,9 @@
         android:gravity="left|center_vertical"
         android:layout_width="0dp"
         android:layout_weight="4"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
 
     <CheckBox
         android:id="@+id/cb_security_select"

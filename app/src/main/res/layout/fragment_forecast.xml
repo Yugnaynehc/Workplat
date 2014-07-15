@@ -1,27 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/weaimage1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                />
+                <TextView
+                    android:id="@+id/nowTemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/weaimage1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="50dp"
+                    android:textColor="#003300"
+                    android:textStyle="bold"
+                    />
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+                <TextView
+                    android:id="@+id/weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/nowTemp"
+                    android:layout_below="@id/nowTemp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="32dp"
+                    android:textColor="#003300"
+                    />
+                <TextView
+                    android:id="@+id/temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/weather"
+                    android:layout_below="@id/weather"
+                    android:layout_marginTop="10dp"
+                    android:textSize="32dp"
+                    android:textColor="#003300"
+                    />
+                <TextView
+                    android:id="@+id/wind1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/temp"
+                    android:layout_below="@id/temp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="32dp"
+                    android:textColor="#003300" />
 
+                <TextView
+                    android:id="@+id/date1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/wind1"
+                    android:layout_below="@id/wind1"
+                    android:layout_marginTop="10dp"
+                    android:textSize="32dp"
+                    android:textColor="#003300" />
+
+                <TextView
+                    android:id="@+id/city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@id/nowTemp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="50dp"
+                    android:textColor="#003300"
+                    android:textStyle="bold"/>
 
     <ListView
         android:id="@+id/weatherlist"
-        android:layout_width="fill_parent"
-        android:layout_height="300dp"/>
-
-    <com.beardedhen.androidbootstrap.BootstrapButton
-        android:id="@+id/submit"
-        android:text="@string/button_submit"
         android:layout_width="wrap_content"
-        bootstrapbutton:bb_roundedCorners="true"
-        bootstrapbutton:bb_type="default"
-        bootstrapbutton:bb_icon_right="fa-check"
-        android:layout_marginTop="15dp"
-        android:layout_gravity="center"
-        android:layout_height="30dp"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/city"
+        android:layout_alignLeft="@id/city"
+        android:layout_marginRight="10dp"
+        android:divider="#FFF"
+        android:dividerHeight="1px"
+        />
+    <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/submit"
+            android:text="获得天气"
+            android:layout_width="wrap_content"
+            bootstrapbutton:bb_roundedCorners="true"
+            bootstrapbutton:bb_type="default"
+            bootstrapbutton:bb_icon_right="fa-check"
+            android:layout_below="@id/date1"
+            android:layout_marginTop="100dp"
+            android:layout_height="30dp"/>
 
-</LinearLayout>
+    </RelativeLayout>

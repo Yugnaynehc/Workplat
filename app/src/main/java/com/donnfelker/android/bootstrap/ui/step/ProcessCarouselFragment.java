@@ -3,6 +3,7 @@ package com.donnfelker.android.bootstrap.ui.step;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -14,8 +15,16 @@ import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
+import com.donnfelker.android.bootstrap.ui.WorkActivity;
 import com.donnfelker.android.bootstrap.util.Ln;
+import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
+import static com.donnfelker.android.bootstrap.core.Constants.Http.*;
+
+
+import com.github.kevinsawicki.http.HttpRequest;
 import com.viewpagerindicator.TitlePageIndicator;
+
+import java.io.File;
 
 import butterknife.InjectView;
 import butterknife.Views;
@@ -34,6 +43,7 @@ public class ProcessCarouselFragment extends Fragment {
     protected InspectPagerAdapter pagerAdapter;
 
     protected ValidationFragment currentFragment;
+    private SafeAsyncTask<Boolean> uoloadTask;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -79,22 +89,70 @@ public class ProcessCarouselFragment extends Fragment {
             }
             else if (view.getId() == next.getId()) {
                 if (validation()) {
+                    currentFragment.saveResult();
                     int index = pager.getCurrentItem();
+                    Toast.makeText(getActivity(), "index:" + index, Toast.LENGTH_SHORT).show();
                     if (index < pagerAdapter.getCount() - 1) {
                         pager.setCurrentItem(index + 1);
                         prev.setBootstrapButtonEnabled(true);
+                        if (index == pagerAdapter.getCount() - 2)
+                            next.setText(getResources().getString(R.string.button_upload));
                     }
-                    // if this is scan fragment, then start a new inspect page
+                    // if this is the result list fragment, then upload the result
                     else {
-                        //startActivityForResult(new Intent(getActivity(), DeviceActivity), RFID.getDeviceCode());
-                        startActivityForResult(new Intent(getActivity(), DeviceActivity.class), 1);
-                    }
-                    currentFragment.saveResult();
-                    if (pager.getCurrentItem() == pagerAdapter.getCount() - 1) {
-                        next.setBootstrapButtonEnabled(false);
-                        next.setText(getResources().getString(R.string.button_upload));
-                    }
+                        // upload task
+                        next.setOnClickListener(new View.OnClickListener(){
+                            @Override
+                            public void onClick(View view){
+                                final File resultFile = new File(Environment.getExternalStorageDirectory(),"bbb.xml");
+                                final File resultImage = new File(Environment.getExternalStorageDirectory(), "myImage/111.jpg");
+                                try {
+                                uoloadTask = new SafeAsyncTask<Boolean>() {
+                                    @Override
+                                    public Boolean call() throws Exception {
+                                        //String query = String.format("?%s=%s&%s=%s", );
+                                        String xmlExtension = "xml";
+                                        String jpgExtension = "jpg";
+                                        String query = "";
 
+                                        try {
+                                            File[] files = getActivity().getFilesDir().listFiles();
+                                            for (File file : files) {
+                                                HttpRequest request;
+                                                if (file.isFile()) {
+                                                    if (file.getPath().substring(file.getPath().length() - xmlExtension.length()).
+                                                            equals(xmlExtension)) {
+                                                        request = HttpRequest.post(URL_UPLOAD + query);
+                                                        request.part("upload", file.getName(), "text/plain", file);
+                                                        Ln.d("upload xml");
+                                                        if (!request.ok())
+                                                            return false;
+                                                    }
+                                                    else if (file.getPath().substring(file.getPath().length() - jpgExtension.length()).
+                                                            equals(jpgExtension)) {
+                                                        request = HttpRequest.post(URL_UPLOAD + query);
+                                                        request.part("upload", file.getName(), "image/jpeg", file);
+                                                        Ln.d("upload jpg");
+                                                        if (!request.ok())
+                                                            return false;
+                                                    }
+
+                                                }
+                                            }
+                                        } catch (NullPointerException e) {
+                                            e.printStackTrace();
+                                        }
+                                        Ln.d("upload success");
+                                        return true;
+                                    }
+                                };
+                                uoloadTask.execute();
+                                } catch (Exception e) {
+                                    Ln.d("upload: %s", e.toString());
+                                }
+                            }
+                        });
+                    }
                     //pager.arrowScroll(2);
                     Ln.d("next clicked");
                 }

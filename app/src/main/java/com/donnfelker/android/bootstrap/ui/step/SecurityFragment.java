@@ -72,11 +72,13 @@ public class SecurityFragment extends Fragment implements ValidationFragment {
         super.onAttach(activity);
     }
 
+    @Override
     public boolean validation() {
         Ln.d("security fragment validation");
         return true;
     }
 
+    @Override
     public void saveResult() {
         security.setSelect(selectMap);
         ((WorkActivity)getActivity()).getResult().setSecurity(security);

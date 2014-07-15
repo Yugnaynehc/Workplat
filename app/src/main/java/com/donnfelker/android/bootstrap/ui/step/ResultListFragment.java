@@ -31,7 +31,7 @@ import static com.donnfelker.android.bootstrap.core.Constants.Intent.EDIT_EXISTE
  *
  * 设备巡检结果列表
  */
-public class ResultListFragment extends ItemListFragment<DeviceResult> {
+public class ResultListFragment extends ItemListFragment<DeviceResult> implements  ValidationFragment {
 
     @Inject protected BootstrapServiceProvider serviceProvider;
     @Inject protected LogoutService logoutService;
@@ -115,10 +115,12 @@ public class ResultListFragment extends ItemListFragment<DeviceResult> {
         forceRefresh();
     }
 
+    @Override
     public boolean validation() {
         return true;
     }
 
+    @Override
     public void saveResult() {
 
     }

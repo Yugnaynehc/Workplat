@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.NFC"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
     <application
         android:name=".BootstrapApplication"
@@ -18,7 +20,6 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Bootstrap.Dark"
         android:allowBackup="true">
-
         <activity
             android:name=".ui.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -27,16 +28,16 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.BootstrapTimerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:parentActivityName="com.donnfelker.android.bootstrap.ui.MainActivity" >
 
-        <activity android:name=".ui.BootstrapTimerActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:label="@string/app_name"
-                  android:launchMode="singleTop"
-                  android:parentActivityName="com.donnfelker.android.bootstrap.ui.MainActivity" >
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <!-- Both parent activity attributes have to contain the full package name -->
             <meta-data
@@ -44,21 +45,24 @@
                 android:value="com.donnfelker.android.bootstrap.ui.MainActivity" />
         </activity>
 
-        <service android:name=".core.TimerService" android:enabled="true" android:exported="false" />
-
+        <service
+            android:name=".core.TimerService"
+            android:enabled="true"
+            android:exported="false" />
         <service
             android:name=".authenticator.AccountAuthenticatorService"
             android:process=":auth" >
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
+
             <meta-data
                 android:name="android.accounts.AccountAuthenticator"
                 android:resource="@xml/authenticator" />
         </service>
 
         <activity
-            android:name=".authenticator.BootstrapAuthenticatorActivity"
+            android:name="com.donnfelker.android.bootstrap.authenticator.BootstrapAuthenticatorActivity"
             android:excludeFromRecents="true" >
 
             <!--
@@ -66,22 +70,26 @@
                 someone who explicitly knows the class name
             -->
         </activity>
-
-        <activity android:name=".ui.NewsActivity" />
-        <activity android:name=".ui.UserActivity" android:label="@string/app_name" />
+        <activity android:name="com.donnfelker.android.bootstrap.ui.NewsActivity" />
         <activity
-            android:name=".ui.WorkActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:windowSoftInputMode="adjustPan"
+            android:name="com.donnfelker.android.bootstrap.ui.UserActivity"
             android:label="@string/app_name" />
-
-        <activity android:name=".ui.step.DeviceActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:label="@string/app_name"/>
-
-        <activity android:name=".ui.step.ScanActivity"
-            android:label="@string/app_name"/>
-
+        <activity
+            android:name="com.donnfelker.android.bootstrap.ui.WorkActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.donnfelker.android.bootstrap.ui.step.DeviceActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.donnfelker.android.bootstrap.ui.step.ScanActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.donnfelker.android.bootstrap.ui.step.ExceptionActivity"
+            android:label="@string/title_activity_exception" >
+        </activity>
     </application>
 
 </manifest>

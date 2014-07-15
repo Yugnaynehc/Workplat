@@ -94,6 +94,7 @@ public class WeatherFragment extends Fragment implements  ValidationFragment {
         super.onAttach(activity);
     }
 
+    @Override
     public boolean validation() {
         Ln.d("Weather fragment validation");
         //if (temp.getText().toString().equals("")) return false;
@@ -101,6 +102,7 @@ public class WeatherFragment extends Fragment implements  ValidationFragment {
         return true;
     }
 
+    @Override
     public void saveResult() {
         Ln.d("Weather fragment save result");
         env = new InspectEnvironment(date.toString(), temp.toString(), humi.toString(), person.toString());

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
 
     <string name="app_name">Bootstrap</string>
@@ -74,7 +73,6 @@
     <string name="title_home">Home</string>
     <string name="title_work">Work</string>
 
-
     <!-- Inspect Type -->
     <string name="inspect_normal_total">全面巡检</string>
     <string name="inspect_normal_daily">日常巡检</string>
@@ -97,7 +95,6 @@
     <string name="weather_temperature">温度（℃）:</string>
     <string name="weather_humidity">湿度（RH）:</string>
     <string name="weather_person">负责人:</string>
-
     <string name="no.">序号</string>
 
     <!-- 工具信息输入 -->
@@ -106,7 +103,6 @@
     <string name="tool_unit">单位</string>
     <string name="tool_num">数量</string>
     <string name="tool_remark">备注</string>
-
     <string name="tool_name_helmet">安全帽</string>
     <string name="tool_name_gloves">绝缘手套</string>
     <string name="tool_name_boots">绝缘靴</string>
@@ -116,7 +112,6 @@
     <string name="tool_name_key">钥匙</string>
     <string name="tool_name_goggle">护目镜</string>
     <string name="tool_name_interphone">对讲机</string>
-
     <string name="tool_unit_ding">顶</string>
     <string name="tool_unit_shuang">双</string>
     <string name="tool_unit_fu">副</string>
@@ -124,7 +119,6 @@
     <string name="tool_unit_zhan">盏</string>
     <string name="tool_unit_tao">套</string>
     <string name="tool_unit_ge">个</string>
-
     <string name="tool_remark_helmet">视巡检人员数量定</string>
     <string name="tool_remark_gloves">根据巡检需要，视巡检人员数量定</string>
     <string name="tool_remark_boots">视巡检人员数量定，特殊天气及接地网接地电阻不合格时使用</string>
@@ -134,7 +128,6 @@
     <string name="tool_remark_key">根据现场需要定</string>
     <string name="tool_remark_goggle">视巡检人员数量定</string>
     <string name="tool_remark_interphone">（无）</string>
-
 
     <!-- 危险点及安全控制措施输入 -->
     <string name="security_item">危险点</string>
@@ -150,6 +143,8 @@
     <string name="device_content">巡检内容</string>
     <string name="device_standard">巡检标准</string>
     <string name="device_result">填写结果</string>
-
+    <string name="title_activity_exception">ExceptionActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

@@ -6,24 +6,22 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import com.beardedhen.androidbootstrap.BootstrapButton;
-import com.donnfelker.android.bootstrap.BootstrapServiceProvider;
-import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.Forecast;
 import com.donnfelker.android.bootstrap.core.ForecastResult;
 import com.donnfelker.android.bootstrap.core.WeatherData;
 import com.donnfelker.android.bootstrap.util.Ln;
+import com.donnfelker.android.bootstrap.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.Views;
@@ -41,11 +39,17 @@ public class ForecastFragment extends Fragment {
     private String[] sun = null;
     private String[] wind = null;
     private String[] temperature = null;
-    @InjectView(R.id.weatherlist)ListView list;
-    @InjectView(R.id.submit)BootstrapButton button;
-    private List<Map<String,Object>> listItems = null;
     private SimpleAdapter simpleAdapter = null;
+    @InjectView(R.id.submit)BootstrapButton button;
 
+    @InjectView(R.id.nowTemp)TextView nowTemp;
+    @InjectView(R.id.date1)TextView date1;
+    @InjectView(R.id.weather)TextView sun1;
+    @InjectView(R.id.wind1)TextView wind1;
+    @InjectView(R.id.temp)TextView temp;
+    @InjectView(R.id.city)TextView city;
+    @InjectView(R.id.weaimage1)ImageView image1;
+    @InjectView(R.id.weatherlist)ListView list1;
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +58,7 @@ public class ForecastFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_forecast, container, false);
+        View view = inflater.inflate(R.layout.fragment_forecast,container,false);
         Views.inject(this, view);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,12 +66,6 @@ public class ForecastFragment extends Fragment {
                 getWeather();
             }
         });
-
-        listItems = new ArrayList<Map<String,Object>>();
-        simpleAdapter = new SimpleAdapter(getActivity(),listItems,R.layout.weatherlist,
-                new String[]{"date","sun","wind","temperature","images"},
-                new int[]{R.id.date,R.id.sun,R.id.wind,R.id.temperature,R.id.imagebaidu});
-        list.setAdapter(simpleAdapter);
         return view;
     }
 
@@ -104,34 +102,58 @@ public class ForecastFragment extends Fragment {
 
     private void getWeather() {
         weather = ((MainActivity)getActivity()).getWeather();
-        if (weather == null) {
-            Toast.makeText(getActivity(), "正在获取天气信息，请稍后重试", Toast.LENGTH_LONG).show();
-        } else {
-            result = weather.getResults();
-            weatherData = result.getWeather_data();
-            date = weatherData.getDate();
-            sun = weatherData.getWeather();
-            wind = weatherData.getWind();
-            temperature = weatherData.getTemperature();
 
-            listItems.clear();
-            for (int i = 0;i<date.length;i++)
-            {
-                Map<String,Object> listitem =new HashMap<String,Object>();
-                listitem.put("date", date[i]);
-                listitem.put("sun", sun[i]);
-                listitem.put("wind", wind[i]);
-                listitem.put("temperature", temperature[i]);
-                if(sun[i].equals("晴"))
+            if (weather == null) {
+               Toast.makeText(getActivity(), "正在获取天气信息，请稍后重试", Toast.LENGTH_LONG).show();
+            } else {
+                result = weather.getResults();
+                weatherData = result.getWeather_data();
+                date = weatherData.getDate();
+                sun = weatherData.getWeather();
+                wind = weatherData.getWind();
+                temperature = weatherData.getTemperature();
+                String str = date[0].replace("(","");
+                str=str.replace(")","");
+                String s[] = str.split(" ");
+
+                nowTemp.setText(s[2]);
+                city.setText(result.getCurrentCity());
+                date1.setText(s[0]+" "+s[1]);
+                sun1.setText(sun[0]);
+                wind1.setText(wind[0]);
+
+                temp.setText(temperature[0]);
+
+                if(sun[0].equals("晴"))
                 {
-                    listitem.put("images", R.drawable.qing);
+                    image1.setImageResource(R.drawable.qing);
                 }else
                 {
-                    listitem.put("images", R.drawable.yin);
+                    image1.setImageResource(R.drawable.yin);
                 }
-                listItems.add(listitem);
+                List<Map<String,Object>> listItems = new ArrayList<Map<String,Object>>();
+                for (int i = 1;i<date.length;i++)
+                {
+                    Map<String,Object> listitem =new HashMap<String,Object>();
+                    listitem.put("date", date[i]);
+                    listitem.put("sun", sun[i]);
+                    listitem.put("wind", wind[i]);
+                    listitem.put("temperature", temperature[i]);
+                    if(sun[i].equals("晴"))
+                    {
+                        listitem.put("images", R.drawable.qing);
+                    }else
+                    {
+                        listitem.put("images", R.drawable.yin);
+                    }
+                    //listitem.put("image", returnBitMap(imgurl[i]));
+                    listItems.add(listitem);
+                }
+                simpleAdapter = new SimpleAdapter(getActivity(),listItems,R.layout.weatherlist,
+                        new String[]{"date","sun","wind","temperature","images"},
+                        new int[]{R.id.date,R.id.sun,R.id.wind,R.id.temperature,R.id.imagebaidu});
+                list1.setAdapter(simpleAdapter);
             }
-            simpleAdapter.notifyDataSetChanged();
         }
-    }
+
 }

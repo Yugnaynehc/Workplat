@@ -192,7 +192,6 @@ public class MainActivity extends BootstrapFragmentActivity {
             sb.append("\n精度：");
             sb.append(location.getAccuracy());
             Ln.d("LBS: %s", sb.toString());
-            Toast.makeText(this, sb.toString(), Toast.LENGTH_SHORT).show();
             try {
                 SafeAsyncTask<Boolean> forecastTask;
                 forecastTask = new SafeAsyncTask<Boolean>() {

@@ -1,17 +1,17 @@
 <device name="阻波器">
     <item name="外表">
         <standard>
-            固定牢固，无较大摆动，整体无变形现象
+固定牢固，无较大摆动，整体无变形现象
         </standard>
     </item>
     <item name="内部">
         <standard>
-            无异常响声，内部无蜂窝、鸟巢，内部电容器及避雷器无倾倒现象
+无异常响声，内部无蜂窝、鸟巢，内部电容器及避雷器无倾倒现象
         </standard>
     </item>
     <item name="引线及各接头">
         <standard>
-            引线无断股、无散股，各接头压接良好、无过热变色现象
+引线无断股、无散股，各接头压接良好、无过热变色现象
         </standard>
     </item>
 </device>

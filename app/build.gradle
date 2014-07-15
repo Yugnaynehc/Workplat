@@ -18,7 +18,7 @@ repositories {
 
 dependencies {
     compile project(':lib:Bootstrap')
-	compile fileTree(dir: 'libs', include: '*.jar')
+    compile fileTree(dir: 'libs', include: '*.jar')
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.android.support:appcompat-v7:19.0.+'
     compile 'com.squareup.dagger:dagger:1.0.1'
@@ -31,7 +31,7 @@ dependencies {
     compile 'com.github.kevinsawicki:wishlist:0.9'
     compile 'com.squareup:otto:1.3.4'
     compile 'com.squareup.picasso:picasso:1.1.1'
-    // compile 'com.example:mylibrary:1.0.0@aar'
+
     instrumentTestCompile 'junit:junit:4.11'
     instrumentTestCompile 'org.hamcrest:hamcrest-library:1.3'
     instrumentTestCompile 'org.mockito:mockito-core:1.9.5'

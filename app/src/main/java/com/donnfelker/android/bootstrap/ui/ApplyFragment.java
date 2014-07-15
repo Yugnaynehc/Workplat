@@ -58,6 +58,7 @@ public class ApplyFragment extends Fragment {
         adapter.add(getResources().getString(R.string.inspect_job_deviceperiodictestingrotation));
         adapter.add(getResources().getString(R.string.inspect_job_deviceperiodicmaintance));
         adapter.add(getResources().getString(R.string.inspect_job_barriergateoperate));
+
     }
 
     @Override
