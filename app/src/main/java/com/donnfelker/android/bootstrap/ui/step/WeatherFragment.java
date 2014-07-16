@@ -69,7 +69,7 @@ public class WeatherFragment extends Fragment implements  ValidationFragment {
         View view = inflater.inflate(R.layout.fragment_weather, container, false);
         Views.inject(this, view);
         date.setText(new SimpleDateFormat("yyyy-M-d").format(new Date()));
-        sharedPreferences = this.getActivity().getSharedPreferences(USER_INFO, Context.MODE_PRIVATE);
+        sharedPreferences = getActivity().getSharedPreferences(USER_INFO, Context.MODE_PRIVATE);
         person.setText(sharedPreferences.getString(USER_INFO_NAME, ""));
         return view;
     }

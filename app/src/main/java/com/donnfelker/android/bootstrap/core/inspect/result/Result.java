@@ -13,6 +13,7 @@ import java.util.List;
 public class Result {
 
     private String type;                // type of inspect
+    private String resultid;            // result id
     private List<InspectTool> tools;         // using tools list of inspect
     private InspectEnvironment env;     // environment information of inspect
     private Security security;          // security information of inspect
@@ -22,8 +23,9 @@ public class Result {
 
     }
 
-    public Result(String type, List<InspectTool> tools, InspectEnvironment env, Security security, List<DeviceResult> deviceResults) {
+    public Result(String type, String resultid, List<InspectTool> tools, InspectEnvironment env, Security security, List<DeviceResult> deviceResults) {
         this.type = type;
+        this.resultid = resultid;
         this.tools = tools;
         this.env = env;
         this.security = security;
@@ -37,6 +39,10 @@ public class Result {
     public void setType(String type) {
         this.type = type;
     }
+
+    public String getResultid() { return resultid; }
+
+    public void setResultid(String resultid) { this.resultid = resultid; }
 
     public List<InspectTool> getTools() {
         return tools;

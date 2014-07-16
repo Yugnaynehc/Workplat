@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -46,6 +47,8 @@ import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_RESUL
  * Created by feather on 14-4-17.
  */
 public class DeviceActivity extends BootstrapFragmentActivity {
+
+    protected FragmentManager fragmentManager;
 
     @InjectView(R.id.inspect_detail)protected ListView list;
     @InjectView(R.id.submit)protected BootstrapButton submit;
@@ -132,10 +135,9 @@ public class DeviceActivity extends BootstrapFragmentActivity {
     }
 
     private void saveFile(OutputStream out)  throws IOException {
-        XmlSerializer serializer = Xml.newSerializer();
-        Toast toast = Toast.makeText(DeviceActivity.this,"123",Toast.LENGTH_LONG);
-        toast.show();
 
+        XmlSerializer serializer = Xml.newSerializer();
+        serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
         serializer.setOutput(out, "utf-8");
         serializer.startDocument("utf-8", true);
         serializer.startTag(null, "device");

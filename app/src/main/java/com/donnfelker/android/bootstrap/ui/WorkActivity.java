@@ -10,7 +10,6 @@ import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.MifareClassic;
 import android.nfc.tech.Ndef;
-import android.nfc.tech.NdefFormatable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.Window;
@@ -23,18 +22,12 @@ import com.donnfelker.android.bootstrap.core.inspect.result.Result;
 import com.donnfelker.android.bootstrap.ui.step.DeviceActivity;
 import com.donnfelker.android.bootstrap.ui.step.ProcessCarouselFragment;
 import com.donnfelker.android.bootstrap.util.Ln;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import org.json.JSONObject;
-
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Locale;
 
 import butterknife.Views;
 
@@ -78,6 +71,7 @@ public class WorkActivity extends BootstrapFragmentActivity {
         }
         result = new Result();
         result.setType(work.getType());
+        result.setResultid(work.getPlanid());
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

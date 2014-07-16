@@ -75,13 +75,15 @@ public class WorkListFragment extends ItemListFragment<Work> {
             public List<Work> loadData() throws Exception {
                 try {
                     if (getActivity() != null) {
+                        /*
                         List<Work> t = new ArrayList<Work>();
                         for (int i=0; i<INSPECT_TYPE_LIST.length-10; ++i) {
                             t.add(new Work());
                             t.get(i).setType(INSPECT_TYPE_LIST[i]);
                         }
                         return t;
-                        //return serviceProvider.getService(getActivity()).getWorks();
+                        */
+                        return serviceProvider.getService(getActivity()).getWorks();
                     }
                     else {
                         return Collections.emptyList();
