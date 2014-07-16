@@ -175,17 +175,6 @@ public class WorkActivity extends BootstrapFragmentActivity {
                 jsonObject = jsonParser.parse(parseRecord(record)).getAsJsonObject();
             }
 
-            /*
-            // write message to the tag
-            Gson gson = new Gson();
-            String text = gson.toJson(work);
-            NdefMessage message = new NdefMessage(
-                    new NdefRecord[] {createTextRecord(text)});
-            Ln.d("NFC test message: %s", message.toString());
-            if (writeTag(message, tagFormatIntent))
-                Toast.makeText(this, "写入成功", Toast.LENGTH_LONG).show();
-            */
-
         } catch (Exception e) {
             e.printStackTrace();
             Ln.d("NFC test exception: %s", e.toString());
@@ -227,84 +216,6 @@ public class WorkActivity extends BootstrapFragmentActivity {
         } catch (UnsupportedEncodingException e) {
             // should never happen unless we get a malformed tag.
             throw new IllegalArgumentException(e);
-        }
-    }
-
-    public NdefRecord createTextRecord(String text) {
-        //生成语言编码的字节数组，中文编码
-        byte[] langBytes = Locale.CHINA.getLanguage().getBytes(
-                Charset.forName("US-ASCII"));
-        //将要写入的文本以UTF_8格式进行编码
-        Charset utfEncoding = Charset.forName("UTF-8");
-        //由于已经确定文本的格式编码为UTF_8，所以直接将payload的第1个字节的第7位设为0
-        byte[] textBytes = text.getBytes(utfEncoding);
-        int utfBit = 0;
-        //定义和初始化状态字节
-        char status = (char) (utfBit + langBytes.length);
-        //创建存储payload的字节数组
-        byte[] data = new byte[1 + langBytes.length + textBytes.length];
-        //设置状态字节
-        data[0] = (byte) status;
-        //设置语言编码
-        System.arraycopy(langBytes, 0, data, 1, langBytes.length);
-        //设置实际要写入的文本
-        System.arraycopy(textBytes, 0, data, 1 + langBytes.length,
-                textBytes.length);
-        //根据前面设置的payload创建NdefRecord对象
-        NdefRecord record = new NdefRecord(NdefRecord.TNF_WELL_KNOWN,
-                NdefRecord.RTD_TEXT, new byte[0], data);
-        return record;
-    }
-
-    //将NdefMessage对象写入标签，成功写入返回ture，否则返回false
-    boolean writeTag(NdefMessage message, Tag tag) {
-        int size = message.toByteArray().length;
-        try {
-            //获取Ndef对象
-            Ndef ndef = Ndef.get(tag);
-            if (ndef != null) {
-                //允许对标签进行IO操作
-                ndef.connect();
-                if (!ndef.isWritable()) {
-                    Toast.makeText(this, "NFC Tag是只读的！", Toast.LENGTH_LONG)
-                            .show();
-                    return false;
-                }
-                if (ndef.getMaxSize() < size) {
-                    Toast.makeText(this, "NFC Tag的空间不足！", Toast.LENGTH_LONG)
-                            .show();
-                    return false;
-                }
-                //向标签写入数据
-                ndef.writeNdefMessage(message);
-                Toast.makeText(this, "已成功写入数据！", Toast.LENGTH_LONG).show();
-                return true;
-            } else {
-                //获取可以格式化和向标签写入数据NdefFormatable对象
-                NdefFormatable format = NdefFormatable.get(tag);
-                //向非NDEF格式或未格式化的标签写入NDEF格式数据
-                if (format != null) {
-                    try {
-                        //允许对标签进行IO操作
-                        format.connect();
-                        format.format(message);
-                        Toast.makeText(this, "已成功写入数据！", Toast.LENGTH_LONG)
-                                .show();
-                        return true;
-                    } catch (Exception e) {
-                        Toast.makeText(this, "写入NDEF格式数据失败！", Toast.LENGTH_LONG)
-                                .show();
-                        return false;
-                    }
-                } else {
-                    Toast.makeText(this, "NFC标签不支持NDEF格式！", Toast.LENGTH_LONG)
-                            .show();
-                    return false;
-                }
-            }
-        } catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-            return false;
         }
     }
 
