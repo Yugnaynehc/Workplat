@@ -63,7 +63,7 @@
         android:layout_gravity="center"
         bootstrapbutton:bb_roundedCorners="true"
         bootstrapbutton:bb_type="default"
-        bootstrapbutton:bb_icon_right="fa_check"
+        bootstrapbutton:bb_icon_right="fa-check"
         android:layout_marginBottom="5dp"
         android:padding="5dp"
         android:layout_width="wrap_content"

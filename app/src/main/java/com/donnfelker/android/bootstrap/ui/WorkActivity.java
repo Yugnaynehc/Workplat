@@ -4,9 +4,13 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.MifareClassic;
+import android.nfc.tech.Ndef;
+import android.nfc.tech.NdefFormatable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.Window;
@@ -19,8 +23,18 @@ import com.donnfelker.android.bootstrap.core.inspect.result.Result;
 import com.donnfelker.android.bootstrap.ui.step.DeviceActivity;
 import com.donnfelker.android.bootstrap.ui.step.ProcessCarouselFragment;
 import com.donnfelker.android.bootstrap.util.Ln;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Locale;
 
 import butterknife.Views;
 
@@ -37,8 +51,6 @@ import static com.donnfelker.android.bootstrap.core.Constants.Intent.*;
 
 public class WorkActivity extends BootstrapFragmentActivity {
 
-
-
     protected FragmentManager fragmentManager;
 
     private Work work;
@@ -46,7 +58,7 @@ public class WorkActivity extends BootstrapFragmentActivity {
 
     private NfcAdapter mNfcAdapter = null;
     private PendingIntent pendingIntent = null;
-    private IntentFilter ndef = null;
+    private IntentFilter nfcFliter = null;
     private IntentFilter[] intentFiltersArray = null;
     private String[][] techListArray = null;
 
@@ -57,27 +69,7 @@ public class WorkActivity extends BootstrapFragmentActivity {
 
         super.onCreate(savedInstanceState);
 
-
-        // initial nfc module
-        // 初始化nfc模块
-        if (!nfcCheck()) {
-            Toast.makeText(this, "NFC error", Toast.LENGTH_SHORT).show();
-        } else {
-            // TODO 规范需要拦截的NFC卡片的类型（现在是所有的Mifare Classic卡都被拦截）
-            pendingIntent = PendingIntent.getActivity(this,
-                    0,
-                    new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP),
-                    0);
-            ndef = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
-            try {
-                ndef.addDataType("*/*");
-            } catch (IntentFilter.MalformedMimeTypeException e) {
-                throw new RuntimeException("fail", e);
-            }
-            intentFiltersArray = new IntentFilter[] {ndef, };
-            techListArray = new String[][] {new String[] {MifareClassic.class.getName()} };
-            Ln.d("NFC: success");
-        }
+        initNFCModule();
 
         setContentView(R.layout.work_activity);
         Views.inject(this);
@@ -139,18 +131,181 @@ public class WorkActivity extends BootstrapFragmentActivity {
         super.onDestroy();
     }
 
+    private void initNFCModule() {
+        // initial nfc module
+        // 初始化nfc模块
+        if (!nfcCheck()) {
+            Toast.makeText(this, "NFC error", Toast.LENGTH_SHORT).show();
+        } else {
+            // TODO 规范需要拦截的NFC卡片的类型（现在是所有的Mifare Classic卡都被拦截）
+            pendingIntent = PendingIntent.getActivity(this,
+                    0,
+                    new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP),
+                    0);
+            nfcFliter = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
+            try {
+                nfcFliter.addDataType("*/*");
+            } catch (IntentFilter.MalformedMimeTypeException e) {
+                throw new RuntimeException("fail", e);
+            }
+            intentFiltersArray = new IntentFilter[] {nfcFliter, };
+            techListArray = new String[][] {new String[] {MifareClassic.class.getName()} };
+            Ln.d("NFC: success");
+        }
+    }
+
     @Override
     public void onNewIntent(Intent intent) {
+        JsonParser jsonParser = new JsonParser();
+        JsonObject jsonObject = null;
         Tag tagFormatIntent = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+        Ndef ndef = Ndef.get(tagFormatIntent);
         try {
-            Ln.d("NFC: %s", tagFormatIntent.toString());
-        } catch (NullPointerException e) {
+
+            // read the tag
+            ndef.connect();
+            //Ln.d("NFC test tag: %s", tagFormatIntent.toString());
+            NdefMessage message = ndef.getNdefMessage();
+            //Ln.d("NFC test message: %s", message.toString());
+            NdefRecord[] records = message.getRecords();
+            for (NdefRecord record : records) {
+                Ln.d("NFC test record: %s", parseRecord(record));
+                Toast.makeText(this, parseRecord(record), Toast.LENGTH_SHORT)
+                        .show();
+                jsonObject = jsonParser.parse(parseRecord(record)).getAsJsonObject();
+            }
+
+            /*
+            // write message to the tag
+            Gson gson = new Gson();
+            String text = gson.toJson(work);
+            NdefMessage message = new NdefMessage(
+                    new NdefRecord[] {createTextRecord(text)});
+            Ln.d("NFC test message: %s", message.toString());
+            if (writeTag(message, tagFormatIntent))
+                Toast.makeText(this, "写入成功", Toast.LENGTH_LONG).show();
+            */
+
+        } catch (Exception e) {
             e.printStackTrace();
+            Ln.d("NFC test exception: %s", e.toString());
         }
         final Intent scanDevice = new Intent(this, DeviceActivity.class);
-        int random = 100000 + (int)(Math.random()*20);
-        scanDevice.putExtra(DEVICE_ID, String.valueOf(random));
-        startActivityForResult(scanDevice, ADD_NEW_RESULT);
+        try {
+            //int random = 100000 + (int)(Math.random()*20);
+            //scanDevice.putExtra(DEVICE_ID, String.valueOf(random));
+            scanDevice.putExtra(DEVICE_ID, jsonObject.get("id").getAsString());
+            startActivityForResult(scanDevice, ADD_NEW_RESULT);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String parseRecord(NdefRecord record) {
+        if (record.getTnf() != NdefRecord.TNF_WELL_KNOWN)
+            return null;
+        //验证可变长度类型是否为RTD_TEXT
+        if (!Arrays.equals(record.getType(), NdefRecord.RTD_TEXT))
+            return null;
+        try {
+            //获取payload
+            byte[] payload = record.getPayload();
+            //下面代码分析payload：状态字节+ISO语言编码（ASCLL）+文本数据（UTF_8/UTF_16）
+            //其中payload[0]放置状态字节：如果bit7为0，文本数据以UTF_8格式编码，如果为1则以UTF_16编码
+            //bit6是保留位，默认为0
+            String textEncoding = ((payload[0] & 0x80) == 0) ? "UTF-8"
+                    : "UTF-16";
+            //处理bit5-0。bit5-0表示语言编码长度（字节数）
+            int languageCodeLength = payload[0] & 0x3f;
+            //获取语言编码（从payload的第2个字节读取languageCodeLength个字节作为语言编码）
+            String languageCode = new String(payload, 1, languageCodeLength, "US-ASCII");
+            //解析出实际的文本数据
+            String text = new String(payload, languageCodeLength + 1,
+                    payload.length - languageCodeLength - 1, textEncoding);
+            //创建一个TextRecord对象，并返回该对象
+            return text;
+        } catch (UnsupportedEncodingException e) {
+            // should never happen unless we get a malformed tag.
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    public NdefRecord createTextRecord(String text) {
+        //生成语言编码的字节数组，中文编码
+        byte[] langBytes = Locale.CHINA.getLanguage().getBytes(
+                Charset.forName("US-ASCII"));
+        //将要写入的文本以UTF_8格式进行编码
+        Charset utfEncoding = Charset.forName("UTF-8");
+        //由于已经确定文本的格式编码为UTF_8，所以直接将payload的第1个字节的第7位设为0
+        byte[] textBytes = text.getBytes(utfEncoding);
+        int utfBit = 0;
+        //定义和初始化状态字节
+        char status = (char) (utfBit + langBytes.length);
+        //创建存储payload的字节数组
+        byte[] data = new byte[1 + langBytes.length + textBytes.length];
+        //设置状态字节
+        data[0] = (byte) status;
+        //设置语言编码
+        System.arraycopy(langBytes, 0, data, 1, langBytes.length);
+        //设置实际要写入的文本
+        System.arraycopy(textBytes, 0, data, 1 + langBytes.length,
+                textBytes.length);
+        //根据前面设置的payload创建NdefRecord对象
+        NdefRecord record = new NdefRecord(NdefRecord.TNF_WELL_KNOWN,
+                NdefRecord.RTD_TEXT, new byte[0], data);
+        return record;
+    }
+
+    //将NdefMessage对象写入标签，成功写入返回ture，否则返回false
+    boolean writeTag(NdefMessage message, Tag tag) {
+        int size = message.toByteArray().length;
+        try {
+            //获取Ndef对象
+            Ndef ndef = Ndef.get(tag);
+            if (ndef != null) {
+                //允许对标签进行IO操作
+                ndef.connect();
+                if (!ndef.isWritable()) {
+                    Toast.makeText(this, "NFC Tag是只读的！", Toast.LENGTH_LONG)
+                            .show();
+                    return false;
+                }
+                if (ndef.getMaxSize() < size) {
+                    Toast.makeText(this, "NFC Tag的空间不足！", Toast.LENGTH_LONG)
+                            .show();
+                    return false;
+                }
+                //向标签写入数据
+                ndef.writeNdefMessage(message);
+                Toast.makeText(this, "已成功写入数据！", Toast.LENGTH_LONG).show();
+                return true;
+            } else {
+                //获取可以格式化和向标签写入数据NdefFormatable对象
+                NdefFormatable format = NdefFormatable.get(tag);
+                //向非NDEF格式或未格式化的标签写入NDEF格式数据
+                if (format != null) {
+                    try {
+                        //允许对标签进行IO操作
+                        format.connect();
+                        format.format(message);
+                        Toast.makeText(this, "已成功写入数据！", Toast.LENGTH_LONG)
+                                .show();
+                        return true;
+                    } catch (Exception e) {
+                        Toast.makeText(this, "写入NDEF格式数据失败！", Toast.LENGTH_LONG)
+                                .show();
+                        return false;
+                    }
+                } else {
+                    Toast.makeText(this, "NFC标签不支持NDEF格式！", Toast.LENGTH_LONG)
+                            .show();
+                    return false;
+                }
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            return false;
+        }
     }
 
     @Override

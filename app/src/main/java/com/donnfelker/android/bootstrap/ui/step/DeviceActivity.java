@@ -81,7 +81,7 @@ public class DeviceActivity extends BootstrapFragmentActivity {
             }
         }
 
-        setTitle(deviceName);
+        //setTitle(deviceName);
         adapter = new DeviceAdapter(this);
         list.setAdapter(adapter);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -93,18 +93,16 @@ public class DeviceActivity extends BootstrapFragmentActivity {
                 intent.putExtra(DEVICE_ID, deviceID);
                 intent.putExtra(DEVICE_NAME, deviceName);
                 intent.putExtra(DEVICE_NO, deviceNo);
-
                 intent.putExtra(DEVICE_RESULT, getResultList());
-                try{
+                try {
                     File file = new File(getFilesDir(), deviceID + ".xml");
                     FileOutputStream out  = new FileOutputStream(file);
                     saveFile(out);
-                }catch(IOException e){
+                } catch(IOException e) {
                     Ln.d(e.toString());
                 }
                 DeviceActivity.this.setResult(RESULT_OK, intent);
                 DeviceActivity.this.finish();
-
             }
         });
     }
@@ -120,9 +118,8 @@ public class DeviceActivity extends BootstrapFragmentActivity {
         }
     }
 
-        private ArrayList<String> getResultList() {
+    private ArrayList<String> getResultList() {
         ArrayList<String> result = new ArrayList<String>();
-
 
         for (int i=0; i<inspectContent.size(); ++i) {
             String item = inspectResult.get(i);
@@ -133,7 +130,8 @@ public class DeviceActivity extends BootstrapFragmentActivity {
         }
         return result;
     }
-    private void saveFile(OutputStream out)  throws IOException{
+
+    private void saveFile(OutputStream out)  throws IOException {
         XmlSerializer serializer = Xml.newSerializer();
         Toast toast = Toast.makeText(DeviceActivity.this,"123",Toast.LENGTH_LONG);
         toast.show();
@@ -142,20 +140,17 @@ public class DeviceActivity extends BootstrapFragmentActivity {
         serializer.startDocument("utf-8", true);
         serializer.startTag(null, "device");
         serializer.attribute(null, "name", deviceName);
-        for (int i=0; i<inspectContent.size(); ++i)
-        {
+        for (int i=0; i<inspectContent.size(); ++i) {
             serializer.startTag(null, "item");
             serializer.attribute(null, "name",inspectContent.get(i));
             serializer.startTag(null, "standard");
             serializer.text(inspectStandard.get(i));
             serializer.endTag(null, "standard");
-            if(inspectResult.get(i).equals("正常"))
-            {
+            if(inspectResult.get(i).equals("正常")) {
             serializer.startTag(null, "result");
             serializer.text(inspectResult.get(i));
             serializer.endTag(null, "result");
-            }else
-            {
+            } else {
                 serializer.startTag(null, "result");
                 serializer.text("异常");
                 serializer.endTag(null, "result");
@@ -166,9 +161,7 @@ public class DeviceActivity extends BootstrapFragmentActivity {
             serializer.endTag(null, "item");
         }
         serializer.endTag(null, "device");
-
         serializer.endDocument();
-
         out.close();
     }
 
@@ -206,7 +199,6 @@ public class DeviceActivity extends BootstrapFragmentActivity {
                         } else if (name.equalsIgnoreCase("standard")) {
                             if (parser.next() == XmlPullParser.TEXT) {
                                 inspectStandard.add(parser.getText());
-
                                 Ln.d("inspect standard %s", parser.getText());
                             }
                         } else if (name.equalsIgnoreCase("device")) {
@@ -224,12 +216,22 @@ public class DeviceActivity extends BootstrapFragmentActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         try {
             if (inStream != null)
                 inStream.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode,Intent data) {
+        if(requestCode==1 && resultCode==1) {
+            String re = data.getStringExtra("result");
+            int pos = Integer.parseInt(data.getStringExtra("pos"));
+            inspectResult.put(pos,re);
+            Toast toast = Toast.makeText(DeviceActivity.this,re,Toast.LENGTH_LONG);
+            toast.show();
         }
     }
 
@@ -314,58 +316,7 @@ public class DeviceActivity extends BootstrapFragmentActivity {
 
 
             });
-           /* holder.rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                    if(i ==R.id.device_problem)
-                    {
-                        Toast toast = Toast.makeText(DeviceActivity.this,"123",Toast.LENGTH_LONG);
-                        toast.show();
-                        Intent exIntent = new Intent();
-                        exIntent.putExtra("pos", String.valueOf(position));
-                        exIntent.putExtra("res",inspectResult.get(position));
-                        exIntent.setClass(DeviceActivity.this,ExceptionActivity.class);
 
-                       startActivityForResult(exIntent, 1);
-                    }else if(i==R.id.device_ok)
-                    {
-                        inspectResult.put(position,"正常");
-                    }
-                }
-            }
-
-
-
-
-
-            );*/
-           // holder.result.setText(inspectResult.get(position));
-
-            /*holder.result.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {}
-                @Override
-                public void onTextChanged(CharSequence charSequence, int start, int before, int count) {}
-                @Override
-                public void afterTextChanged(Editable editable) {
-                    inspectResult.put(position, holder.result.getText().toString());
-                    Ln.d("typeMap %d %s", position, inspectResult.get(position));
-                }
-            });
-            holder.result.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View view, MotionEvent motionEvent) {
-                    if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                        touchIndex = position;
-                    }
-                    return false;
-                }
-            });
-
-            holder.result.clearFocus();
-            if (touchIndex == position) {
-                holder.result.requestFocus();
-            }*/
             return convertView;
         }
     }
@@ -374,22 +325,8 @@ public class DeviceActivity extends BootstrapFragmentActivity {
         TextView no;
         TextView content;
         TextView standard;
-        //EditText result;
         RadioGroup rg;
     }
-    @Override
-    protected void onActivityResult(int requestCode,int resultCode,Intent data)
-    {
-        if(requestCode==1&&resultCode==1)
-        {
 
-            String re = data.getStringExtra("result");
-           int pos = Integer.parseInt(data.getStringExtra("pos"));
-            inspectResult.put(pos,re);
-            Toast toast = Toast.makeText(DeviceActivity.this,re,Toast.LENGTH_LONG);
-            toast.show();
-        }
-    }
-
-    }
+}
 

@@ -25,8 +25,8 @@ public class SecurityFactory {
 
     static public Security get(String type) {
         switch (Constants.Substation.indexOf(type)) {
-            //case 1:
-                //return new 全面巡检危险点()
+            case 1:
+                return new NormalSecurity();
             case 2:
                 return new NormalSecurity();
             case 3:

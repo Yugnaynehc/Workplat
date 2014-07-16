@@ -91,7 +91,6 @@ public class ProcessCarouselFragment extends Fragment {
                 if (validation()) {
                     currentFragment.saveResult();
                     int index = pager.getCurrentItem();
-                    Toast.makeText(getActivity(), "index:" + index, Toast.LENGTH_SHORT).show();
                     if (index < pagerAdapter.getCount() - 1) {
                         pager.setCurrentItem(index + 1);
                         prev.setBootstrapButtonEnabled(true);

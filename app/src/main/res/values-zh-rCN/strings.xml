@@ -3,6 +3,7 @@
 <resources>
 
     <string name="app_name">移动终端</string>
+    <string name="device_inspect">设备巡检</string>
     <string name="content_column">Content</string>
     <string name="page_referrers">Referrers</string>
     <string name="refresh_action">刷新</string>
