@@ -1,4 +1,4 @@
-package com.donnfelker.android.bootstrap.ui.step;
+package com.donnfelker.android.bootstrap.ui.step.device;
 
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -23,7 +23,7 @@ public class DevicePagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -31,10 +31,13 @@ public class DevicePagerAdapter extends FragmentPagerAdapter {
         final Fragment result;
         switch (position) {
             case 0:
-                result = new WeatherFragment();
+                result = new DeviceInfoFragment();
                 break;
             case 1:
-                result = new ToolsPrepareFragment();
+                result = new DefectListFragment();
+                break;
+            case 2:
+                result = new DeviceFormFragment();
                 break;
             default:
                 result = null;
@@ -54,7 +57,10 @@ public class DevicePagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return resources.getString(R.string.page_device_info);
             case 1:
+                return resources.getString(R.string.page_device_defect);
+            case 2:
                 return resources.getString(R.string.page_device_form);
+
             default:
                 return null;
         }

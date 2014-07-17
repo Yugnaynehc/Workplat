@@ -21,7 +21,8 @@
     <string name="page_result">巡检结果</string>
     <string name="page_forecast">天气预报</string>
     <string name="page_device_info">设备信息</string>
-    <string name="page_device_form">设备巡检单</string>
+    <string name="page_device_defect">设备缺陷记录</string>
+    <string name="page_device_form">设备巡检表</string>
     <string name="title_column">标题</string>
     <string name="location_column">地点</string>
     <string name="user_column">用户</string>

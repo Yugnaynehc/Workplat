@@ -20,6 +20,7 @@
     <string name="page_result">Result</string>
     <string name="page_forecast">Forecast</string>
     <string name="page_device_info">Device Info</string>
+    <string name="page_device_defect">Device Defect</string>
     <string name="page_device_form">Device Form</string>
     <string name="title_column">Title</string>
     <string name="location_column">Location</string>
@@ -146,8 +147,12 @@
     <string name="device_content">巡检内容</string>
     <string name="device_standard">巡检标准</string>
     <string name="device_result">填写结果</string>
+    <string name="device_id">设备ID</string>
+    <string name="device_name">设备名称</string>
+    <string name="device_date">投产时间</string>
     <string name="title_activity_exception">ExceptionActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
 
 </resources>

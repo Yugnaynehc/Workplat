@@ -45,7 +45,7 @@ public final class Constants {
          */
         //public static final String URL_BASE = "https://api.parse.com";
         //public static final String URL_BASE = "http://192.168.1.106:8888/Inspect";
-        public static final String URL_BASE = "http://555f445.ngrok.com/Inspect";
+        public static final String URL_BASE = "http://44b3f4b7.ngrok.com/Inspect";
 
         /**
          * Authentication URL
@@ -119,6 +119,8 @@ public final class Constants {
         public static final String DEVICE_ID = "device_id";
 
         public static final String DEVICE_NAME = "device_name";
+
+        public static final String DEVICE_DATE = "device_date";
 
         public static final String DEVICE_RESULT = "device_result";
 

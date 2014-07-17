@@ -1,21 +1,14 @@
-package com.donnfelker.android.bootstrap.ui.step;
+package com.donnfelker.android.bootstrap.ui.step.device;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.v4.app.FragmentManager;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.util.SparseArray;
 import android.util.Xml;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -47,8 +40,6 @@ import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_RESUL
  * Created by feather on 14-4-17.
  */
 public class DeviceActivity extends BootstrapFragmentActivity {
-
-    protected FragmentManager fragmentManager;
 
     @InjectView(R.id.inspect_detail)protected ListView list;
     @InjectView(R.id.submit)protected BootstrapButton submit;

@@ -1,8 +1,10 @@
-package com.donnfelker.android.bootstrap.ui.step;
+package com.donnfelker.android.bootstrap.ui.step.device;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.content.Loader;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ListView;
 
@@ -13,6 +15,7 @@ import com.donnfelker.android.bootstrap.authenticator.LogoutService;
 import com.donnfelker.android.bootstrap.core.Defect;
 import com.donnfelker.android.bootstrap.ui.ItemListFragment;
 import com.donnfelker.android.bootstrap.ui.ThrowableLoader;
+import com.donnfelker.android.bootstrap.ui.step.ValidationFragment;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 
 import java.util.ArrayList;
@@ -25,7 +28,7 @@ import javax.inject.Inject;
 /**
  * Created by Feather on 14-4-1.
  */
-public class DefectListFragment extends ItemListFragment<Defect> implements ValidationFragment{
+public class DefectListFragment extends ItemListFragment<Defect> implements ValidationFragment {
 
     @Inject protected BootstrapServiceProvider serviceProvider;
     @Inject protected LogoutService logoutService;
@@ -116,6 +119,12 @@ public class DefectListFragment extends ItemListFragment<Defect> implements Vali
     }
 
     public void saveResult() {
+
+    }
+
+    // overlap parents' option menu method, to make the menu invisable 覆盖父类的菜单构造方法，使菜单消失
+    @Override
+    public void onCreateOptionsMenu(final Menu optionsMenu, final MenuInflater inflater) {
 
     }
 
