@@ -19,6 +19,8 @@
     <string name="page_scan">Scan</string>
     <string name="page_result">Result</string>
     <string name="page_forecast">Forecast</string>
+    <string name="page_device_info">Device Info</string>
+    <string name="page_device_form">Device Form</string>
     <string name="title_column">Title</string>
     <string name="location_column">Location</string>
     <string name="user_column">User</string>

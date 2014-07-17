@@ -1,4 +1,4 @@
-package com.donnfelker.android.bootstrap.ui;
+package com.donnfelker.android.bootstrap.ui.step;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,15 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.donnfelker.android.bootstrap.R;
+import com.donnfelker.android.bootstrap.ui.BootstrapPagerAdapter;
 import com.viewpagerindicator.TitlePageIndicator;
 
 import butterknife.InjectView;
 import butterknife.Views;
 
+
 /**
- * Fragment which houses the View pager.
+ * Created by Feather on 14-7-17.
  */
-public class CarouselFragment extends Fragment {
+public class DeviceCarouseFragment extends Fragment {
 
     @InjectView(R.id.tpi_header)protected TitlePageIndicator indicator;
 
@@ -24,7 +26,7 @@ public class CarouselFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_carousel, container, false);
+        return inflater.inflate(R.layout.fragment_carousel_device, container, false);
     }
 
     @Override
@@ -35,10 +37,11 @@ public class CarouselFragment extends Fragment {
 
         pager.setAdapter(new BootstrapPagerAdapter(getResources(), getChildFragmentManager()));
         indicator.setViewPager(pager);
-        pager.setCurrentItem(1);
+        pager.setCurrentItem(0);
         // 以下这一行代码解决了在平板电脑上ActinBar的menu显示不正常的问题。
         // 可以在https://code.google.com/p/android/issues/detail?id=29472中找到详细讨论
         // Thanks!
         pager.setOffscreenPageLimit(3);
     }
+
 }
