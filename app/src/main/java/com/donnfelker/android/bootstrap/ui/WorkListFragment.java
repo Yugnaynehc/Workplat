@@ -1,7 +1,9 @@
 package com.donnfelker.android.bootstrap.ui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.OperationCanceledException;
 import android.support.v4.content.Loader;
@@ -22,7 +24,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.WORK_ITEM;
-import static com.donnfelker.android.bootstrap.core.Constants.Substation.INSPECT_TYPE_LIST;
+import static com.donnfelker.android.bootstrap.core.Constants.UPreference.*;
 
 /**
  * Created by Feather on 14-3-17.
@@ -83,7 +85,10 @@ public class WorkListFragment extends ItemListFragment<Work> {
                         }
                         return t;
                         */
-                        return serviceProvider.getService(getActivity()).getWorks();
+                        SharedPreferences sharedPreferences;
+                        sharedPreferences = getActivity().getSharedPreferences(USER_INFO, Context.MODE_PRIVATE);
+                        String substationid = sharedPreferences.getString(USER_INFO_SUBSTATION_ID, "");
+                        return serviceProvider.getService(getActivity()).getWorks(substationid);
                     }
                     else {
                         return Collections.emptyList();

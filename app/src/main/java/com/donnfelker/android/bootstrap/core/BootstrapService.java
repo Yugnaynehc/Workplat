@@ -1,7 +1,6 @@
 
 package com.donnfelker.android.bootstrap.core;
 
-import com.donnfelker.android.bootstrap.core.inspect.object.Device;
 import com.donnfelker.android.bootstrap.util.Ln;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
@@ -12,7 +11,6 @@ import com.google.gson.JsonParseException;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 import static com.donnfelker.android.bootstrap.core.Constants.Http.HEADER_PARSE_APP_ID;
@@ -201,10 +199,10 @@ public class BootstrapService {
      * @return 非null但是有可能是空列表
      * @throws IOException
      */
-    public List<Work> getWorks() throws IOException {
+    public List<Work> getWorks(String substationid) throws IOException {
         try {
             // TODO 传入subtation id
-            final String query = String.format("?%s=%s", PARAM_SUBSTATION, "123");
+            final String query = String.format("?%s=%s", PARAM_SUBSTATION, substationid);
             final HttpRequest request = execute(HttpRequest.get(URL_WORKS + query));
             final WorkWrapper response = fromJson(request, WorkWrapper.class);
             if (response != null && response.plan != null) {

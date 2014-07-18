@@ -20,6 +20,8 @@ public class User implements Serializable {
     protected String post;
     protected String department;
     protected String name;
+    protected String substation;
+    protected String substationid;
 
     public String getName() {
         return name;
@@ -44,6 +46,14 @@ public class User implements Serializable {
     public void setPost(String post) {
         this.post = post;
     }
+
+    public String getSubstation() { return this.substation; }
+
+    public void setSubstation(String substation) { this.substation = substation; }
+
+    public String getSubstationid() { return this.substationid; }
+
+    public void setSubstationid(String substationid) { this.substationid = substationid; }
 
     public String getUsername() {
         return username;

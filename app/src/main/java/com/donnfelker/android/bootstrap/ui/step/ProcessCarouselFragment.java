@@ -148,7 +148,7 @@ public class ProcessCarouselFragment extends Fragment {
             try {
                 File[] files = getActivity().getFilesDir().listFiles();
                 for (File file : files) {
-                    if (file.isFile() && !file.getName().contains("result")) { 
+                    if (file.isFile() && !file.getName().contains("result")) {
                         if (file.getPath().substring(file.getPath().length() - xmlExtension.length()).
                                 equals(xmlExtension)) {
                             // TODO construct xml result file

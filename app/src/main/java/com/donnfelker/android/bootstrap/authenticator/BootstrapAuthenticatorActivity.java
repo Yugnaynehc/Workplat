@@ -286,6 +286,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
                     );
                     SharedPreferences userInfo = getSharedPreferences(USER_INFO, Context.MODE_PRIVATE);
                     userInfo.edit().putString(USER_INFO_NAME, model.getName()).commit();
+                    userInfo.edit().putString(USER_INFO_SUBSTATION_ID, model.getSubstationid()).commit();
                     token = model.getSessionToken();
                     Ln.d("user.post=%s",  new Gson().toJson(model));
                 }
