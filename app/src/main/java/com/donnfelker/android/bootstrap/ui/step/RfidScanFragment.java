@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
+import com.donnfelker.android.bootstrap.ui.step.device.DeviceActivity;
 import com.donnfelker.android.bootstrap.util.Ln;
 
 import butterknife.InjectView;

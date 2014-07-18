@@ -16,8 +16,9 @@ import com.donnfelker.android.bootstrap.ui.UserActivity;
 import com.donnfelker.android.bootstrap.ui.UserListFragment;
 import com.donnfelker.android.bootstrap.ui.WorkActivity;
 import com.donnfelker.android.bootstrap.ui.WorkListFragment;
-import com.donnfelker.android.bootstrap.ui.step.DefectListFragment;
-import com.donnfelker.android.bootstrap.ui.step.DeviceActivity;
+import com.donnfelker.android.bootstrap.ui.step.device.DefectListFragment;
+import com.donnfelker.android.bootstrap.ui.step.device.DeviceActivity;
+import com.donnfelker.android.bootstrap.ui.step.device.DeviceInspectActivity;
 import com.donnfelker.android.bootstrap.ui.step.ResultListFragment;
 import com.squareup.otto.Bus;
 
@@ -49,7 +50,8 @@ import dagger.Provides;
                 DefectListFragment.class,
                 TimerService.class,
                 DeviceActivity.class,
-                ResultListFragment.class
+                ResultListFragment.class,
+                DeviceInspectActivity.class
         }
 )
 public class BootstrapModule {

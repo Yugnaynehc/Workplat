@@ -15,7 +15,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.Toast;
 
 import com.donnfelker.android.bootstrap.BootstrapServiceProvider;
 import com.donnfelker.android.bootstrap.R;
@@ -148,7 +147,7 @@ public class MainActivity extends BootstrapFragmentActivity {
         }
 
         String locationProvider = LocationManager.NETWORK_PROVIDER;
-        int interval = (int)(0.2 * 60 * 1000);
+        int interval = (int)(2.0 * 60 * 1000);
         locationManager.requestLocationUpdates(locationProvider, interval, 0, new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {

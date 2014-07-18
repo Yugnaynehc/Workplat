@@ -19,7 +19,7 @@ import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.Work;
 import com.donnfelker.android.bootstrap.core.inspect.result.DeviceResult;
 import com.donnfelker.android.bootstrap.core.inspect.result.Result;
-import com.donnfelker.android.bootstrap.ui.step.DeviceActivity;
+import com.donnfelker.android.bootstrap.ui.step.device.DeviceInspectActivity;
 import com.donnfelker.android.bootstrap.ui.step.ProcessCarouselFragment;
 import com.donnfelker.android.bootstrap.util.Ln;
 import com.google.gson.JsonObject;
@@ -33,6 +33,7 @@ import butterknife.Views;
 
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NAME;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ID;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_DATE;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NO;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_RESULT;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.WORK_ITEM;
@@ -163,9 +164,6 @@ public class WorkActivity extends BootstrapFragmentActivity {
             //Ln.d("NFC test message: %s", message.toString());
             NdefRecord[] records = message.getRecords();
             for (NdefRecord record : records) {
-                Ln.d("NFC test record: %s", parseRecord(record));
-                Toast.makeText(this, parseRecord(record), Toast.LENGTH_SHORT)
-                        .show();
                 jsonObject = jsonParser.parse(parseRecord(record)).getAsJsonObject();
             }
 
@@ -173,11 +171,10 @@ public class WorkActivity extends BootstrapFragmentActivity {
             e.printStackTrace();
             Ln.d("NFC test exception: %s", e.toString());
         }
-        final Intent scanDevice = new Intent(this, DeviceActivity.class);
+        final Intent scanDevice = new Intent(this, DeviceInspectActivity.class);
         try {
-            //int random = 100000 + (int)(Math.random()*20);
-            //scanDevice.putExtra(DEVICE_ID, String.valueOf(random));
             scanDevice.putExtra(DEVICE_ID, jsonObject.get("id").getAsString());
+            scanDevice.putExtra(DEVICE_DATE, jsonObject.get("date").getAsString());
             startActivityForResult(scanDevice, ADD_NEW_RESULT);
         } catch (Exception e) {
             e.printStackTrace();
@@ -217,12 +214,13 @@ public class WorkActivity extends BootstrapFragmentActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case ADD_NEW_RESULT:
-                Ln.d("Activity Result: ADD");
                 if (resultCode == RESULT_OK) {
+                    Ln.d("Activity Result: ADD");
                     String deviceName = data.getStringExtra(DEVICE_NAME);
                     String deviceID = data.getStringExtra(DEVICE_ID);
+                    String deviceDate = data.getStringExtra(DEVICE_DATE);
                     ArrayList<String> inspectResult = data.getStringArrayListExtra(DEVICE_RESULT);
-                    DeviceResult deviceResult = new DeviceResult(deviceName, deviceID, inspectResult);
+                    DeviceResult deviceResult = new DeviceResult(deviceID, deviceName, deviceDate, inspectResult);
                     result.addDeviceResult(deviceResult);
                 }
                 break;

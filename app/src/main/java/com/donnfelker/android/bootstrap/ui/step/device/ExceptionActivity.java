@@ -1,4 +1,4 @@
-package com.donnfelker.android.bootstrap.ui.step;
+package com.donnfelker.android.bootstrap.ui.step.device;
 
 
 
@@ -13,7 +13,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.util.Ln;
@@ -60,7 +59,7 @@ public class ExceptionActivity extends Activity {
                 intent.putExtra("pos",position);
                 intent.putExtra("result",ed.getText().toString());
 
-                ExceptionActivity.this.setResult(1,intent);
+                ExceptionActivity.this.setResult(RESULT_OK,intent);
                 ExceptionActivity.this.finish();
             }
         });

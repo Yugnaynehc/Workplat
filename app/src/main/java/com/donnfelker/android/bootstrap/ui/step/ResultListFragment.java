@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.Loader;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ListView;
 
@@ -14,6 +16,8 @@ import com.donnfelker.android.bootstrap.core.inspect.result.DeviceResult;
 import com.donnfelker.android.bootstrap.ui.ItemListFragment;
 import com.donnfelker.android.bootstrap.ui.ThrowableLoader;
 import com.donnfelker.android.bootstrap.ui.WorkActivity;
+import com.donnfelker.android.bootstrap.ui.step.device.DeviceActivity;
+import com.donnfelker.android.bootstrap.ui.step.device.DeviceInspectActivity;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 
 import java.util.Collections;
@@ -86,7 +90,7 @@ public class ResultListFragment extends ItemListFragment<DeviceResult> implement
 
     public void onListItemClick(final ListView l, final View v, final int position, final long id) {
         DeviceResult deviceResult = ((DeviceResult) l.getItemAtPosition(position));
-        Intent intent = new Intent(getActivity(), DeviceActivity.class);
+        Intent intent = new Intent(getActivity(), DeviceInspectActivity.class);
         intent.putExtra(DEVICE_ID, deviceResult.getDeviceID());
         intent.putExtra(DEVICE_RESULT, deviceResult.getInspectResult());
         intent.putExtra(DEVICE_NO, position - 1);
@@ -122,6 +126,12 @@ public class ResultListFragment extends ItemListFragment<DeviceResult> implement
 
     @Override
     public void saveResult() {
+
+    }
+
+    // overlap parents' option menu method, to make the menu invisable 覆盖父类的菜单构造方法，使菜单消失
+    @Override
+    public void onCreateOptionsMenu(final Menu optionsMenu, final MenuInflater inflater) {
 
     }
 

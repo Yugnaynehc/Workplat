@@ -27,7 +27,6 @@ import com.github.kevinsawicki.http.HttpRequest;
 import com.viewpagerindicator.TitlePageIndicator;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import org.apache.commons.io.FileUtils;
 
@@ -63,7 +62,7 @@ public class ProcessCarouselFragment extends Fragment {
         pager.setAdapter(pagerAdapter);
         indicator.setViewPager(pager);
         pager.setCurrentItem(0);
-        // 以下这一行代码解决了在平板电脑上ActinBar的menu显示不正常的问题。
+        // 以下这一行代码解决了在平板电脑上ActionBar的menu显示不正常的问题。
         // 可以在https://code.google.com/p/android/issues/detail?id=29472中找到详细讨论
         // Thanks!
         pager.setOffscreenPageLimit(3);

@@ -1,4 +1,4 @@
-package com.donnfelker.android.bootstrap.ui.step;
+package com.donnfelker.android.bootstrap.ui.step.device;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;

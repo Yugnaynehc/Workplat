@@ -120,6 +120,8 @@ public final class Constants {
 
         public static final String DEVICE_NAME = "device_name";
 
+        public static final String DEVICE_DATE = "device_date";
+
         public static final String DEVICE_RESULT = "device_result";
 
         public static final String DEVICE_NO = "device_no";
