@@ -1,11 +1,15 @@
 package com.donnfelker.android.bootstrap.ui.step;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -22,6 +26,8 @@ import com.donnfelker.android.bootstrap.util.Ln;
 import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.*;
 import static com.donnfelker.android.bootstrap.core.Constants.UPreference.*;
+import static com.donnfelker.android.bootstrap.core.Constants.Intent.*;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.*;
 
 import com.github.kevinsawicki.http.HttpRequest;
 import com.viewpagerindicator.TitlePageIndicator;
@@ -47,7 +53,21 @@ public class ProcessCarouselFragment extends Fragment {
     protected InspectPagerAdapter pagerAdapter;
 
     protected ValidationFragment currentFragment;
-    private SafeAsyncTask<Boolean> uoloadTask;
+    private SafeAsyncTask<Boolean> uploadTask;
+
+    private ProgressDialog progressDialog;
+    private Handler handler;        // 用handler来更新主线程UI
+
+    @Override
+    public void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                //更新UI,关闭ProgressDialog
+                progressDialog.dismiss();
+            }};
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -106,8 +126,13 @@ public class ProcessCarouselFragment extends Fragment {
                             @Override
                             public void onClick(View view){
                                 try {
-                                    uoloadTask = new UploadTask();
-                                    uoloadTask.execute();
+                                    Resources resources = getActivity().getResources();
+                                    progressDialog = ProgressDialog.show(getActivity(),
+                                            resources.getString(R.string.upload_try),
+                                            resources.getString(R.string.upload_wait),
+                                            true, false);
+                                    uploadTask = new UploadTask();
+                                    uploadTask.execute();
                                 } catch (Exception e) {
                                     Ln.d("upload: %s", e.toString());
                                 }
@@ -137,10 +162,6 @@ public class ProcessCarouselFragment extends Fragment {
                     "planid", ((WorkActivity)getActivity()).getWork().getPlanid());
             String xmlExtension = "xml";
             String jpgExtension = "jpg";
-            HttpRequest xmlrequest = HttpRequest.post(URL_UPLOAD + query);
-            //Looper.prepare();
-            //Toast.makeText(getActivity(), URL_UPLOAD + query, Toast.LENGTH_LONG).show();
-            //Looper.loop();
             Ln.d("upload result url: %s", URL_UPLOAD + query);
             File xmlResult = new File(getActivity().getFilesDir(), "result_" + resultId + ".xml");
             FileOutputStream fos = new FileOutputStream(xmlResult);
@@ -151,7 +172,6 @@ public class ProcessCarouselFragment extends Fragment {
                         if (file.getPath().substring(file.getPath().length() - xmlExtension.length()).
                                 equals(xmlExtension)) {
                             // TODO construct xml result file
-                            //xmlrequest.part("upload", "result_" + resultId + ".xml", "text/plain", file);
                             byte[] bytes = FileUtils.readFileToByteArray(file);
                             fos.write(bytes);
                             fos.flush();
@@ -172,8 +192,19 @@ public class ProcessCarouselFragment extends Fragment {
             }
             fos.flush();
             fos.close();
+            HttpRequest xmlrequest = HttpRequest.post(URL_UPLOAD + query);
+            xmlrequest.acceptCharset("UTF-8");
             xmlrequest.part("upload", xmlResult.getName(), "text/plain", xmlResult);
-            Ln.d("upload result xml");
+            Ln.d("upload result location: %s", xmlrequest.location());
+            Ln.d("upload result body: %s", xmlrequest.body());
+            Ln.d("upload result contentEncoding: %s", xmlrequest.contentEncoding());
+            Ln.d("upload result message: %s", xmlrequest.message());
+            //Toast.makeText(getActivity(), "上传成功", Toast.LENGTH_LONG).show();
+            ((WorkActivity)getActivity()).getWork().setStage("已完成");
+            Intent intent = new Intent();
+            intent.putExtra(WORK_ID, ((WorkActivity)getActivity()).getWork().getPlanid());
+            getActivity().setResult(FINISH_WORK, intent);
+            getActivity().finish();
             return xmlrequest.ok();
         }
 
@@ -191,6 +222,7 @@ public class ProcessCarouselFragment extends Fragment {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            ProcessCarouselFragment.this.handler.sendEmptyMessage(0);
         }
 
         @Override

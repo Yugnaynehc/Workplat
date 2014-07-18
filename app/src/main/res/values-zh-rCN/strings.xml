@@ -29,7 +29,7 @@
     <string name="date_column">日期</string>
     <string name="work_type_column">类型</string>
     <string name="work_state_column">状态</string>
-    <string name="defect_device_column">设备名称</string>
+    <string name="defect_device_column">设备</string>
     <string name="defect_description_column">缺陷描述</string>
     <string name="result_device_column">设备名称</string>
     <string name="error_loading_users">获取用户列表失败</string>
@@ -52,6 +52,10 @@
     <string name="apply_date">执行日期</string>
     <string name="apply_type">申请类型</string>
     <string name="apply_reason">申请理由</string>
+    <string name="apply_try">提交申请</string>
+    <string name="apply_wait">申请中，请稍候</string>
+    <string name="apply_success">申请成功</string>
+    <string name="apply_failed">申请失败</string>
 
     <!-- AuthenticatorActivity -->
     <string name="label_email_address">用户名</string>

@@ -26,7 +26,6 @@ import org.xmlpull.v1.XmlSerializer;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
@@ -121,7 +120,7 @@ public class DeviceFormFragment extends Fragment {
         XmlSerializer serializer = Xml.newSerializer();
         serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
         serializer.setOutput(out, "utf-8");
-        serializer.startDocument("utf-8", true);
+        serializer.startDocument("GB2312", true);
         serializer.startTag(null, "device");
         serializer.attribute(null, "name", deviceName);
         for (int i=0; i<inspectContent.size(); ++i) {

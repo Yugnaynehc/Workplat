@@ -25,6 +25,7 @@ import javax.inject.Inject;
 
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.WORK_ITEM;
 import static com.donnfelker.android.bootstrap.core.Constants.UPreference.*;
+import static com.donnfelker.android.bootstrap.core.Constants.Intent.*;
 
 /**
  * Created by Feather on 14-3-17.
@@ -87,8 +88,8 @@ public class WorkListFragment extends ItemListFragment<Work> {
                         */
                         SharedPreferences sharedPreferences;
                         sharedPreferences = getActivity().getSharedPreferences(USER_INFO, Context.MODE_PRIVATE);
-                        String substationid = sharedPreferences.getString(USER_INFO_SUBSTATION_ID, "");
-                        return serviceProvider.getService(getActivity()).getWorks(substationid);
+                        String substationID = sharedPreferences.getString(USER_INFO_SUBSTATION_ID, "");
+                        return serviceProvider.getService(getActivity()).getWorks(substationID);
                     }
                     else {
                         return Collections.emptyList();
@@ -111,7 +112,7 @@ public class WorkListFragment extends ItemListFragment<Work> {
 
     public void onListItemClick(ListView l, View v, int position, long id) {
         final Work work = ((Work) l.getItemAtPosition(position));
-        startActivity(new Intent(getActivity(), WorkActivity.class).putExtra(WORK_ITEM, work));
+        startActivityForResult(new Intent(getActivity(), WorkActivity.class).putExtra(WORK_ITEM, work), FINISH_WORK);
     }
 
     @Override

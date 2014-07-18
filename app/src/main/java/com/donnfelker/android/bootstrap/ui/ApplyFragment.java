@@ -2,7 +2,14 @@ package com.donnfelker.android.bootstrap.ui;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -21,22 +28,26 @@ import com.donnfelker.android.bootstrap.util.Ln;
 import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
 import com.github.kevinsawicki.http.HttpRequest;
 
+import java.net.URLEncoder;
 import java.util.Calendar;
 
 import butterknife.InjectView;
 import butterknife.Views;
 
 import static com.donnfelker.android.bootstrap.core.Constants.Http.URL_APPLY;
+import static com.donnfelker.android.bootstrap.core.Constants.UPreference.*;
 
 /**
  * Created by feather on 14-5-16.
  */
-public class ApplyFragment extends Fragment {
+public class ApplyFragment extends DialogFragment {
     @InjectView(R.id.date) EditText date;
     @InjectView(R.id.type) Spinner type;
     @InjectView(R.id.reason) EditText reason;
     @InjectView(R.id.submit) BootstrapButton submit;
     ArrayAdapter<String> adapter;
+    private ProgressDialog progressDialog;
+    private Handler handler;        // 用handler来更新主线程UI
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -59,6 +70,17 @@ public class ApplyFragment extends Fragment {
         adapter.add(getResources().getString(R.string.inspect_job_deviceperiodicmaintance));
         adapter.add(getResources().getString(R.string.inspect_job_barriergateoperate));
 
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                //更新UI,关闭ProgressDialog，清空字符串
+                Ln.d("Apply: clean");
+                reason.setText("");
+                type.setSelection(0);
+                date.setText("");
+                progressDialog.dismiss();
+            }};
+
     }
 
     @Override
@@ -67,7 +89,6 @@ public class ApplyFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_apply, container, false);
         Views.inject(this, view);
 
-        //date.setText(new SimpleDateFormat("yyyy-M-d").format(new Date()));
         date.setInputType(InputType.TYPE_NULL);
         date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,10 +136,23 @@ public class ApplyFragment extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validate())
+                if (validate()) {
+                    //显示ProgressDialog
+
+//                    progressDialog = new ProgressDialog(getActivity());
+//                    progressDialog.setTitle(resources.getString(R.string.apply_try));
+//                    progressDialog.setMessage(resources.getString(R.string.apply_wait));
+//                    progressDialog.show();
+                    Resources resources = getActivity().getResources();
+                    progressDialog = ProgressDialog.show(getActivity(),
+                            resources.getString(R.string.apply_try),
+                            resources.getString(R.string.apply_wait),
+                            true, false);
                     submitApplication();
+                }
             }
         });
+
         return view;
     }
 
@@ -143,12 +177,23 @@ public class ApplyFragment extends Fragment {
     }
 
     private void submitApplication() {
+
         SafeAsyncTask<Boolean> submitTask;
 
         submitTask = new SafeAsyncTask<Boolean>() {
+
             public Boolean call() throws Exception {
-                final String query = String.format("?%s=%s&%s=%s&%s=%s", "type", type.getSelectedItem().toString(), "excutedate", date.getText().toString(), "reason", reason.getText().toString());
-                final HttpRequest request = HttpRequest.get(URL_APPLY  + query);
+
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(USER_INFO, Context.MODE_PRIVATE);
+                String userID= sharedPreferences.getString(USER_INFO_ID, "");
+                String substationID = sharedPreferences.getString(USER_INFO_SUBSTATION_ID, "");
+                final String query = String.format("?%s=%s&%s=%s&%s=%s&%s=%s&%s=%s",
+                        "type", URLEncoder.encode(type.getSelectedItem().toString(), "UTF-8"),
+                        "applyuser", userID,
+                        "substation", substationID,
+                        "exeTime", date.getText().toString(),
+                        "reason", reason.getText().toString());
+                final HttpRequest request = HttpRequest.post(URL_APPLY  + query).acceptCharset("UTF-8");
                 Ln.d("Apply: %s", URL_APPLY + query);
                 Ln.d("Authentication response=%s", request.code());
                 return request.ok();
@@ -157,18 +202,18 @@ public class ApplyFragment extends Fragment {
             @Override
             protected void onException(final Exception e) throws RuntimeException {
                 super.onException(e);
+                Toast.makeText(getActivity(), "申请失败", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onSuccess(final Boolean authSuccess) {
-                reason.setText("");
-                type.setSelection(0);
-                date.setText("");
+                Ln.d("Apply: try clean");
+                ApplyFragment.this.handler.sendEmptyMessage(0);
             }
 
             @Override
             protected void onFinally() throws RuntimeException {
-
+                Toast.makeText(getActivity(), "申请成功", Toast.LENGTH_LONG).show();
             }
         };
         submitTask.execute();

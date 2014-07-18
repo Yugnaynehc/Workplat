@@ -170,7 +170,7 @@ public class DeviceInspectActivity extends BootstrapFragmentActivity {
                             Ln.d("inspect content %s", parser.getAttributeValue(0));
                         } else if (name.equalsIgnoreCase("standard")) {
                             if (parser.next() == XmlPullParser.TEXT) {
-                                inspectStandard.add(parser.getText());
+                                inspectStandard.add(parser.getText().trim());
                                 Ln.d("inspect standard %s", parser.getText());
                             }
                         } else if (name.equalsIgnoreCase("device")) {

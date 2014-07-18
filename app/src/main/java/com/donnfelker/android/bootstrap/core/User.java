@@ -20,6 +20,7 @@ public class User implements Serializable {
     protected String post;
     protected String department;
     protected String name;
+    protected String id;
     protected String substation;
     protected String substationid;
 
@@ -29,6 +30,14 @@ public class User implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDepartment() {

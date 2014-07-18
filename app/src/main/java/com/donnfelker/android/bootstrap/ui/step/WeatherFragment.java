@@ -4,41 +4,19 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
-import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
-import com.donnfelker.android.bootstrap.core.Work;
-import com.donnfelker.android.bootstrap.core.inspect.object.GSU;
 import com.donnfelker.android.bootstrap.core.inspect.result.InspectEnvironment;
 import com.donnfelker.android.bootstrap.ui.WorkActivity;
 import com.donnfelker.android.bootstrap.util.Ln;
 import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
-import com.donnfelker.android.bootstrap.util.XMLBuilder;
-import com.github.kevinsawicki.http.HttpRequest;
 
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.WORK_ITEM;
-import static com.donnfelker.android.bootstrap.core.Constants.Http.*;
 import static com.donnfelker.android.bootstrap.core.Constants.UPreference.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

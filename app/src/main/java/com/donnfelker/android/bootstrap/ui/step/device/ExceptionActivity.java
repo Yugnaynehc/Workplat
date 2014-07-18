@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.util.Ln;
@@ -49,18 +50,21 @@ public class ExceptionActivity extends Activity {
 
         position =  exIntent.getStringExtra("pos");
         res= exIntent.getStringExtra("res");
-        ed.setText(res);
+        if (!res.equals("正常"))
+            ed.setText(res);
         button1.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
-                Intent intent = getIntent();
-                intent.putExtra("pos",position);
-                intent.putExtra("result",ed.getText().toString());
-
-                ExceptionActivity.this.setResult(RESULT_OK,intent);
-                ExceptionActivity.this.finish();
+                if (ed.getText().toString().equals(""))
+                    Toast.makeText(ExceptionActivity.this, "请输入异常信息", Toast.LENGTH_LONG).show();
+                else {
+                    Intent intent = getIntent();
+                    intent.putExtra("pos",position);
+                    intent.putExtra("result",ed.getText().toString());
+                    ExceptionActivity.this.setResult(RESULT_OK,intent);
+                    ExceptionActivity.this.finish();
+                }
             }
         });
         button2.setOnClickListener(new OnClickListener() {

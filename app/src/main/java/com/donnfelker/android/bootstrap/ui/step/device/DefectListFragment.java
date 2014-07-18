@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.donnfelker.android.bootstrap.BootstrapServiceProvider;
 import com.donnfelker.android.bootstrap.Injector;
@@ -16,6 +17,7 @@ import com.donnfelker.android.bootstrap.core.Defect;
 import com.donnfelker.android.bootstrap.ui.ItemListFragment;
 import com.donnfelker.android.bootstrap.ui.ThrowableLoader;
 import com.donnfelker.android.bootstrap.ui.step.ValidationFragment;
+import com.donnfelker.android.bootstrap.util.Ln;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 
 import java.util.ArrayList;
@@ -71,14 +73,17 @@ public class DefectListFragment extends ItemListFragment<Defect> implements Vali
             public List<Defect> loadData() throws Exception {
                 try {
                     if (getActivity() != null) {
+                        /*
                         List<Defect> t = new ArrayList<Defect>();
                         for (int i=0; i<5; ++i) {
                             t.add(new Defect());
                             t.get(i).setDeviceid("主变");
                             t.get(i).setDescription("设备劳损设备劳损设备劳损设备劳损");
                         }
-                      return t;
-                        //return serviceProvider.getService(getActivity()).getDefect();
+                        return t;
+                        */
+                        String deviceID = ((DeviceInspectActivity)getActivity()).getDeviceID();
+                        return serviceProvider.getService(getActivity()).getDefect(deviceID);
                     } else {
                         return Collections.emptyList();
                     }

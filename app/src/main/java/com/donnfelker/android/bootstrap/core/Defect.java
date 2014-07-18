@@ -54,4 +54,5 @@ public class Defect implements Serializable  {
     public void setObjectId(String objectId) {
         this.objectId = objectId;
     }
+
 }

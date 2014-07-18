@@ -45,6 +45,7 @@ tools:context="com.donnfelker.android.bootstrap.ui.step.device.ExceptionActivity
     android:layout_alignRight="@+id/button3"
     android:layout_marginTop="28dp"
     android:ems="10"
+    android:hint="@string/exception_input"
     android:inputType="textMultiLine"
     android:textColor="@color/black" >
 

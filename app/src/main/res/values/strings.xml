@@ -53,6 +53,12 @@
     <string name="apply_date">Apply Date</string>
     <string name="apply_type">Apply Type</string>
     <string name="apply_reason">Apply Reason</string>
+    <string name="apply_try">Try to Apply</string>
+    <string name="apply_wait">Applying, please wait.</string>
+    <string name="apply_success">Apply Success</string>
+    <string name="apply_failed">Apply Failed</string>
+    <string name="upload_try">上传结果</string>
+    <string name="upload_wait">结果上传中，请稍稍候</string>
 
     <!-- AuthenticatorActivity -->
     <string name="label_email_address">Email Address</string>
@@ -150,6 +156,7 @@
     <string name="device_id">设备ID</string>
     <string name="device_name">设备名称</string>
     <string name="device_date">投产时间</string>
+    <string name='exception_input'>请输入异常信息</string>
     <string name="title_activity_exception">ExceptionActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

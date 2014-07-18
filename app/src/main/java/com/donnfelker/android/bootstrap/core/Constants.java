@@ -60,7 +60,7 @@ public final class Constants {
         /**
          *  获取缺陷信息的URL
          */
-        public static final String URL_DEFECT = URL_BASE + "/bugAction";
+        public static final String URL_DEFECT = URL_BASE + "/getDeviceBugAction";
 
         /**
          *  申请工作单的URL
@@ -116,6 +116,8 @@ public final class Constants {
 
         public static final String WORK_ITEM = "work_item";
 
+        public static final String WORK_ID = "work_id";
+
         public static final String DEVICE_ID = "device_id";
 
         public static final String DEVICE_NAME = "device_name";
@@ -125,6 +127,7 @@ public final class Constants {
         public static final String DEVICE_RESULT = "device_result";
 
         public static final String DEVICE_NO = "device_no";
+
 
     }
 
@@ -139,6 +142,8 @@ public final class Constants {
         public static final int ADD_NEW_RESULT = 1;
 
         public static final int EDIT_EXISTENT_RESULT = 2;
+
+        public static final int FINISH_WORK = 3;
 
     }
 
@@ -235,8 +240,9 @@ public final class Constants {
     public static class UPreference {
 
         public static final String USER_INFO = "user_info";
-        public static final String USER_INFO_NAME = USER_INFO + "name";
-        public static final String USER_INFO_SUBSTATION_ID = USER_INFO  + "substationid";
+        public static final String USER_INFO_NAME = USER_INFO + "_name";
+        public static final String USER_INFO_ID = USER_INFO + "_id";
+        public static final String USER_INFO_SUBSTATION_ID = USER_INFO  + "_substationid";
     }
 
 }

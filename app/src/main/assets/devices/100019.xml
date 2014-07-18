@@ -1,37 +1,37 @@
 <device name="阻波器">
     <item name="设备编号">
         <standard>
-名称标志齐全、完好
+            名称标志齐全、完好
         </standard>
     </item>
     <item name="外表瓷质">
         <standard>
-完好，无破裂、损伤放电现象
+            完好，无破裂、损伤放电现象
         </standard>
     </item>
     <item name="引线及各接头">
         <standard>
-引线无断股、无散股，各接头压接良好、无过热变色现象，安全净距应≥******米
+            引线无断股、无散股，各接头压接良好、无过热变色现象，安全净距应≥******米
         </standard>
     </item>
     <item name="内部">
         <standard>
-无异常响声，内部无蜂窝、鸟巢，内部电容器及避雷器无倾倒现象
+            无异常响声，内部无蜂窝、鸟巢，内部电容器及避雷器无倾倒现象
         </standard>
     </item>
     <item name="基础">
         <standard>
-接地装置完好，基础无下沉、倾斜
+            接地装置完好，基础无下沉、倾斜
         </standard>
     </item>
     <item name="外表">
         <standard>
-固定牢固，无较大摆动
+            固定牢固，无较大摆动
         </standard>
     </item>
     <item name="引线及各接头">
         <standard>
-引线无断股、无散股，各接头压接良好、无过热变色现象，安全净距应≥*****米
+            引线无断股、无散股，各接头压接良好、无过热变色现象，安全净距应≥*****米
         </standard>
     </item>
 </device>

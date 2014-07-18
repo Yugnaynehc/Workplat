@@ -76,7 +76,7 @@ public class BootstrapService {
     }
 
     private static class DefectWrapper {
-        private List<Defect> bug;
+        private List<Defect> bugs;
     }
 
     private static class JsonException extends IOException {
@@ -199,10 +199,10 @@ public class BootstrapService {
      * @return 非null但是有可能是空列表
      * @throws IOException
      */
-    public List<Work> getWorks(String substationid) throws IOException {
+    public List<Work> getWorks(String substationID) throws IOException {
         try {
             // TODO 传入subtation id
-            final String query = String.format("?%s=%s", PARAM_SUBSTATION, substationid);
+            final String query = String.format("?%s=%s", PARAM_SUBSTATION, substationID);
             final HttpRequest request = execute(HttpRequest.get(URL_WORKS + query));
             final WorkWrapper response = fromJson(request, WorkWrapper.class);
             if (response != null && response.plan != null) {
@@ -220,14 +220,15 @@ public class BootstrapService {
      * @return bug
      * @throws IOException
      */
-    public List<Defect> getDefect() throws IOException {
+    public List<Defect> getDefect(String deviceID) throws IOException {
         try {
             // TODO 传入device id
-            final String query = String.format("?%s=%s", PARAM_DEVICEID, "123");
+            final String query = String.format("?%s=%s", PARAM_DEVICEID, deviceID);
             final HttpRequest request = execute(HttpRequest.get(URL_DEFECT + query));
+            Ln.d("device bug: %s", URL_DEFECT + query);
             final DefectWrapper response = fromJson(request, DefectWrapper.class);
-            if (response != null && response.bug != null) {
-                return response.bug;
+            if (response != null && response.bugs != null) {
+                return response.bugs;
             }
             return Collections.emptyList();
         } catch (final HttpRequestException e) {
