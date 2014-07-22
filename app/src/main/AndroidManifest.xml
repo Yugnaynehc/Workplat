@@ -20,17 +20,27 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Bootstrap.Dark"
         android:allowBackup="true">
+
+        <activity
+            android:name=".ui.WelcomeActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".ui.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.BootstrapTimerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -49,6 +59,7 @@
             android:name=".core.TimerService"
             android:enabled="true"
             android:exported="false" />
+
         <service
             android:name=".authenticator.AccountAuthenticatorService"
             android:process=":auth" >
@@ -70,29 +81,37 @@
                 someone who explicitly knows the class name
             -->
         </activity>
+
         <activity android:name=".ui.NewsActivity" />
+
         <activity
             android:name=".ui.UserActivity"
             android:label="@string/app_name" />
+
         <activity
             android:name=".ui.WorkActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".ui.step.device.DeviceActivity"
             android:label="@string/device_inspect"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".ui.step.ScanActivity"
             android:label="@string/app_name" />
+
         <activity
             android:name=".ui.step.device.ExceptionActivity"
             android:label="@string/title_activity_exception" >
         </activity>
+
         <activity
             android:name=".ui.step.device.DeviceInspectActivity"
             android:label="@string/device_inspect"/>
+
     </application>
 
 </manifest>

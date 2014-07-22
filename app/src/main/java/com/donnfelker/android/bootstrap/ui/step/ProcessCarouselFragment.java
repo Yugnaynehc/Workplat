@@ -2,19 +2,13 @@ package com.donnfelker.android.bootstrap.ui.step;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
-import android.os.SystemClock;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -23,6 +17,7 @@ import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.ui.WorkActivity;
 import com.donnfelker.android.bootstrap.util.Ln;
+import com.donnfelker.android.bootstrap.util.MyViewPager;
 import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.*;
 import static com.donnfelker.android.bootstrap.core.Constants.UPreference.*;
@@ -46,7 +41,7 @@ import butterknife.Views;
 public class ProcessCarouselFragment extends Fragment {
 
     @InjectView(R.id.tpi_header)protected TitlePageIndicator indicator;
-    @InjectView(R.id.vp_pages)protected ViewPager pager;
+    @InjectView(R.id.vp_pages)protected MyViewPager pager;
     @InjectView(R.id.prev)BootstrapButton prev;
     @InjectView(R.id.next)BootstrapButton next;
 

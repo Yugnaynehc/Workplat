@@ -201,6 +201,11 @@ public class MainActivity extends BootstrapFragmentActivity {
                                         String.valueOf(location.getLatitude()));
                         return weather != null;
                     }
+
+                    @Override
+                    protected void onException(final Exception e) throws RuntimeException {
+                        super.onException(e);
+                    }
                 };
                 forecastTask.execute();
                 Ln.d("Weather: get weather %s %s ", weather.getStatus(), weather.getDate());

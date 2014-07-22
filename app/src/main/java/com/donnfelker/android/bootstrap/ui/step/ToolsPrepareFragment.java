@@ -27,6 +27,9 @@ import com.donnfelker.android.bootstrap.util.Ln;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.InjectView;
+import butterknife.Views;
+
 
 /**
  * Created by feather on 14-4-11.
@@ -212,17 +215,9 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
             String toolUnit = toolsUnit.get(position);
             String toolRemark = toolsRemark.get(position);
 
-            //Ln.d("getView %d", position);
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.tools_list_item, null);
-                holder = new ToolsViewHolder();
-                holder.no = (TextView)convertView.findViewById(R.id.tv_tool_no);
-                holder.name = (TextView)convertView.findViewById(R.id.tv_tool_name);
-                holder.type = (EditText)convertView.findViewById(R.id.et_tool_type);
-                holder.unit = (TextView)convertView.findViewById(R.id.tv_tool_unit);
-                holder.num = (EditText)convertView.findViewById(R.id.et_tool_num);
-                holder.remark = (TextView)convertView.findViewById(R.id.tv_tool_remark);
-                holder.select = (CheckBox)convertView.findViewById(R.id.cb_tool_select);
+                holder = new ToolsViewHolder(convertView);
                 convertView.setTag(holder);
             }
             else {
@@ -299,14 +294,18 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
         }
     }
 
-    private class ToolsViewHolder {
-        TextView no;
-        TextView name;
-        EditText type;
-        TextView unit;
-        EditText num;
-        TextView remark;
-        CheckBox select;
+    static class ToolsViewHolder {
+        @InjectView(R.id.tv_tool_no)TextView no;
+        @InjectView(R.id.tv_tool_name)TextView name;
+        @InjectView(R.id.et_tool_type)EditText type;
+        @InjectView(R.id.tv_tool_unit)TextView unit;
+        @InjectView(R.id.et_tool_num)EditText num;
+        @InjectView(R.id.tv_tool_remark)TextView remark;
+        @InjectView(R.id.cb_tool_select)CheckBox select;
+
+        public ToolsViewHolder(View view) {
+            Views.inject(this, view);
+        }
     }
 
 }
