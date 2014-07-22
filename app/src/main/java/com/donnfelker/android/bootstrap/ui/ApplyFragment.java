@@ -31,6 +31,7 @@ import com.donnfelker.android.bootstrap.authenticator.LogoutService;
 import com.donnfelker.android.bootstrap.util.Ln;
 import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
 import com.github.kevinsawicki.http.HttpRequest;
+import com.github.kevinsawicki.wishlist.Toaster;
 
 import java.net.URLEncoder;
 import java.util.Calendar;
@@ -196,14 +197,16 @@ public class ApplyFragment extends MenuFragment {
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences(USER_INFO, Context.MODE_PRIVATE);
                 String userID= sharedPreferences.getString(USER_INFO_ID, "");
                 String substationID = sharedPreferences.getString(USER_INFO_SUBSTATION_ID, "");
+                String stype = type.getSelectedItem().toString();
+                String sreason = reason.getText().toString();
                 final String query = String.format("?%s=%s&%s=%s&%s=%s&%s=%s&%s=%s",
-                        "type", URLEncoder.encode(type.getSelectedItem().toString(), "UTF-8"),
+                        "type", URLEncoder.encode(URLEncoder.encode(stype, "UTF-8"), "UTF-8"),
                         "applyuser", userID,
                         "substation", substationID,
                         "exeTime", date.getText().toString(),
-                        "reason", reason.getText().toString());
-                final HttpRequest request = HttpRequest.post(URL_APPLY  + query).acceptCharset("UTF-8");
-                Ln.d("Apply: %s", URL_APPLY + query);
+                        "reason", URLEncoder.encode(URLEncoder.encode(sreason, "UTF-8"), "UTF-8"));
+                final HttpRequest request = HttpRequest.post(URL_APPLY + query).acceptCharset("UTF-8");
+                Ln.d("Apply: %s", URL_APPLY  + query);
                 Ln.d("Authentication response=%s", request.code());
                 return request.ok();
             }
@@ -211,18 +214,19 @@ public class ApplyFragment extends MenuFragment {
             @Override
             protected void onException(final Exception e) throws RuntimeException {
                 super.onException(e);
-                Toast.makeText(getActivity(), "申请失败", Toast.LENGTH_LONG).show();
+                Ln.d("Apply: %s", e.getMessage());
+                Toast.makeText(getActivity(), "申请失败" + e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onSuccess(final Boolean authSuccess) {
-                Ln.d("Apply: try clean");
-                ApplyFragment.this.handler.sendEmptyMessage(0);
+                Toast.makeText(getActivity(), "申请成功", Toast.LENGTH_LONG).show();
             }
 
             @Override
             protected void onFinally() throws RuntimeException {
-                Toast.makeText(getActivity(), "申请成功", Toast.LENGTH_LONG).show();
+                Ln.d("Apply: try clean");
+                ApplyFragment.this.handler.sendEmptyMessage(0);
             }
         };
         submitTask.execute();
