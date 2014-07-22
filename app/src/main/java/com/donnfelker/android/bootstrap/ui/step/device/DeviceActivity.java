@@ -36,6 +36,9 @@ import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ID;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NAME;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NO;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_RESULT;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_STANDARD;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_CONTENT;
+
 /**
  * Created by feather on 14-4-17.
  */
@@ -61,21 +64,19 @@ public class DeviceActivity extends BootstrapFragmentActivity {
         Intent scanDevice = getIntent();
         deviceID = scanDevice.getStringExtra(DEVICE_ID);
         deviceNo = scanDevice.getIntExtra(DEVICE_NO, -1);
-        inspectContent = new ArrayList<String>();
-        inspectStandard = new ArrayList<String>();
-        initInspectData();
+
         if (deviceNo != -1) {
+            inspectContent = scanDevice.getStringArrayListExtra(DEVICE_CONTENT);
+            inspectStandard = scanDevice.getStringArrayListExtra(DEVICE_STANDARD);
             initInspectResult(scanDevice.getStringArrayListExtra(DEVICE_RESULT));
             submit.setText(this.getResources().getString(R.string.button_edit));
         } else {
+            inspectContent = new ArrayList<String>();
+            inspectStandard = new ArrayList<String>();
             inspectResult = new SparseArray<String>();
-            for(int i =0; i<inspectContent.size();i++)
-            {
-                inspectResult.put(i,"正常");
-            }
+            initInspectData();
         }
 
-        //setTitle(deviceName);
         adapter = new DeviceAdapter(this);
         list.setAdapter(adapter);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -87,7 +88,10 @@ public class DeviceActivity extends BootstrapFragmentActivity {
                 intent.putExtra(DEVICE_ID, deviceID);
                 intent.putExtra(DEVICE_NAME, deviceName);
                 intent.putExtra(DEVICE_NO, deviceNo);
+                intent.putExtra(DEVICE_CONTENT, inspectContent);
+                intent.putExtra(DEVICE_STANDARD, inspectStandard);
                 intent.putExtra(DEVICE_RESULT, getResultList());
+                /*
                 try {
                     File file = new File(getFilesDir(), deviceID + ".xml");
                     FileOutputStream out  = new FileOutputStream(file);
@@ -95,6 +99,7 @@ public class DeviceActivity extends BootstrapFragmentActivity {
                 } catch(IOException e) {
                     Ln.d(e.toString());
                 }
+                */
                 DeviceActivity.this.setResult(RESULT_OK, intent);
                 DeviceActivity.this.finish();
             }
@@ -188,11 +193,9 @@ public class DeviceActivity extends BootstrapFragmentActivity {
                         String name = parser.getName();
                         if (name.equalsIgnoreCase("item")) {
                             inspectContent.add(parser.getAttributeValue(0));
-                            Ln.d("inspect content %s", parser.getAttributeValue(0));
                         } else if (name.equalsIgnoreCase("standard")) {
                             if (parser.next() == XmlPullParser.TEXT) {
                                 inspectStandard.add(parser.getText());
-                                Ln.d("inspect standard %s", parser.getText());
                             }
                         } else if (name.equalsIgnoreCase("device")) {
                             deviceName = parser.getAttributeValue(0);
@@ -206,6 +209,10 @@ public class DeviceActivity extends BootstrapFragmentActivity {
                 eventType = parser.next();
             }
 
+            // init inspect result
+            for(int i=0; i<inspectContent.size(); ++i) {
+                inspectResult.put(i, "正常");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

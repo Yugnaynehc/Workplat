@@ -150,15 +150,9 @@ public class ApplyFragment extends MenuFragment {
             public void onClick(View view) {
                 if (validate()) {
                     //显示ProgressDialog
-
-//                    progressDialog = new ProgressDialog(getActivity());
-//                    progressDialog.setTitle(resources.getString(R.string.apply_try));
-//                    progressDialog.setMessage(resources.getString(R.string.apply_wait));
-//                    progressDialog.show();
-                    Resources resources = getActivity().getResources();
                     progressDialog = ProgressDialog.show(getActivity(),
-                            resources.getString(R.string.apply_try),
-                            resources.getString(R.string.apply_wait),
+                            getString(R.string.apply_try),
+                            getString(R.string.apply_wait),
                             true, false);
                     submitApplication();
                 }

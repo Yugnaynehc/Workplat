@@ -83,7 +83,10 @@ public class WeatherFragment extends Fragment implements  ValidationFragment {
     @Override
     public void saveResult() {
         Ln.d("Weather fragment save result");
-        env = new InspectEnvironment(date.toString(), temp.toString(), humi.toString(), person.toString());
+        env = new InspectEnvironment(date.getText().toString(),
+                temp.getText().toString(),
+                humi.getText().toString(),
+                person.getText().toString());
         ((WorkActivity)getActivity()).getResult().setEnv(env);
     }
 

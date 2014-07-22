@@ -86,6 +86,9 @@
     <string name="title_work">工作单</string>
 
     <!-- Exception -->
+    <string name="error_blank">请输入完整信息</string>
+    <string name="error_no_device_result">无巡设备巡检结果。请扫描设备，并填写巡检表单。</string>
     <string name="error_404">无法连接到服务器</string>
+
 
 </resources>

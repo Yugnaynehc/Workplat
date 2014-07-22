@@ -165,6 +165,8 @@
     <string name="action_settings">Settings</string>
 
     <!-- Exception -->
+    <string name="error_blank">Please fill the form.</string>
+    <string name="error_no_device_result">Please scan some devices to add device inspect result.</string>
     <string name="error_404">Not Found.</string>
 
 </resources>

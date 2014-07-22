@@ -31,12 +31,7 @@ import java.util.Arrays;
 
 import butterknife.Views;
 
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NAME;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ID;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_DATE;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NO;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_RESULT;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.WORK_ITEM;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.*;
 import static com.donnfelker.android.bootstrap.core.Constants.Intent.*;
 
 /**
@@ -219,8 +214,17 @@ public class WorkActivity extends BootstrapFragmentActivity {
                     String deviceName = data.getStringExtra(DEVICE_NAME);
                     String deviceID = data.getStringExtra(DEVICE_ID);
                     String deviceDate = data.getStringExtra(DEVICE_DATE);
+                    ArrayList<String> inspectContent = data.getStringArrayListExtra(DEVICE_CONTENT);
+                    ArrayList<String> inspectStandard = data.getStringArrayListExtra(DEVICE_STANDARD);
                     ArrayList<String> inspectResult = data.getStringArrayListExtra(DEVICE_RESULT);
-                    DeviceResult deviceResult = new DeviceResult(deviceID, deviceName, deviceDate, inspectResult);
+                    DeviceResult deviceResult = new DeviceResult(
+                            deviceID,
+                            deviceName,
+                            deviceDate,
+                            inspectContent,
+                            inspectStandard,
+                            inspectResult
+                    );
                     result.addDeviceResult(deviceResult);
                 }
                 break;

@@ -10,17 +10,27 @@ public class DeviceResult implements Serializable {
 
     private static final long serialVersionUID = -5413972855563452036L;
 
-    private String deviceName;
-    private ArrayList<String> inspectResult;
     private String deviceID;
+    private String deviceName;
     private String deviceDate;
+    private ArrayList<String> inspectContent;
+    private ArrayList<String> inspectStandard;
+    private ArrayList<String> inspectResult;
+
     private String objectId;
 
-    public DeviceResult(String deviceID, String deviceName, String deviceDate, ArrayList<String> inspectResult) {
-        this.deviceName = deviceName;
-        this.inspectResult = inspectResult;
-        this.deviceID = deviceID;
+    public DeviceResult(String deviceID,
+                        String deviceName,
+                        String  deviceDate,
+                        ArrayList<String> inspectContent,
+                        ArrayList<String> inspectStandard,
+                        ArrayList<String> inspectResult) {
         this.deviceDate = deviceDate;
+        this.deviceID = deviceID;
+        this.inspectStandard = inspectStandard;
+        this.inspectContent = inspectContent;
+        this.inspectResult = inspectResult;
+        this.deviceName = deviceName;
     }
 
     public static long getSerialVersionUID() {
@@ -65,6 +75,22 @@ public class DeviceResult implements Serializable {
 
     public void setObjectId(String objectId) {
         this.objectId = objectId;
+    }
+
+    public ArrayList<String> getInspectContent() {
+        return inspectContent;
+    }
+
+    public void setInspectContent(ArrayList<String> inspectContent) {
+        this.inspectContent = inspectContent;
+    }
+
+    public ArrayList<String> getInspectStandard() {
+        return inspectStandard;
+    }
+
+    public void setInspectStandard(ArrayList<String> inspectStandard) {
+        this.inspectStandard = inspectStandard;
     }
 }
 

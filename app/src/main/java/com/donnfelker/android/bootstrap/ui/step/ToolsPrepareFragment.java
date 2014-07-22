@@ -95,28 +95,16 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
 
     @Override
     public void saveResult() {
-        List<InspectTool> toolsList = null;
+        List<InspectTool> toolsList = new ArrayList<InspectTool>();
         InspectTool tool;
         Ln.d("tools prepare fragment save result");
         for (int i=0;  i<toolsName.size(); ++i) {
             if (selectMap.get(i)) {
                 tool = new InspectTool(toolsName.get(i), typeMap.get(i), numMap.get(i));
-                if (toolsList == null) {
-                    toolsList = new ArrayList<InspectTool>();
-                    toolsList.add(tool);
-                }
-                else
-                    toolsList.add(tool);
+                toolsList.add(tool);
             }
         }
         ((WorkActivity)getActivity()).getResult().setTools(toolsList);
-
-        toolsList = ((WorkActivity)getActivity()).getResult().getTools();
-        if (toolsList != null) {
-            for (int i=0; i<toolsList.size(); ++i) {
-                Ln.d("result tool %d %s", i, toolsList.get(i).toString());
-            }
-        }
     }
 
     private class ToolsAdapter extends BaseAdapter {

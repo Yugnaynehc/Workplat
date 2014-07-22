@@ -124,6 +124,10 @@ public final class Constants {
 
         public static final String DEVICE_DATE = "device_date";
 
+        public static final String DEVICE_CONTENT = "device_content";
+
+        public static final String DEVICE_STANDARD = "device_standard";
+
         public static final String DEVICE_RESULT = "device_result";
 
         public static final String DEVICE_NO = "device_no";

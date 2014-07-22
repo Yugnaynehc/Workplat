@@ -37,7 +37,6 @@ import static com.donnfelker.android.bootstrap.core.Constants.Intent.EDIT_EXISTE
  */
 public class ResultListFragment extends ItemListFragment<DeviceResult> implements  ValidationFragment {
 
-    @Inject protected BootstrapServiceProvider serviceProvider;
     @Inject protected LogoutService logoutService;
 
     @Override

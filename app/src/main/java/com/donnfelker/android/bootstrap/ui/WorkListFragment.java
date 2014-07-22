@@ -116,7 +116,7 @@ public class WorkListFragment extends ItemListFragment<Work> {
 
     public void onListItemClick(ListView l, View v, int position, long id) {
         final Work work = ((Work) l.getItemAtPosition(position));
-        startActivityForResult(new Intent(getActivity(), WorkActivity.class).putExtra(WORK_ITEM, work), FINISH_WORK);
+        startActivity(new Intent(getActivity(), WorkActivity.class).putExtra(WORK_ITEM, work));
     }
 
     @Override
