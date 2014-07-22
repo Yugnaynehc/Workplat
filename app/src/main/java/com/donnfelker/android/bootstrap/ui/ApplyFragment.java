@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,13 +25,17 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.donnfelker.android.bootstrap.Injector;
 import com.donnfelker.android.bootstrap.R;
+import com.donnfelker.android.bootstrap.authenticator.LogoutService;
 import com.donnfelker.android.bootstrap.util.Ln;
 import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
 import com.github.kevinsawicki.http.HttpRequest;
 
 import java.net.URLEncoder;
 import java.util.Calendar;
+
+import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.Views;
@@ -40,7 +46,9 @@ import static com.donnfelker.android.bootstrap.core.Constants.UPreference.*;
 /**
  * Created by feather on 14-5-16.
  */
-public class ApplyFragment extends DialogFragment {
+public class ApplyFragment extends MenuFragment {
+
+    @Inject protected LogoutService logoutService;
     @InjectView(R.id.date) EditText date;
     @InjectView(R.id.type) Spinner type;
     @InjectView(R.id.reason) EditText reason;
@@ -81,6 +89,7 @@ public class ApplyFragment extends DialogFragment {
                 progressDialog.dismiss();
             }};
 
+        Injector.inject(this);
     }
 
     @Override
@@ -230,6 +239,23 @@ public class ApplyFragment extends DialogFragment {
             e.printStackTrace();
             return false;
         }
+    }
+
+    protected void logout() {
+        logoutService.logout(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(getActivity(), MainActivity.class));
+                getActivity().finish();
+            }
+        });
+    }
+
+    /**
+     * Force a refresh of the items displayed ignoring any cached items
+     */
+    protected void forceRefresh() {
+
     }
 
 }

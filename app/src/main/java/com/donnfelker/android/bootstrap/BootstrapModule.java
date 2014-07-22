@@ -6,8 +6,10 @@ import android.content.Context;
 import com.donnfelker.android.bootstrap.authenticator.BootstrapAuthenticatorActivity;
 import com.donnfelker.android.bootstrap.authenticator.LogoutService;
 import com.donnfelker.android.bootstrap.core.TimerService;
+import com.donnfelker.android.bootstrap.ui.ApplyFragment;
 import com.donnfelker.android.bootstrap.ui.BootstrapTimerActivity;
 import com.donnfelker.android.bootstrap.ui.CheckInsListFragment;
+import com.donnfelker.android.bootstrap.ui.ForecastFragment;
 import com.donnfelker.android.bootstrap.ui.MainActivity;
 import com.donnfelker.android.bootstrap.ui.NavigationDrawerFragment;
 import com.donnfelker.android.bootstrap.ui.NewsActivity;
@@ -51,7 +53,9 @@ import dagger.Provides;
                 TimerService.class,
                 DeviceActivity.class,
                 ResultListFragment.class,
-                DeviceInspectActivity.class
+                DeviceInspectActivity.class,
+                ForecastFragment.class,
+                ApplyFragment.class
         }
 )
 public class BootstrapModule {

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Window;
 
 import com.donnfelker.android.bootstrap.R;
 
@@ -35,6 +36,7 @@ public class WelcomeActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.welcome_activity);
         mHandler.sendEmptyMessageDelayed(GOTO_MAIN_ACTIVITY, 1000); // 1秒跳转
     }

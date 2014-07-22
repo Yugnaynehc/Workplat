@@ -60,8 +60,8 @@ import static com.donnfelker.android.bootstrap.core.Constants.UPreference.*;
 import static com.github.kevinsawicki.http.HttpRequest.get;
 
 /**
- * 使用Parse.com的公用API进行用户身份验证的Activity
- * Activity to authenticate the user against an API (example API on Parse.com)
+ * 进行用户身份验证的Activity
+ * Activity to authenticate the user
  */
 public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticatorActivity {
 

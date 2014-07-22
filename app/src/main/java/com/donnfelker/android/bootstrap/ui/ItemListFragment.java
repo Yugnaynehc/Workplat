@@ -39,19 +39,8 @@ import java.util.List;
  *
  * @param <E>
  */
-public abstract class ItemListFragment<E> extends Fragment
+public abstract class ItemListFragment<E> extends MenuFragment
         implements LoaderCallbacks<List<E>> {
-
-    private static final String FORCE_REFRESH = "forceRefresh";
-
-    /**
-     * @param args bundle passed to the loader by the LoaderManager
-     * @return true if the bundle indicates a requested forced refresh of the
-     * items
-     */
-    protected static boolean isForceRefresh(final Bundle args) {
-        return args != null && args.getBoolean(FORCE_REFRESH, false);
-    }
 
     /**
      * List items provided to {@link #onLoadFinished(Loader, List)}
@@ -142,69 +131,9 @@ public abstract class ItemListFragment<E> extends Fragment
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setHasOptionsMenu(true);
+        // setHasOptionsMenu(true);
     }
 
-    @Override
-    public void onCreateOptionsMenu(final Menu optionsMenu, final MenuInflater inflater) {
-        inflater.inflate(R.menu.bootstrap, optionsMenu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-        if (!isUsable()) {
-            return false;
-        }
-        switch (item.getItemId()) {
-            case id.refresh:
-                forceRefresh();
-                return true;
-            case R.id.logout:
-                logout();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    protected abstract LogoutService getLogoutService();
-
-    private void logout() {
-        getLogoutService().logout(new Runnable() {
-            @Override
-            public void run() {
-                // Calling a refresh will force the service to look for a logged in user
-                // and when it finds none the user will be requested to log in again.
-                forceRefresh();
-            }
-        });
-    }
-
-    /**
-     * Force a refresh of the items displayed ignoring any cached items
-     */
-    protected void forceRefresh() {
-        final Bundle bundle = new Bundle();
-        bundle.putBoolean(FORCE_REFRESH, true);
-        refresh(bundle);
-    }
-
-    /**
-     * Refresh the fragment's list
-     */
-    public void refresh() {
-        refresh(null);
-    }
-
-    private void refresh(final Bundle args) {
-        if (!isUsable()) {
-            return;
-        }
-
-        getActionBarActivity().setSupportProgressBarIndeterminateVisibility(true);
-
-        getLoaderManager().restartLoader(0, args, this);
-    }
 
     private ActionBarActivity getActionBarActivity() {
         return ((ActionBarActivity) getActivity());
@@ -289,14 +218,6 @@ public abstract class ItemListFragment<E> extends Fragment
         }
     }
 
-    /**
-     * Refresh the list with the progress bar showing
-     */
-    protected void refreshWithProgress() {
-        items.clear();
-        setListShown(false);
-        refresh();
-    }
 
     /**
      * Get {@link ListView}
@@ -446,12 +367,52 @@ public abstract class ItemListFragment<E> extends Fragment
                                 final int position, final long id) {
     }
 
-    /**
-     * Is this fragment still part of an activity and usable from the UI-thread?
-     *
-     * @return true if usable on the UI-thread, false otherwise
-     */
-    protected boolean isUsable() {
-        return getActivity() != null;
+    protected abstract LogoutService getLogoutService();
+
+    protected void logout() {
+        getLogoutService().logout(new Runnable() {
+            @Override
+            public void run() {
+                // Calling a refresh will force the service to look for a logged in user
+                // and when it finds none the user will be requested to log in again.
+                forceRefresh();
+            }
+        });
     }
+
+    /**
+     * Force a refresh of the items displayed ignoring any cached items
+     */
+    protected void forceRefresh() {
+        final Bundle bundle = new Bundle();
+        bundle.putBoolean(FORCE_REFRESH, true);
+        refresh(bundle);
+    }
+
+    /**
+     * Refresh the fragment's list
+     */
+    public void refresh() {
+        refresh(null);
+    }
+
+    private void refresh(final Bundle args) {
+        if (!isUsable()) {
+            return;
+        }
+
+        getActionBarActivity().setSupportProgressBarIndeterminateVisibility(true);
+
+        getLoaderManager().restartLoader(0, args, this);
+    }
+
+    /**
+     * Refresh the list with the progress bar showing
+     */
+    protected void refreshWithProgress() {
+        items.clear();
+        setListShown(false);
+        refresh();
+    }
+
 }
