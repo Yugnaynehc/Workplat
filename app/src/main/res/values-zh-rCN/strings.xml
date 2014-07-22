@@ -4,6 +4,7 @@
 
     <string name="app_name">移动终端</string>
     <string name="welcome">欢迎</string>
+    <string name="get_work_error">获取工作单失败，请检查网络连接。</string>
     <string name="device_inspect">设备巡检</string>
     <string name="content_column">Content</string>
     <string name="page_referrers">Referrers</string>

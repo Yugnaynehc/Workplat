@@ -3,6 +3,7 @@
 
     <string name="app_name">Bootstrap</string>
     <string name="welcome">Welcome</string>
+    <string name="get_work_error">Get work error, please check your network connection.</string>
     <string name="device_inspect">Device Inspect</string>
     <string name="content_column">Content</string>
     <string name="page_referrers">Referrers</string>

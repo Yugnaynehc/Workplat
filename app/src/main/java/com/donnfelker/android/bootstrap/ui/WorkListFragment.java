@@ -16,6 +16,7 @@ import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.authenticator.LogoutService;
 import com.donnfelker.android.bootstrap.core.Work;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
+import com.github.kevinsawicki.wishlist.Toaster;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -96,9 +97,12 @@ public class WorkListFragment extends ItemListFragment<Work> {
                     }
                 //} catch (OperationCanceledException e) {
                 } catch (Exception e) {
+                    /*
                     Activity activity = getActivity();
                     if (activity != null)
                         activity.finish();
+                    */
+                    Toaster.showLong(getActivity(), getActivity().getResources().getString(R.string.get_work_error));
                     return initialItems;
                 }
             }
