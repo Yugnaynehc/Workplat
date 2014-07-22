@@ -79,14 +79,7 @@ public class WorkListFragment extends ItemListFragment<Work> {
             public List<Work> loadData() throws Exception {
                 try {
                     if (getActivity() != null) {
-                        /*
-                        List<Work> t = new ArrayList<Work>();
-                        for (int i=0; i<INSPECT_TYPE_LIST.length-10; ++i) {
-                            t.add(new Work());
-                            t.get(i).setType(INSPECT_TYPE_LIST[i]);
-                        }
-                        return t;
-                        */
+
                         SharedPreferences sharedPreferences;
                         sharedPreferences = getActivity().getSharedPreferences(USER_INFO, Context.MODE_PRIVATE);
                         String substationID = sharedPreferences.getString(USER_INFO_SUBSTATION_ID, "");
@@ -95,13 +88,7 @@ public class WorkListFragment extends ItemListFragment<Work> {
                     else {
                         return Collections.emptyList();
                     }
-                //} catch (OperationCanceledException e) {
                 } catch (Exception e) {
-                    /*
-                    Activity activity = getActivity();
-                    if (activity != null)
-                        activity.finish();
-                    */
                     Toaster.showLong(getActivity(), getActivity().getResources().getString(R.string.get_work_error));
                     return initialItems;
                 }
@@ -111,7 +98,7 @@ public class WorkListFragment extends ItemListFragment<Work> {
 
     @Override
     protected SingleTypeAdapter<Work> createAdapter(List<Work> items) {
-        return new WorkListAdapter(getActivity().getLayoutInflater(), items);
+        return new WorkListAdapter(getActivity(), items);
     }
 
     public void onListItemClick(ListView l, View v, int position, long id) {
@@ -122,5 +109,11 @@ public class WorkListFragment extends ItemListFragment<Work> {
     @Override
     protected int getErrorMessage(Exception exception) {
         return R.string.error_loading_works;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        forceRefresh();
     }
 }

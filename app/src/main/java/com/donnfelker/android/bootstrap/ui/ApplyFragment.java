@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -57,6 +58,7 @@ public class ApplyFragment extends MenuFragment {
     @InjectView(R.id.reason) EditText reason;
     @InjectView(R.id.submit) BootstrapButton submit;
     ArrayAdapter<String> adapter;
+    private SafeAsyncTask<Boolean> submitTask;
     private ProgressDialog progressDialog;
     private Handler handler;        // 用handler来更新主线程UI
 
@@ -145,15 +147,23 @@ public class ApplyFragment extends MenuFragment {
             public void onNothingSelected(AdapterView<?> arg0) {}
         });
 
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setTitle(R.string.apply_try);
+        progressDialog.setMessage(getString(R.string.apply_wait));
+        progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                if (submitTask != null)
+                    submitTask.cancel(true);
+            }
+        });
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (validate()) {
                     //显示ProgressDialog
-                    progressDialog = ProgressDialog.show(getActivity(),
-                            getString(R.string.apply_try),
-                            getString(R.string.apply_wait),
-                            true, false);
+                    progressDialog.show();
                     submitApplication();
                 }
             }
@@ -184,8 +194,6 @@ public class ApplyFragment extends MenuFragment {
 
     private void submitApplication() {
 
-        SafeAsyncTask<Boolean> submitTask;
-
         submitTask = new SafeAsyncTask<Boolean>() {
 
             public Boolean call() throws Exception {
@@ -211,6 +219,11 @@ public class ApplyFragment extends MenuFragment {
             protected void onException(final Exception e) throws RuntimeException {
                 Ln.d("Apply: %s", e.getMessage());
                 Toast.makeText(getActivity(), getString(R.string.apply_error) + "\n" + e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            protected void onInterrupted(Exception e) {
+                Toast.makeText(getActivity(), getString(R.string.apply_cancel), Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -257,7 +270,9 @@ public class ApplyFragment extends MenuFragment {
      * Force a refresh of the items displayed ignoring any cached items
      */
     protected void forceRefresh() {
-
+        date.setText("");
+        type.setSelection(0);
+        reason.setText("");
     }
 
 }

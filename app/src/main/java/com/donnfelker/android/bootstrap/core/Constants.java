@@ -132,6 +132,7 @@ public final class Constants {
 
         public static final String DEVICE_NO = "device_no";
 
+        public static final String DEVICE_ITEM_NO = "device_item_no";
 
     }
 

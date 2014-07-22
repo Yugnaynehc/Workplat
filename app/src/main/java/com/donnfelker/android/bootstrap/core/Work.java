@@ -23,10 +23,8 @@ public class Work implements Serializable {
     protected String reason;
     // 记录审批情况
     protected String authorized;
-    // 记录该条申请的状态
-    protected String status;
     // 记录执行状态
-    protected String stage;
+    protected int status;
 
     protected String planid;
 
@@ -96,11 +94,11 @@ public class Work implements Serializable {
         this.authorized = athorized;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -115,8 +113,4 @@ public class Work implements Serializable {
     public void setPlanid(String planid) {
         this.planid = planid;
     }
-
-    public String getStage() { return stage; }
-
-    public void setStage(String stage) { this.stage = stage; }
 }

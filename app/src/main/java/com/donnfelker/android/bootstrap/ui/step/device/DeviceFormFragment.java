@@ -31,6 +31,7 @@ import butterknife.Views;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_CONTENT;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_DATE;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ID;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ITEM_NO;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NAME;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NO;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_RESULT;
@@ -88,13 +89,6 @@ public class DeviceFormFragment extends Fragment {
                 intent.putExtra(DEVICE_CONTENT, inspectContent);
                 intent.putExtra(DEVICE_STANDARD, inspectStandard);
                 intent.putExtra(DEVICE_RESULT, getResultList());
-//                try {
-//                    File file = new File(getActivity().getFilesDir(), deviceID + ".xml");
-//                    FileOutputStream out  = new FileOutputStream(file);
-//                    saveFile(out);
-//                } catch(IOException e) {
-//                    Ln.d(e.toString());
-//                }
                 getActivity().setResult(Activity.RESULT_OK, intent);
                 getActivity().finish();
             }
@@ -115,38 +109,6 @@ public class DeviceFormFragment extends Fragment {
         return result;
     }
 
-    private void saveFile(OutputStream out)  throws IOException {
-
-        XmlSerializer serializer = Xml.newSerializer();
-        serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
-        serializer.setOutput(out, "utf-8");
-        serializer.startDocument("GB2312", true);
-        serializer.startTag(null, "device");
-        serializer.attribute(null, "name", deviceName);
-        for (int i=0; i<inspectContent.size(); ++i) {
-            serializer.startTag(null, "item");
-            serializer.attribute(null, "name",inspectContent.get(i));
-            serializer.startTag(null, "standard");
-            serializer.text(inspectStandard.get(i));
-            serializer.endTag(null, "standard");
-            if(inspectResult.get(i).equals("正常")) {
-                serializer.startTag(null, "result");
-                serializer.text(inspectResult.get(i));
-                serializer.endTag(null, "result");
-            } else {
-                serializer.startTag(null, "result");
-                serializer.text("异常");
-                serializer.endTag(null, "result");
-                serializer.startTag(null, "exceptions");
-                serializer.text(inspectResult.get(i));
-                serializer.endTag(null, "exceptions");
-            }
-            serializer.endTag(null, "item");
-        }
-        serializer.endTag(null, "device");
-        serializer.endDocument();
-        out.close();
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -218,6 +180,7 @@ public class DeviceFormFragment extends Fragment {
                         exIntent.putExtra("pos", String.valueOf(position));
                         exIntent.putExtra("res",inspectResult.get(position));
                         exIntent.putExtra(DEVICE_ID, deviceID);
+                        exIntent.putExtra(DEVICE_ITEM_NO, position);
                         exIntent.setClass(getActivity(), ExceptionActivity.class);
                         getActivity().startActivityForResult(exIntent, 1);
                     }
@@ -227,7 +190,6 @@ public class DeviceFormFragment extends Fragment {
                     public void onClick(View view){
                         inspectResult.put(position,"正常");
                     }
-
 
                 });
             } catch (Exception e) {

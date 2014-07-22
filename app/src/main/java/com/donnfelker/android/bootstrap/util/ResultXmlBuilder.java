@@ -22,12 +22,13 @@ public class ResultXmlBuilder {
     public static void Build(Result result, OutputStream out) throws IOException {
 
         XmlSerializer serializer = Xml.newSerializer();
-        serializer.setOutput(out, "utf-8");
-        serializer.startDocument("utf-8", true);
+        serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
+        serializer.setOutput(out, "GB2312");
+        serializer.startDocument("GB2312", true);
 
-        // print inspect type in result xml file
-        serializer.startTag(null, result.getType());
+        serializer.startTag(null, "Total");
 
+        // print weather information
         serializer.startTag(null, "weather");
         serializer.attribute(null, "date", result.getEnv().getDate());
 
@@ -62,14 +63,11 @@ public class ResultXmlBuilder {
         }
 
         // print device inspect result
-        serializer.startTag(null, "Total");
         constructResult(result, serializer);
+
         serializer.endTag(null, "Total");
 
-        serializer.endTag(null, result.getType());
-
         serializer.endDocument();
-        //out.close();
     }
 
 

@@ -44,6 +44,10 @@
     <color name="dark_grey">#1f1f1f</color>
     <color name="navigation_drawer_item_separator">#c2c2c2</color>
 
+    <color name="dark_green">#ff00c10e</color>
+    <color name="dark_red">#ffa70020</color>
+    <color name="dark_blue">#ff000bc5</color>
+    <color name="light_grey">#ff676767</color>
 
 
 

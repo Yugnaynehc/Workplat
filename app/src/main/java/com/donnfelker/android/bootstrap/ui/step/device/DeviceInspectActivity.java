@@ -115,11 +115,22 @@ public class DeviceInspectActivity extends BootstrapFragmentActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-            String re = data.getStringExtra("result");
-            int pos = Integer.parseInt(data.getStringExtra("pos"));
-            inspectResult.put(pos, re);
+        switch (requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    String re = data.getStringExtra("result");
+                    int pos = Integer.parseInt(data.getStringExtra("pos"));
+                    inspectResult.put(pos, re);
+                }
+                else if (resultCode == RESULT_CANCELED) {
+                    // TODO 重新选中RadioGroup中的“正常”选项
+                }
+                break;
+
+            default:
+                break;
         }
+
         super.onActivityResult(requestCode, resultCode, data);
     }
 

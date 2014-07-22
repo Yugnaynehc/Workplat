@@ -1,6 +1,8 @@
 package com.donnfelker.android.bootstrap.ui;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 
@@ -17,6 +19,8 @@ import static com.donnfelker.android.bootstrap.core.Constants.Substation;
  */
 public class WorkListAdapter extends AlternatingColorListAdapter<Work> {
 
+    private FragmentActivity activity;
+
     /**
      * @param inflater
      * @param items
@@ -28,16 +32,17 @@ public class WorkListAdapter extends AlternatingColorListAdapter<Work> {
     }
 
     /**
-     * @param inflater
+     * @param activity
      * @param items
      */
-    public WorkListAdapter(final LayoutInflater inflater, final List<Work> items) {
-        super(R.layout.work_list_item, inflater, items);
+    public WorkListAdapter(final FragmentActivity activity, final List<Work> items) {
+        super(R.layout.work_list_item, activity.getLayoutInflater(), items);
+        this.activity = activity;
     }
 
     @Override
     protected int[] getChildViewIds() {
-        return new int[]{R.id.tv_icon, R.id.tv_type, R.id.tv_stage};
+        return new int[]{R.id.tv_icon, R.id.tv_type, R.id.tv_status};
     }
 
     @Override
@@ -57,43 +62,78 @@ public class WorkListAdapter extends AlternatingColorListAdapter<Work> {
         FontAwesomeText fat = getView(0, FontAwesomeText.class);
         switch (Substation.indexOf(work.getType())) {
         case 1:
-            str = "全面巡检"; icon = "fa-check-square"; break;
+            str = activity.getString(R.string.inspect_normal_total);
+            icon = "fa-check-square";
+            break;
         case 2:
-            str = "日常巡检"; icon = "fa-tag"; break;
+            str = activity.getString(R.string.inspect_normal_daily);
+            icon = "fa-tag";
+            break;
         case 3:
-            str = "雷雨特殊巡检"; icon = "fa-bolt"; break;
+            str = activity.getString(R.string.inspect_special_thunderstorm);
+            icon = "fa-bolt";
+            break;
         case 4:
-            str = "雪天特殊巡检"; icon = "fa-spinner"; break;
+            str = activity.getString(R.string.inspect_special_snowy);
+            icon = "fa-spinner";
+            break;
         case 5:
-            str = "大雾特殊巡检"; icon = "fa-eye"; break;
+            str = activity.getString(R.string.inspect_special_foggy);
+            icon = "fa-eye";
+            break;
         case 6:
-            str = "大风特殊巡检"; icon = "fa-cog"; break;
+            str = activity.getString(R.string.inspect_special_windy);
+            icon = "fa-cog";
+            break;
         case 7:
-            str = "夜间熄灯特殊巡检"; icon = "fa-lightbulb-o"; break;
+            str = activity.getString(R.string.inspect_special_nightlight);
+            icon = "fa-lightbulb-o";
+            break;
         case 8:
-            str = "设备异常缺陷跟踪特殊巡检"; icon = "fa-bell"; break;
+            str = activity.getString(R.string.inspect_special_bugtrace);
+            icon = "fa-bell";
+            break;
         case 9:
-            str = "红外线测试作业"; icon = "fa-arrow-up"; break;
+            str = activity.getString(R.string.inspect_job_infraredtesting);
+            icon = "fa-arrow-up";
+            break;
         case 10:
-            str = "主变冷却器切换试验作业"; icon = "fa-exchange"; break;
+            str = activity.getString(R.string.inspect_job_switchcooler);
+            icon = "fa-exchange";
+            break;
         case 11:
-            str = "事故照明切换作业"; icon = "fa-sun-o"; break;
+            str = activity.getString(R.string.inspect_job_emergencylightswitch);
+            icon = "fa-sun-o";
+            break;
         case 12:
-            str = "蓄电池定期测试作业"; icon = "fa-adjust"; break;
+            str = activity.getString(R.string.inspect_job_batteryperiodictesting);
+            icon = "fa-adjust";
+            break;
         case 13:
-            str = "轮换作业"; icon = "fa-refresh"; break;
+            str = activity.getString(R.string.inspect_job_deviceperiodictestingrotation);
+            icon = "fa-refresh";
+            break;
         case 14:
-            str = "设备定期维护作业"; icon = "fa-wrench"; break;
+            str = activity.getString(R.string.inspect_job_deviceperiodicmaintance);
+            icon = "fa-wrench";
+            break;
         case 15:
-            str = "道闸操作作业"; icon = "fa-random"; break;
+            str = activity.getString(R.string.inspect_job_barriergateoperate);
+            icon = "fa-random";
+            break;
         default:
             break;
         }
-        if (work.getStage() == null)
-            work.setStage("待完成");
+
         fat.setIcon(icon);
         fat.setTextColor(color);
         setText(1, String.format("%s", str));
-        setText(2, String.format("%s", work.getStage()));
+        if (work.getStatus() == 0) {
+            setText(2, String.format("%s", activity.getString(R.string.work_todo)))
+                    .setTextColor(activity.getResources().getColor(R.color.dark_blue));
+        }
+        else
+            setText(2, String.format("%s", activity.getString(R.string.work_done)))
+                    .setTextColor(activity.getResources().getColor(R.color.dark_green));
     }
 }

@@ -1,7 +1,6 @@
 package com.donnfelker.android.bootstrap.ui.step.device;
 
 
-
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.app.Activity;
@@ -26,6 +25,9 @@ import java.io.IOException;
 import butterknife.InjectView;
 import butterknife.Views;
 
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ID;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ITEM_NO;
+
 public class ExceptionActivity extends Activity {
     @InjectView(R.id.button1)protected Button button1;
     @InjectView(R.id.button2)protected Button button2;
@@ -35,8 +37,8 @@ public class ExceptionActivity extends Activity {
     private String position;
     private String res;
     private String deviceID;
-    private static int num;
-
+    private int itemNo;
+    int picIndex = 0;
 
 
     @Override
@@ -46,10 +48,11 @@ public class ExceptionActivity extends Activity {
         Views.inject(this);
         Intent exIntent = this.getIntent();
 
-
-
         position =  exIntent.getStringExtra("pos");
         res= exIntent.getStringExtra("res");
+        deviceID = exIntent.getStringExtra(DEVICE_ID);
+        itemNo = exIntent.getIntExtra(DEVICE_ITEM_NO, -1);
+
         if (!res.equals("正常"))
             ed.setText(res);
         button1.setOnClickListener(new OnClickListener() {
@@ -60,8 +63,8 @@ public class ExceptionActivity extends Activity {
                     Toast.makeText(ExceptionActivity.this, "请输入异常信息", Toast.LENGTH_LONG).show();
                 else {
                     Intent intent = getIntent();
-                    intent.putExtra("pos",position);
-                    intent.putExtra("result",ed.getText().toString());
+                    intent.putExtra("pos", position);
+                    intent.putExtra("result", ed.getText().toString());
                     ExceptionActivity.this.setResult(RESULT_OK,intent);
                     ExceptionActivity.this.finish();
                 }
@@ -79,8 +82,8 @@ public class ExceptionActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-
-
+                Intent intent = getIntent();
+                ExceptionActivity.this.setResult(RESULT_CANCELED, intent);
                 ExceptionActivity.this.finish();
             }
         });
@@ -90,8 +93,6 @@ public class ExceptionActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode,int resultCode,Intent data)
     {
-        int index;
-        index = 0;
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK)
         {
@@ -100,11 +101,11 @@ public class ExceptionActivity extends Activity {
             im = (ImageView) findViewById(R.id.imageView1);
             im.setImageBitmap(bitmap);
             FileOutputStream b = null;
-            File file = new File(getFilesDir(), deviceID + "_" + index + ".jpg");
+            File file = new File(getFilesDir(), deviceID + "_" + itemNo + "_" + picIndex + ".jpg");
             try {
                 b = new FileOutputStream(file);
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, b);// 把数据写入文件
-                index++;
+                picIndex++;
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } finally {

@@ -74,13 +74,11 @@ public class ProcessCarouselFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_carousel_process, container, false);
-    }
+        super.onCreateView(inflater, container, savedInstanceState);
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Views.inject(this, getView());
+        View view = inflater.inflate(R.layout.fragment_carousel_process, container, false);
+        Views.inject(this, view);
+
         pagerAdapter = new InspectPagerAdapter(getResources(), getChildFragmentManager());
         pager.setAdapter(pagerAdapter);
         indicator.setViewPager(pager);
@@ -92,6 +90,24 @@ public class ProcessCarouselFragment extends Fragment {
         prev.setOnClickListener(new MyOnClickListener());
         next.setOnClickListener(new MyOnClickListener());
         prev.setBootstrapButtonEnabled(false);
+
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setTitle(R.string.upload_try);
+        progressDialog.setMessage(getString(R.string.upload_wait));
+        progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                if (uploadTask != null)
+                    uploadTask.cancel(true);
+            }
+        });
+
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 
     private boolean validation() {
@@ -141,13 +157,11 @@ public class ProcessCarouselFragment extends Fragment {
                     Toaster.showLong(getActivity(), R.string.error_no_device_result);
                     return;
                 }
-                progressDialog = ProgressDialog.show(getActivity(),
-                        getString(R.string.upload_try),
-                        getString(R.string.upload_wait),
-                        true, false);
+                progressDialog.show();
                 uploadTask = new UploadTask();
                 uploadTask.execute();
             } catch (Exception e) {
+                e.printStackTrace();
                 Ln.d("upload: %s", e.toString());
             }
         }
@@ -158,7 +172,7 @@ public class ProcessCarouselFragment extends Fragment {
         public Boolean call() throws Exception {
 
 
-            String resultId = ((WorkActivity)getActivity()).getResult().getResultid();
+            String resultId = result.getResultid();
             String type = ((WorkActivity)getActivity()).getWork().getType();
             String query = String.format("?%s=%s&%s=%s&%s=%s&%s=%s&%s=%s",
                     "username", getActivity().getSharedPreferences(USER_INFO, Context.MODE_PRIVATE).getString(USER_INFO_NAME, ""),
@@ -169,12 +183,28 @@ public class ProcessCarouselFragment extends Fragment {
 
             Ln.d("upload result url: %s", URL_UPLOAD + query);
 
+            // build result xml
             File xmlResult = new File(getActivity().getFilesDir(), "result_" + resultId + ".xml");
             FileOutputStream fos = new FileOutputStream(xmlResult);
-
             ResultXmlBuilder.Build(result, fos);
             fos.flush();
             fos.close();
+
+            // upload images 先上传图片信息
+            String jpgExtension = "jpg";
+            File[] files = getActivity().getFilesDir().listFiles();
+            for (File file : files) {
+                if (file.isFile() && !file.getName().contains("result")) {
+                    if (file.getPath().substring(file.getPath().length() - jpgExtension.length()).
+                            equals(jpgExtension)) {
+                        HttpRequest request = HttpRequest.post(URL_UPLOAD + query);
+                        request.part("upload", file.getName(), "image/jpeg", file);
+                        Ln.d("upload result jpg");
+                        if (!request.ok())
+                            return false;
+                    }
+                }
+            }
 
             HttpRequest request = HttpRequest.post(URL_UPLOAD + query);
             request.part("upload", xmlResult.getName(), "text/plain", xmlResult);
@@ -186,6 +216,7 @@ public class ProcessCarouselFragment extends Fragment {
         public void onSuccess(final Boolean uploadSuccess) {
             // delete result files 删除结果文件
             if (uploadSuccess) {
+                Toast.makeText(getActivity(), getString(R.string.upload_success), Toast.LENGTH_LONG).show();
                 try {
                     File[] files = getActivity().getFilesDir().listFiles();
                     for (File file : files) {
@@ -194,17 +225,24 @@ public class ProcessCarouselFragment extends Fragment {
                     }
                     Ln.d("upload result clean");
                     Ln.d("upload result success");
+                    getActivity().finish();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-            getActivity().finish();
+            else
+                Toast.makeText(getActivity(), getString(R.string.upload_failed), Toast.LENGTH_LONG).show();
         }
 
-//        @Override
-//        public void onException(final Exception e) throws RuntimeException {
-//            Toaster.showLong(getActivity(), e.getMessage());
-//        }
+        @Override
+        public void onException(final Exception e) throws RuntimeException {
+            Toaster.showLong(getActivity(), getString(R.string.upload_error) + "\n" + e.getMessage());
+        }
+
+        @Override
+        protected void onInterrupted(Exception e) {
+            Toast.makeText(getActivity(), getString(R.string.upload_cancel), Toast.LENGTH_LONG).show();
+        }
 
         @Override
         protected void onFinally() throws RuntimeException {

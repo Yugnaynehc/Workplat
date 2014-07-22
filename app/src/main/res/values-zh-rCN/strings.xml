@@ -31,6 +31,8 @@
     <string name="date_column">日期</string>
     <string name="work_type_column">类型</string>
     <string name="work_state_column">状态</string>
+    <string name="work_todo">未完成</string>
+    <string name="work_done">已完成</string>
     <string name="defect_device_column">设备</string>
     <string name="defect_description_column">缺陷描述</string>
     <string name="result_device_column">设备名称</string>
@@ -42,6 +44,7 @@
     <string name="no_users">无用户</string>
     <string name="no_news">无新闻</string>
     <string name="no_works">无工作单</string>
+    <string name="no_defects">无缺陷记录</string>
     <string name="no_device_results">无设备巡检结果</string>
     <string name="avatar">Avatar</string>
     <string name="choose">Choose</string>
@@ -59,8 +62,13 @@
     <string name="apply_success">申请成功</string>
     <string name="apply_failed">申请失败</string>
     <string name="apply_error">申请出错</string>
+    <string name="apply_cancel">取消申请</string>
     <string name="upload_try">上传结果</string>
-    <string name="upload_wait">结果上传中，请稍稍候</string>
+    <string name="upload_wait">结果上传中，请稍候</string>
+    <string name="upload_success">上传成功</string>
+    <string name="upload_failed">上传失败</string>
+    <string name="upload_error">上传出错</string>
+    <string name="upload_cancel">取消上传</string>
 
     <!-- AuthenticatorActivity -->
     <string name="label_email_address">用户名</string>
@@ -87,7 +95,7 @@
 
     <!-- Exception -->
     <string name="error_blank">请输入完整信息</string>
-    <string name="error_no_device_result">无巡设备巡检结果。请扫描设备，并填写巡检表单。</string>
+    <string name="error_no_device_result">无巡设备巡检结果。请将终端靠近设备标签，在扫描成功后，请填写巡检表单。</string>
     <string name="error_404">无法连接到服务器</string>
 
 

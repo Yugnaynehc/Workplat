@@ -143,7 +143,7 @@ public class MainActivity extends BootstrapFragmentActivity {
             final FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.container, new CarouselFragment())
-                    .commit();
+                    .commitAllowingStateLoss();
         }
 
         String locationProvider = LocationManager.NETWORK_PROVIDER;

@@ -280,7 +280,6 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
                     userInfo.edit().putString(USER_INFO_ID, model.getId()).commit();
                     userInfo.edit().putString(USER_INFO_SUBSTATION_ID, model.getSubstationid()).commit();
                     token = model.getSessionToken();
-                    Ln.d("user.post=%s",  new Gson().toJson(model));
                 }
 
                 return request.ok();
@@ -301,6 +300,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
                     message = cause.getMessage();
                 }
 
+                passwordText.setText("");
                 Toaster.showLong(BootstrapAuthenticatorActivity.this, message);
             }
 
