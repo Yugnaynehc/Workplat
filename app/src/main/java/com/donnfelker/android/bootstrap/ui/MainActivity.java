@@ -256,9 +256,11 @@ public class MainActivity extends BootstrapFragmentActivity {
             case android.R.id.home:
                 // menuDrawer.toggleMenu();
                 return true;
+            /*
             case R.id.timer:
                 navigateToTimer();
                 return true;
+                */
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -279,10 +281,12 @@ public class MainActivity extends BootstrapFragmentActivity {
                 // Home
                 // do nothing as we're already on the home screen.
                 break;
+            /*
             case 1:
                 // Timer
                 navigateToTimer();
                 break;
+                */
         }
     }
 
