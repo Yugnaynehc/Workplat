@@ -9,14 +9,12 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ListView;
 
-import com.donnfelker.android.bootstrap.BootstrapServiceProvider;
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.authenticator.LogoutService;
 import com.donnfelker.android.bootstrap.core.inspect.result.DeviceResult;
 import com.donnfelker.android.bootstrap.ui.ItemListFragment;
 import com.donnfelker.android.bootstrap.ui.ThrowableLoader;
 import com.donnfelker.android.bootstrap.ui.WorkActivity;
-import com.donnfelker.android.bootstrap.ui.step.device.DeviceActivity;
 import com.donnfelker.android.bootstrap.ui.step.device.DeviceInspectActivity;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 
@@ -25,9 +23,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ID;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NO;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_RESULT;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.*;
 import static com.donnfelker.android.bootstrap.core.Constants.Intent.EDIT_EXISTENT_RESULT;
 
 /**
@@ -91,6 +87,9 @@ public class ResultListFragment extends ItemListFragment<DeviceResult> implement
         DeviceResult deviceResult = ((DeviceResult) l.getItemAtPosition(position));
         Intent intent = new Intent(getActivity(), DeviceInspectActivity.class);
         intent.putExtra(DEVICE_ID, deviceResult.getDeviceID());
+        intent.putExtra(DEVICE_DATE, deviceResult.getDeviceDate());
+        intent.putExtra(DEVICE_CONTENT, deviceResult.getInspectContent());
+        intent.putExtra(DEVICE_STANDARD, deviceResult.getInspectStandard());
         intent.putExtra(DEVICE_RESULT, deviceResult.getInspectResult());
         intent.putExtra(DEVICE_NO, position - 1);
         getActivity().startActivityForResult(intent, EDIT_EXISTENT_RESULT);

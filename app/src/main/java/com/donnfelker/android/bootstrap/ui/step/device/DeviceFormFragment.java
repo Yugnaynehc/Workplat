@@ -18,13 +18,9 @@ import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
-import com.donnfelker.android.bootstrap.util.Ln;
 
-import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlSerializer;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -32,11 +28,13 @@ import java.util.ArrayList;
 import butterknife.InjectView;
 import butterknife.Views;
 
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_CONTENT;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_DATE;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ID;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NAME;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_DATE;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NO;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_RESULT;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_STANDARD;
 
 /**
  * Created by feather on 14-7-17.
@@ -87,14 +85,16 @@ public class DeviceFormFragment extends Fragment {
                 intent.putExtra(DEVICE_NAME, deviceName);
                 intent.putExtra(DEVICE_DATE, deviceDate);
                 intent.putExtra(DEVICE_NO, deviceNo);
+                intent.putExtra(DEVICE_CONTENT, inspectContent);
+                intent.putExtra(DEVICE_STANDARD, inspectStandard);
                 intent.putExtra(DEVICE_RESULT, getResultList());
-                try {
-                    File file = new File(getActivity().getFilesDir(), deviceID + ".xml");
-                    FileOutputStream out  = new FileOutputStream(file);
-                    saveFile(out);
-                } catch(IOException e) {
-                    Ln.d(e.toString());
-                }
+//                try {
+//                    File file = new File(getActivity().getFilesDir(), deviceID + ".xml");
+//                    FileOutputStream out  = new FileOutputStream(file);
+//                    saveFile(out);
+//                } catch(IOException e) {
+//                    Ln.d(e.toString());
+//                }
                 getActivity().setResult(Activity.RESULT_OK, intent);
                 getActivity().finish();
             }

@@ -20,10 +20,7 @@ import java.util.ArrayList;
 
 import butterknife.Views;
 
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ID;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NO;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_DATE;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_RESULT;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.*;
 /**
  * Created by Feather on 14-7-17.
  */
@@ -57,16 +54,16 @@ public class DeviceInspectActivity extends BootstrapFragmentActivity {
         deviceID = scanDevice.getStringExtra(DEVICE_ID);
         deviceNo = scanDevice.getIntExtra(DEVICE_NO, -1);
         deviceDate = scanDevice.getStringExtra(DEVICE_DATE);
-        inspectContent = new ArrayList<String>();
-        inspectStandard = new ArrayList<String>();
-        initInspectData();
+
         if (deviceNo != -1) {
+            inspectContent = scanDevice.getStringArrayListExtra(DEVICE_CONTENT);
+            inspectStandard = scanDevice.getStringArrayListExtra(DEVICE_STANDARD);
             initInspectResult(scanDevice.getStringArrayListExtra(DEVICE_RESULT));
         } else {
+            inspectContent = new ArrayList<String>();
+            inspectStandard = new ArrayList<String>();
             inspectResult = new SparseArray<String>();
-            for(int i=0; i<inspectContent.size(); i++) {
-                inspectResult.put(i,"正常");
-            }
+            initInspectData();
         }
 
         fragmentManager = this.getSupportFragmentManager();
@@ -183,6 +180,11 @@ public class DeviceInspectActivity extends BootstrapFragmentActivity {
                         break;
                 }
                 eventType = parser.next();
+            }
+
+            // init inspect result
+            for(int i=0; i<inspectContent.size(); ++i) {
+                inspectResult.put(i, "正常");
             }
 
         } catch (Exception e) {
