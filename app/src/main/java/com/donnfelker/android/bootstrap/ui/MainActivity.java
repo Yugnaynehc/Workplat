@@ -254,7 +254,7 @@ public class MainActivity extends BootstrapFragmentActivity {
 
         switch (item.getItemId()) {
             case android.R.id.home:
-                //menuDrawer.toggleMenu();
+                // menuDrawer.toggleMenu();
                 return true;
             case R.id.timer:
                 navigateToTimer();

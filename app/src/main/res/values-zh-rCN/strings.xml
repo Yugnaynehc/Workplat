@@ -58,6 +58,9 @@
     <string name="apply_wait">申请中，请稍候</string>
     <string name="apply_success">申请成功</string>
     <string name="apply_failed">申请失败</string>
+    <string name="apply_error">申请出错</string>
+    <string name="upload_try">上传结果</string>
+    <string name="upload_wait">结果上传中，请稍稍候</string>
 
     <!-- AuthenticatorActivity -->
     <string name="label_email_address">用户名</string>
@@ -81,5 +84,8 @@
     <string name="navigation_drawer_close">抽屉关闭</string>
     <string name="title_home">主页</string>
     <string name="title_work">工作单</string>
+
+    <!-- Exception -->
+    <string name="error_404">无法连接到服务器</string>
 
 </resources>

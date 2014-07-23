@@ -59,8 +59,9 @@
     <string name="apply_wait">Applying, please wait.</string>
     <string name="apply_success">Apply Success</string>
     <string name="apply_failed">Apply Failed</string>
-    <string name="upload_try">上传结果</string>
-    <string name="upload_wait">结果上传中，请稍稍候</string>
+    <string name="apply_error">Apply Error</string>
+    <string name="upload_try">Try to upload</string>
+    <string name="upload_wait">Uploading, please wait.</string>
 
     <!-- AuthenticatorActivity -->
     <string name="label_email_address">Email Address</string>
@@ -163,5 +164,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <!-- Exception -->
+    <string name="error_404">Not Found.</string>
 
 </resources>

@@ -38,7 +38,7 @@ public class WelcomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.welcome_activity);
-        mHandler.sendEmptyMessageDelayed(GOTO_MAIN_ACTIVITY, 1000); // 1秒跳转
+        mHandler.sendEmptyMessageDelayed(GOTO_MAIN_ACTIVITY, 1300); // 1.3秒跳转
     }
 
 }

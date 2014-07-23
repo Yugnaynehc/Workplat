@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.R.id;
 import com.donnfelker.android.bootstrap.R.layout;
 import com.donnfelker.android.bootstrap.R.string;
@@ -37,6 +38,9 @@ import com.github.kevinsawicki.wishlist.Toaster;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.apache.http.HttpException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -255,15 +259,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
         authenticationTask = new SafeAsyncTask<Boolean>() {
             public Boolean call() throws Exception {
-                // 建立一个HttpRequest，这是需要修改的地方。
-                /*
-                final String query = String.format("%s=%s&%s=%s",
-                        PARAM_USERNAME, email, PARAM_PASSWORD, password);
 
-                final HttpRequest request = get(URL_AUTH + "?" + query)
-                        .header(HEADER_PARSE_APP_ID, PARSE_APP_ID)
-                        .header(HEADER_PARSE_REST_API_KEY, PARSE_REST_API_KEY);
-                */
                 final String query = String.format("%s=%s&%s=%s",
                         PARAM_USERNAME, email, PARAM_PASSWORD, password);
 
@@ -271,14 +267,9 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
                 Ln.d("Authentication response=%s", request.code());
 
+                if (request.notFound())
+                    throw new HttpException(getString(R.string.error_404));
                 if (request.ok()) {
-                    /*
-                    List<User> userList = new Gson().fromJson(
-                            Strings.toString(request.buffer()),
-                            new TypeToken<List<User>>() {
-                            }.getType()
-                    );
-                    */
 
                     final User model = new Gson().fromJson(
                             Strings.toString(request.buffer()),

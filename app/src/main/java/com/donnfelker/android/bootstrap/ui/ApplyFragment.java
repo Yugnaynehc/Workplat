@@ -33,6 +33,8 @@ import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.github.kevinsawicki.wishlist.Toaster;
 
+import org.apache.http.HttpException;
+
 import java.net.URLEncoder;
 import java.util.Calendar;
 
@@ -206,21 +208,23 @@ public class ApplyFragment extends MenuFragment {
                         "exeTime", date.getText().toString(),
                         "reason", URLEncoder.encode(URLEncoder.encode(sreason, "UTF-8"), "UTF-8"));
                 final HttpRequest request = HttpRequest.post(URL_APPLY + query).acceptCharset("UTF-8");
-                Ln.d("Apply: %s", URL_APPLY  + query);
-                Ln.d("Authentication response=%s", request.code());
+                if (request.notFound())
+                    throw new HttpException(getString(R.string.error_404));
                 return request.ok();
             }
 
             @Override
             protected void onException(final Exception e) throws RuntimeException {
-                super.onException(e);
                 Ln.d("Apply: %s", e.getMessage());
-                Toast.makeText(getActivity(), "申请失败" + e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getString(R.string.apply_error) + "\n" + e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
             @Override
-            public void onSuccess(final Boolean authSuccess) {
-                Toast.makeText(getActivity(), "申请成功", Toast.LENGTH_LONG).show();
+            public void onSuccess(final Boolean applySuccess) {
+                if (applySuccess)
+                    Toast.makeText(getActivity(), getString(R.string.apply_success), Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(getActivity(), getString(R.string.apply_failed), Toast.LENGTH_LONG).show();
             }
 
             @Override

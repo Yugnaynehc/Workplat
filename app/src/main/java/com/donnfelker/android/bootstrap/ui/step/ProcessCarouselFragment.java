@@ -29,6 +29,8 @@ import com.viewpagerindicator.TitlePageIndicator;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.net.URLEncoder;
+
 import org.apache.commons.io.FileUtils;
 
 import butterknife.InjectView;
@@ -149,11 +151,12 @@ public class ProcessCarouselFragment extends Fragment {
         public Boolean call() throws Exception {
 
             String resultId = ((WorkActivity)getActivity()).getResult().getResultid();
+            String type = ((WorkActivity)getActivity()).getWork().getType();
             String query = String.format("?%s=%s&%s=%s&%s=%s&%s=%s&%s=%s",
                     "username", getActivity().getSharedPreferences(USER_INFO, Context.MODE_PRIVATE).getString(USER_INFO_NAME, ""),
                     "substationid", ((WorkActivity)getActivity()).getWork().getSubstation(),
                     "resultid", resultId,
-                    "type", ((WorkActivity)getActivity()).getWork().getType(),
+                    "type", URLEncoder.encode(URLEncoder.encode(type, "UTF-8"), "UTF-8"),
                     "planid", ((WorkActivity)getActivity()).getWork().getPlanid());
             String xmlExtension = "xml";
             String jpgExtension = "jpg";
