@@ -15,6 +15,7 @@ import com.donnfelker.android.bootstrap.Injector;
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.authenticator.LogoutService;
 import com.donnfelker.android.bootstrap.core.Work;
+import com.donnfelker.android.bootstrap.util.ResultXmlBuilder;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 import com.github.kevinsawicki.wishlist.Toaster;
 
@@ -25,6 +26,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.WORK_ITEM;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.RESULT_ITEM;
 import static com.donnfelker.android.bootstrap.core.Constants.UPreference.*;
 import static com.donnfelker.android.bootstrap.core.Constants.Intent.*;
 
@@ -103,7 +105,12 @@ public class WorkListFragment extends ItemListFragment<Work> {
 
     public void onListItemClick(ListView l, View v, int position, long id) {
         final Work work = ((Work) l.getItemAtPosition(position));
-        startActivity(new Intent(getActivity(), WorkActivity.class).putExtra(WORK_ITEM, work));
+        Intent intent = new Intent(getActivity(), WorkActivity.class);
+        intent.putExtra(WORK_ITEM, work);
+        if (work.getStatus() == 2) {
+            intent.putExtra(RESULT_ITEM, ResultXmlBuilder.GET(work.getPlanid()));
+        }
+        startActivity(intent);
     }
 
     @Override

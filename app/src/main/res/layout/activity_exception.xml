@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -9,30 +10,39 @@ xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.donnfelker.android.bootstrap.ui.step.device.ExceptionActivity"
     android:background="@drawable/back_2">
 
-    <Button
+    <com.beardedhen.androidbootstrap.BootstrapButton
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        bootstrapbutton:bb_roundedCorners="true"
+        bootstrapbutton:bb_type="default"
+        bootstrapbutton:bb_icon_right="fa-check"
         android:textSize="20dp"
         android:text="确定" />
 
-    <Button
+    <com.beardedhen.androidbootstrap.BootstrapButton
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="16dp"
+        bootstrapbutton:bb_roundedCorners="true"
+        bootstrapbutton:bb_type="default"
+        bootstrapbutton:bb_icon_right="fa-times"
         android:textSize="20dp"
         android:text="取消" />
 
-    <Button
+    <com.beardedhen.androidbootstrap.BootstrapButton
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        bootstrapbutton:bb_roundedCorners="true"
+        bootstrapbutton:bb_type="default"
+        bootstrapbutton:bb_icon_right="fa-camera"
         android:textSize="20dp"
         android:text="拍照" />
 

@@ -16,7 +16,7 @@
 
     <application
         android:name=".BootstrapApplication"
-        android:icon="@drawable/icon"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:theme="@style/Theme.Bootstrap.Dark"
         android:allowBackup="true">

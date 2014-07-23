@@ -65,7 +65,10 @@ public class WorkActivity extends BootstrapFragmentActivity {
         if (getIntent() != null && getIntent().getExtras() != null) {
             work = (Work) getIntent().getExtras().getSerializable(WORK_ITEM);
         }
-        result = new Result();
+        result = (Result)getIntent().getSerializableExtra(RESULT_ITEM);
+        if (result == null)
+            result = new Result();
+
         result.setType(work.getType());
         result.setResultid(work.getPlanid());
 

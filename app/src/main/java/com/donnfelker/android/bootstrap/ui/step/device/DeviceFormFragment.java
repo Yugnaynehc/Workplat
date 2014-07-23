@@ -43,12 +43,8 @@ import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_STAND
 public class DeviceFormFragment extends Fragment {
 
     @InjectView(R.id.inspect_detail)protected ListView list;
-    @InjectView(R.id.submit)protected BootstrapButton submit;
     private DeviceAdapter adapter;
     private String deviceID;
-    private String deviceName;
-    private String deviceDate;
-    private int deviceNo;
     private ArrayList<String> inspectContent;
     private ArrayList<String> inspectStandard;
     private SparseArray<String> inspectResult;
@@ -66,59 +62,15 @@ public class DeviceFormFragment extends Fragment {
         Views.inject(this, view);
 
         deviceID = ((DeviceInspectActivity)getActivity()).getDeviceID();
-        deviceName = ((DeviceInspectActivity)getActivity()).getDeviceName();
-        deviceDate = ((DeviceInspectActivity)getActivity()).getDeviceDate();
-        deviceNo = ((DeviceInspectActivity)getActivity()).getDeviceNo();
         inspectContent = ((DeviceInspectActivity)getActivity()).getInspectContent();
         inspectStandard = ((DeviceInspectActivity)getActivity()).getInspectStandard();
         inspectResult = ((DeviceInspectActivity)getActivity()).getInspectResult();
 
-        if (deviceNo != -1)
-            submit.setText(this.getResources().getString(R.string.button_edit));
-
         adapter = new DeviceAdapter(getActivity());
         list.setAdapter(adapter);
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.putExtra(DEVICE_ID, deviceID);
-                intent.putExtra(DEVICE_NAME, deviceName);
-                intent.putExtra(DEVICE_DATE, deviceDate);
-                intent.putExtra(DEVICE_NO, deviceNo);
-                intent.putExtra(DEVICE_CONTENT, inspectContent);
-                intent.putExtra(DEVICE_STANDARD, inspectStandard);
-                intent.putExtra(DEVICE_RESULT, getResultList());
-                getActivity().setResult(Activity.RESULT_OK, intent);
-                getActivity().finish();
-            }
-        });
         return view;
     }
 
-    private ArrayList<String> getResultList() {
-        ArrayList<String> result = new ArrayList<String>();
-
-        for (int i=0; i<inspectContent.size(); ++i) {
-            String item = inspectResult.get(i);
-            if (item == null)
-                result.add("");
-            else
-                result.add(item);
-        }
-        return result;
-    }
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Toast.makeText(getActivity(), "返回数据", Toast.LENGTH_LONG).show();
-        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
-            String re = data.getStringExtra("result");
-            int pos = Integer.parseInt(data.getStringExtra("pos"));
-            inspectResult.put(pos, re);
-        }
-    }
 
     private class DeviceAdapter extends BaseAdapter {
 

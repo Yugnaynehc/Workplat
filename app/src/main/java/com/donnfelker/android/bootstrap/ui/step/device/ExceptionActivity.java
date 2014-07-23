@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.util.Ln;
 
@@ -29,9 +30,9 @@ import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ID;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ITEM_NO;
 
 public class ExceptionActivity extends Activity {
-    @InjectView(R.id.button1)protected Button button1;
-    @InjectView(R.id.button2)protected Button button2;
-    @InjectView(R.id.button3)protected Button button3;
+    @InjectView(R.id.button1)protected BootstrapButton button1;
+    @InjectView(R.id.button2)protected BootstrapButton button2;
+    @InjectView(R.id.button3)protected BootstrapButton button3;
     @InjectView(R.id.editText1)protected EditText ed;
     @InjectView(R.id.imageView1)protected ImageView im;
     private String position;
@@ -120,11 +121,5 @@ public class ExceptionActivity extends Activity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
 
 }

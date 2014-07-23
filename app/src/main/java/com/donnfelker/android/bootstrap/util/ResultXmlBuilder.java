@@ -104,4 +104,12 @@ public class ResultXmlBuilder {
             serializer.endTag(null, "device");
         }
     }
+
+    public static Result GET(String resultID) {
+
+        Result result = new Result();
+
+
+        return result;
+    }
 }

@@ -2,6 +2,7 @@ package com.donnfelker.android.bootstrap.core.inspect.result;
 
 import com.donnfelker.android.bootstrap.core.inspect.security.Security;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * result of inspect
  * 记录巡检结果的类
  */
-public class Result {
+public class Result implements Serializable {
 
     private String type;                // type of inspect
     private String resultid;            // result id

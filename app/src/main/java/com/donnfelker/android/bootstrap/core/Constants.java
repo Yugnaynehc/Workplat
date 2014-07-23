@@ -117,6 +117,8 @@ public final class Constants {
 
         public static final String WORK_ITEM = "work_item";
 
+        public static final String RESULT_ITEM = "result_item";
+
         public static final String WORK_ID = "work_id";
 
         public static final String DEVICE_ID = "device_id";
