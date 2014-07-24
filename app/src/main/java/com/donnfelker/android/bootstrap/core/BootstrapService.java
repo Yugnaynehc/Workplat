@@ -58,6 +58,8 @@ public class BootstrapService {
 
     private static final String PARM_LATITUDE = "latitude";
 
+    private static final String PARM_MAC = "mac";
+
 
     private static class UsersWrapper {
         private List<User> results;
@@ -237,9 +239,12 @@ public class BootstrapService {
     }
 
 
-    public Forecast getWeather(String longitude, String latitude) throws IOException {
+    public Forecast getWeather(String longitude, String latitude, String mac) throws IOException {
         try {
-            final String query = String.format("?%s=%s&%s=%s", PARM_LONGITUDE, longitude, PARM_LATITUDE, latitude);
+            final String query = String.format("?%s=%s&%s=%s&%s=%s",
+                    PARM_LONGITUDE, longitude,
+                    PARM_LATITUDE, latitude,
+                    PARM_MAC, mac);
             final HttpRequest request = execute(HttpRequest.get(URL_WEATHER + query));
             final Forecast response = fromJson(request, Forecast.class);
             Ln.d("Weather: request %s", URL_WEATHER + query);

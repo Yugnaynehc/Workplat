@@ -19,6 +19,7 @@ public class Result implements Serializable {
     private InspectEnvironment env;     // environment information of inspect
     private Security security;          // security information of inspect
     private List<DeviceResult> deviceResults;        // inspectd devices information list of inspect
+    protected String objectId;
 
     public Result() {
 
@@ -75,6 +76,15 @@ public class Result implements Serializable {
 
     public void setDeviceResults(List<DeviceResult> deviceResults) {
         this.deviceResults = deviceResults;
+    }
+
+    public void addInspectTools(InspectTool tool) {
+        if (this.tools == null) {
+            this.tools = new ArrayList<InspectTool>();
+            this.tools.add(tool);
+        }
+        else
+            this.tools.add(tool);
     }
 
     public void addDeviceResult(DeviceResult deviceResult) {

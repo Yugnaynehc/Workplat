@@ -2,10 +2,12 @@ package com.donnfelker.android.bootstrap.core.inspect.security;
 
 import android.util.SparseBooleanArray;
 
+import java.io.Serializable;
+
 /**
  * Created by Feather on 14-3-25.
  */
-public abstract class Security {
+public abstract class Security implements Serializable {
 
     private SparseBooleanArray select;
 

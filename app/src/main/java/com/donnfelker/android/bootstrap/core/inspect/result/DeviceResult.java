@@ -19,6 +19,8 @@ public class DeviceResult implements Serializable {
 
     private String objectId;
 
+    public DeviceResult() {}
+
     public DeviceResult(String deviceID,
                         String deviceName,
                         String  deviceDate,
@@ -92,5 +94,30 @@ public class DeviceResult implements Serializable {
     public void setInspectStandard(ArrayList<String> inspectStandard) {
         this.inspectStandard = inspectStandard;
     }
+
+    public void addInspectContent(String content) {
+        if (this.inspectContent == null) {
+            this.inspectContent = new ArrayList<String>();
+            this.inspectContent.add(content);
+        } else
+            this.inspectContent.add(content);
+    }
+
+    public void addInspectStandard(String standard) {
+        if (this.inspectStandard == null) {
+            this.inspectStandard = new ArrayList<String>();
+            this.inspectStandard.add(standard);
+        } else
+            this.inspectStandard.add(standard);
+    }
+
+    public void addInspectResult(String result) {
+        if (this.inspectResult == null) {
+            this.inspectResult = new ArrayList<String>();
+            this.inspectResult.add(result);
+        } else
+            this.inspectResult.add(result);
+    }
+
 }
 

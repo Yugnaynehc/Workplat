@@ -8,6 +8,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.net.wifi.WifiManager;
 import android.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
 import android.view.inputmethod.InputMethodManager;
@@ -81,6 +82,11 @@ public class AndroidModule {
     @Provides
     LocationManager provideLocationManager(final Context context) {
         return (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+    }
+
+    @Provides
+    WifiManager provideWifiManager(final Context context) {
+        return (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
     }
 
 }

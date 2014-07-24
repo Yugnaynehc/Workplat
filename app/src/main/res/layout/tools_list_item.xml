@@ -28,8 +28,6 @@
     <EditText
         android:id="@+id/et_tool_type"
         android:maxLines="1"
-        android:inputType="number"
-        android:numeric="integer"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_width="0dp"

@@ -8,7 +8,7 @@
     android:background="@drawable/back_2"
     android:layout_height="match_parent">
 
-    <com.viewpagerindicator.TitlePageIndicator
+    <com.donnfelker.android.bootstrap.util.MyTitlePageIndicator
         android:id="@+id/tpi_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

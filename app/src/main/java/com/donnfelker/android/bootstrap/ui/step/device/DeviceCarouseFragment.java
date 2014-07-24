@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
+import com.donnfelker.android.bootstrap.util.MyTitlePageIndicator;
 import com.donnfelker.android.bootstrap.util.MyViewPager;
 import com.viewpagerindicator.TitlePageIndicator;
 
@@ -27,7 +28,7 @@ import static com.donnfelker.android.bootstrap.core.Constants.Extra.*;
  */
 public class DeviceCarouseFragment extends Fragment {
 
-    @InjectView(R.id.tpi_header)protected TitlePageIndicator indicator;
+    @InjectView(R.id.tpi_header)protected MyTitlePageIndicator indicator;
 
     @InjectView(R.id.vp_pages)protected MyViewPager pager;
     protected DevicePagerAdapter pagerAdapter;

@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.inspect.result.InspectTool;
+import com.donnfelker.android.bootstrap.core.inspect.result.Result;
 import com.donnfelker.android.bootstrap.ui.WorkActivity;
 import com.donnfelker.android.bootstrap.util.Ln;
 
@@ -44,6 +45,8 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
     private SparseArray<String> numMap;
     private SparseArray<String> typeMap;
     private SparseBooleanArray selectMap;
+    private Result result;
+    private List<InspectTool> toolList;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -54,10 +57,15 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_tools, container, false);
+        result = ((WorkActivity)getActivity()).getResult();
+        toolList = result.getTools();
         toolsList = (ListView)view.findViewById(R.id.tools_list);
         numMap = new SparseArray<String>();
         typeMap = new SparseArray<String>();
-        adapter = new ToolsAdapter(getActivity());
+        if (toolList != null)
+            adapter = new hasToolsAdapter(getActivity());
+        else
+            adapter = new ToolsAdapter(getActivity());
         toolsList.setAdapter(adapter);
         return view;
     }
@@ -95,16 +103,16 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
 
     @Override
     public void saveResult() {
-        List<InspectTool> toolsList = new ArrayList<InspectTool>();
+        toolList = new ArrayList<InspectTool>();
         InspectTool tool;
         Ln.d("tools prepare fragment save result");
         for (int i=0;  i<toolsName.size(); ++i) {
             if (selectMap.get(i)) {
                 tool = new InspectTool(toolsName.get(i), typeMap.get(i), numMap.get(i));
-                toolsList.add(tool);
+                toolList.add(tool);
             }
         }
-        ((WorkActivity)getActivity()).getResult().setTools(toolsList);
+        result.setTools(toolList);
     }
 
     private class ToolsAdapter extends BaseAdapter {
@@ -171,7 +179,7 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
             return remark;
         }
 
-        private SparseBooleanArray initSelect() {
+        protected SparseBooleanArray initSelect() {
             SparseBooleanArray select = new SparseBooleanArray();
             for (int i=0; i<toolsName.size(); ++i)
                 select.put(i, false);
@@ -280,6 +288,30 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
 
             return convertView;
         }
+    }
+
+    private class hasToolsAdapter extends ToolsAdapter {
+
+        public hasToolsAdapter(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected SparseBooleanArray initSelect() {
+            SparseBooleanArray select = new SparseBooleanArray();
+            for (int i=0; i<toolsName.size(); ++i) {
+                for (InspectTool tool : toolList) {
+                    if (tool.getName().equals(toolsName.get(i))) {
+                        select.put(i, true);
+                        numMap.put(i, tool.getNum());
+                        typeMap.put(i, tool.getType());
+                    }
+                }
+
+            }
+            return select;
+        }
+
     }
 
     static class ToolsViewHolder {

@@ -8,6 +8,8 @@ import android.content.res.Configuration;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentManager;
@@ -41,6 +43,8 @@ public class MainActivity extends BootstrapFragmentActivity {
 
     @Inject protected BootstrapServiceProvider serviceProvider;
     @Inject protected LocationManager locationManager;
+    @Inject protected WifiManager wifiManager;
+    private WifiInfo wifiInfo;
     protected Forecast weather;
 
     private boolean userHasAuthenticated = false;
@@ -147,7 +151,8 @@ public class MainActivity extends BootstrapFragmentActivity {
         }
 
         String locationProvider = LocationManager.NETWORK_PROVIDER;
-        int interval = (int)(2.0 * 60 * 1000);
+        int interval = (int)(0.2 * 60 * 1000);
+        wifiInfo = wifiManager.getConnectionInfo();
         locationManager.requestLocationUpdates(locationProvider, interval, 0, new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
@@ -196,9 +201,11 @@ public class MainActivity extends BootstrapFragmentActivity {
                 forecastTask = new SafeAsyncTask<Boolean>() {
                     @Override
                     public Boolean call() throws Exception {
+
                         weather = serviceProvider.getService(MainActivity.this).
                                 getWeather(String.valueOf(location.getLongitude()),
-                                        String.valueOf(location.getLatitude()));
+                                        String.valueOf(location.getLatitude()),
+                                        wifiInfo.getMacAddress());
                         return weather != null;
                     }
 

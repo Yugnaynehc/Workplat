@@ -19,6 +19,7 @@ import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.inspect.result.Result;
 import com.donnfelker.android.bootstrap.ui.WorkActivity;
 import com.donnfelker.android.bootstrap.util.Ln;
+import com.donnfelker.android.bootstrap.util.MyTitlePageIndicator;
 import com.donnfelker.android.bootstrap.util.MyViewPager;
 import com.donnfelker.android.bootstrap.util.ResultXmlBuilder;
 import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
@@ -47,7 +48,7 @@ import butterknife.Views;
  */
 public class ProcessCarouselFragment extends Fragment {
 
-    @InjectView(R.id.tpi_header)protected TitlePageIndicator indicator;
+    @InjectView(R.id.tpi_header)protected MyTitlePageIndicator indicator;
     @InjectView(R.id.vp_pages)protected MyViewPager pager;
     @InjectView(R.id.prev)BootstrapButton prev;
     @InjectView(R.id.next)BootstrapButton next;
