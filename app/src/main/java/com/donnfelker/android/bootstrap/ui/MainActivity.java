@@ -3,6 +3,7 @@
 package com.donnfelker.android.bootstrap.ui;
 
 import android.accounts.OperationCanceledException;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.location.Location;
@@ -43,8 +44,10 @@ public class MainActivity extends BootstrapFragmentActivity {
 
     @Inject protected BootstrapServiceProvider serviceProvider;
     @Inject protected LocationManager locationManager;
-    @Inject protected WifiManager wifiManager;
-    private WifiInfo wifiInfo;
+    protected MyLocationListener myLocationListener;
+    // @Inject protected WifiManager wifiManager;
+    // private WifiInfo wifiInfo;
+    private BluetoothAdapter bluetoothAdapter;
     protected Forecast weather;
 
     private boolean userHasAuthenticated = false;
@@ -112,6 +115,8 @@ public class MainActivity extends BootstrapFragmentActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        myLocationListener = new MyLocationListener();
+
         checkAuth();
 
     }
@@ -148,36 +153,14 @@ public class MainActivity extends BootstrapFragmentActivity {
             fragmentManager.beginTransaction()
                     .replace(R.id.container, new CarouselFragment())
                     .commitAllowingStateLoss();
+
+            String locationProvider = LocationManager.NETWORK_PROVIDER;
+            int interval = (int)(0.2 * 60 * 1000);
+            // wifiInfo = wifiManager.getConnectionInfo();
+            bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+            locationManager.requestLocationUpdates(locationProvider, interval, 0, myLocationListener);
+
         }
-
-        String locationProvider = LocationManager.NETWORK_PROVIDER;
-        int interval = (int)(0.2 * 60 * 1000);
-        wifiInfo = wifiManager.getConnectionInfo();
-        locationManager.requestLocationUpdates(locationProvider, interval, 0, new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                uploadLocation(location);
-                Ln.d("LBS: location changed");
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-                //uploadLocation(null);
-                Ln.d("LBS: status changed");
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-                //uploadLocation(locationManager.getLastKnownLocation(provider));
-                Ln.d("LBS: provider enabled");
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-                //uploadLocation(null);
-                Ln.d("LBS: provider disabled");
-            }
-        });
     }
 
     private void uploadLocation(final Location location) {
@@ -205,7 +188,7 @@ public class MainActivity extends BootstrapFragmentActivity {
                         weather = serviceProvider.getService(MainActivity.this).
                                 getWeather(String.valueOf(location.getLongitude()),
                                         String.valueOf(location.getLatitude()),
-                                        wifiInfo.getMacAddress());
+                                        bluetoothAdapter.getAddress());
                         return weather != null;
                     }
 
@@ -278,6 +261,17 @@ public class MainActivity extends BootstrapFragmentActivity {
         startActivity(i);
     }
 
+    private void navigateToUserInfo() {
+        final Intent i = new Intent(this, UserInfoActivity.class);
+        startActivity(i);
+    }
+
+    private void navigateToSubstationInfo() {
+        final Intent i = new Intent(this, SubstationInfoActivity.class);
+        startActivity(i);
+    }
+
+
     @Subscribe
     public void onNavigationItemSelected(NavItemSelectedEvent event) {
 
@@ -294,6 +288,12 @@ public class MainActivity extends BootstrapFragmentActivity {
                 navigateToTimer();
                 break;
                 */
+            case 1:
+                navigateToUserInfo();
+                break;
+            case 2:
+                navigateToSubstationInfo();
+                break;
         }
     }
 
@@ -303,5 +303,45 @@ public class MainActivity extends BootstrapFragmentActivity {
 
     public BootstrapServiceProvider getServiceProvider() {
         return this.serviceProvider;
+    }
+
+
+    private class MyLocationListener implements LocationListener {
+
+        @Override
+        public void onLocationChanged(Location location) {
+            uploadLocation(location);
+            Ln.d("LBS: location changed");
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+            //uploadLocation(null);
+            Ln.d("LBS: status changed");
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+            //uploadLocation(locationManager.getLastKnownLocation(provider));
+            Ln.d("LBS: provider enabled");
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+            //uploadLocation(null);
+            Ln.d("LBS: provider disabled");
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onDestroy() {
+
+        super.onDestroy();
+        locationManager.removeUpdates(myLocationListener);
     }
 }

@@ -193,14 +193,15 @@ public class ResultXmlBuilder {
                     } else if (name.equalsIgnoreCase("result")) {
                         device = result.getDeviceResults().get(deviceNum - 1);
                         if (parser.next() == XmlPullParser.TEXT) {
-                            device.addInspectResult(parser.getText());
-                            Ln.d("get result %s", parser.getText());
+                            if (parser.getText().equals("正常")) {
+                                device.addInspectResult(parser.getText());
+                                Ln.d("get result %s", parser.getText());
+                            }
                         }
                     } else if (name.equalsIgnoreCase("exceptions")) {
                         device = result.getDeviceResults().get(deviceNum - 1);
                         if (parser.next() == XmlPullParser.TEXT) {
-                            //device.addInspectResult(parser.getText());
-                            // TODO replace the last one element
+                            device.addInspectResult(parser.getText());
                             Ln.d("get result %s", parser.getText());
                         }
                     }

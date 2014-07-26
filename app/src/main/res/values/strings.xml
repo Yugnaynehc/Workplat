@@ -70,6 +70,16 @@
     <string name="upload_error">Upload Error</string>
     <string name="upload_cancel">Upload Cancel</string>
 
+    <!-- navigation -->
+    <string name="title_timer">Timer</string>
+    <string name="home">Home</string>
+    <string name="navigation_drawer_open">Drawer Open</string>
+    <string name="navigation_drawer_close">Drawer Close</string>
+    <string name="title_home">Home</string>
+    <string name="title_work">Work</string>
+    <string name="title_user_info">User Info</string>
+    <string name="title_substation_info">Substation Info</string>
+
     <!-- AuthenticatorActivity -->
     <string name="label_email_address">Email Address</string>
     <string name="label_password">Password</string>
@@ -86,12 +96,7 @@
     <string name="start">Start</string>
     <string name="pause">Pause</string>
     <string name="resume">Resume</string>
-    <string name="title_timer">Timer</string>
-    <string name="home">Home</string>
-    <string name="navigation_drawer_open">Drawer Open</string>
-    <string name="navigation_drawer_close">Drawer Close</string>
-    <string name="title_home">Home</string>
-    <string name="title_work">Work</string>
+
 
     <!-- Inspect Type -->
     <string name="inspect_normal_total">全面巡检</string>

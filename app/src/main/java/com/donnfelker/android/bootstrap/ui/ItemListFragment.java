@@ -2,6 +2,7 @@
 package com.donnfelker.android.bootstrap.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
@@ -373,9 +374,13 @@ public abstract class ItemListFragment<E> extends MenuFragment
         getLogoutService().logout(new Runnable() {
             @Override
             public void run() {
+                /*
                 // Calling a refresh will force the service to look for a logged in user
                 // and when it finds none the user will be requested to log in again.
                 forceRefresh();
+                */
+                startActivity(new Intent(getActivity(), MainActivity.class));
+                getActivity().finish();
             }
         });
     }

@@ -70,6 +70,16 @@
     <string name="upload_error">上传出错</string>
     <string name="upload_cancel">取消上传</string>
 
+    <!-- navigation -->
+    <string name="title_timer">计时器</string>
+    <string name="home">主页</string>
+    <string name="navigation_drawer_open">抽屉打开</string>
+    <string name="navigation_drawer_close">抽屉关闭</string>
+    <string name="title_home">主页</string>
+    <string name="title_work">工作单</string>
+    <string name="title_user_info">用户信息</string>
+    <string name="title_substation_info">变电站信息</string>
+
     <!-- AuthenticatorActivity -->
     <string name="label_email_address">用户名</string>
     <string name="label_password">密码</string>
@@ -86,12 +96,6 @@
     <string name="start">开始</string>
     <string name="pause">暂停</string>
     <string name="resume">恢复</string>
-    <string name="title_timer">计时器</string>
-    <string name="home">主页</string>
-    <string name="navigation_drawer_open">抽屉打开</string>
-    <string name="navigation_drawer_close">抽屉关闭</string>
-    <string name="title_home">主页</string>
-    <string name="title_work">工作单</string>
 
     <!-- Exception -->
     <string name="error_blank">请输入完整信息</string>
