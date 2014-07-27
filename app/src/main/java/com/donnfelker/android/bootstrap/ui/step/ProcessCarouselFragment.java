@@ -3,8 +3,6 @@ package com.donnfelker.android.bootstrap.ui.step;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,6 +14,7 @@ import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
+import com.donnfelker.android.bootstrap.core.Work;
 import com.donnfelker.android.bootstrap.core.inspect.result.Result;
 import com.donnfelker.android.bootstrap.ui.WorkActivity;
 import com.donnfelker.android.bootstrap.util.Ln;
@@ -25,19 +24,14 @@ import com.donnfelker.android.bootstrap.util.ResultXmlBuilder;
 import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
 import static com.donnfelker.android.bootstrap.core.Constants.Http.*;
 import static com.donnfelker.android.bootstrap.core.Constants.UPreference.*;
-import static com.donnfelker.android.bootstrap.core.Constants.Intent.*;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.*;
+import static com.donnfelker.android.bootstrap.core.Constants.FileURI.PICTURE_PATH;
 
 import com.github.kevinsawicki.http.HttpRequest;
 import com.github.kevinsawicki.wishlist.Toaster;
-import com.viewpagerindicator.TitlePageIndicator;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.net.URLEncoder;
-
-import org.apache.commons.io.FileUtils;
 
 import butterknife.InjectView;
 import butterknife.Views;
@@ -59,6 +53,7 @@ public class ProcessCarouselFragment extends Fragment {
     private SafeAsyncTask<Boolean> uploadTask;
 
     private Result result;
+    private Work work;
     private ProgressDialog progressDialog;
     private Handler handler;        // 用handler来更新主线程UI
 
@@ -71,6 +66,7 @@ public class ProcessCarouselFragment extends Fragment {
                 //更新UI,关闭ProgressDialog
                 progressDialog.dismiss();
             }};
+        work = ((WorkActivity)getActivity()).getWork();
     }
 
     @Override
@@ -139,8 +135,18 @@ public class ProcessCarouselFragment extends Fragment {
                         prev.setBootstrapButtonEnabled(true);
                     }
                     if (pager.getCurrentItem()  == pagerAdapter.getCount() - 1) {
-                        next.setText(getResources().getString(R.string.button_upload));
-                        next.setOnClickListener(new OnSubmitClickListener());
+                        if (work.getStatus() == 0) {
+                            next.setText(getResources().getString(R.string.button_upload));
+                            next.setOnClickListener(new OnSubmitClickListener());
+                        } else {
+                            next.setText(getResources().getString(R.string.button_close));
+                            next.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    getActivity().finish();
+                                }
+                            });
+                        }
                     }
                 }
                 else
@@ -192,18 +198,15 @@ public class ProcessCarouselFragment extends Fragment {
             fos.close();
 
             // upload images 先上传图片信息
-            String jpgExtension = "jpg";
-            File[] files = getActivity().getFilesDir().listFiles();
-            for (File file : files) {
-                if (file.isFile() && !file.getName().contains("result")) {
-                    if (file.getPath().substring(file.getPath().length() - jpgExtension.length()).
-                            equals(jpgExtension)) {
-                        HttpRequest request = HttpRequest.post(URL_UPLOAD + query);
-                        request.part("upload", file.getName(), "image/jpeg", file);
-                        Ln.d("upload result jpg");
-                        if (!request.ok())
-                            return false;
-                    }
+            String prefix = resultId + "_";
+            File root = new File(PICTURE_PATH);
+            for (File file : root.listFiles()) {
+                if (file.getName().contains(prefix)) {
+                    HttpRequest request = HttpRequest.post(URL_UPLOAD + query);
+                    request.part("upload", file.getName(), "image/jpeg", file);
+                    Ln.d("upload result jpg");
+                    if (!request.ok())
+                        return false;
                 }
             }
 

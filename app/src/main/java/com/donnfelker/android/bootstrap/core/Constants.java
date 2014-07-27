@@ -2,6 +2,8 @@
 
 package com.donnfelker.android.bootstrap.core;
 
+import android.os.Environment;
+
 /**
  * Bootstrap constants
  */
@@ -258,6 +260,12 @@ public final class Constants {
         public static final String USER_INFO_SUBSTATION = USER_INFO  + "substation";
         public static final String USER_INFO_DEPARTMENT = USER_INFO  + "department";
         public static final String USER_INFO_POSITION = USER_INFO  + "position";
+    }
+
+    public static class FileURI {
+
+        public static final String BASE_PATH = Environment.getExternalStorageDirectory().getPath() + "/inspect/";
+        public static final String PICTURE_PATH = BASE_PATH + "picture/";
     }
 
 }

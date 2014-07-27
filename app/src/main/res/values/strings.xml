@@ -33,6 +33,7 @@
     <string name="work_todo">TODO</string>
     <string name="work_done">DONE</string>
     <string name="defect_device_column">Device</string>
+    <string name="defect_no_column">No.</string>
     <string name="defect_description_column">Description</string>
     <string name="result_device_column">Device</string>
     <string name="error_loading_users">Loading users failed</string>
@@ -53,6 +54,7 @@
     <string name="button_scan">scan</string>
     <string name="button_submit">submit</string>
     <string name="button_upload">upload</string>
+    <string name="button_close">close</string>
     <string name="button_edit">edit</string>
     <string name="apply_date">Apply Date</string>
     <string name="apply_type">Apply Type</string>

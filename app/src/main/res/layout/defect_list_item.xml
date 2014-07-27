@@ -11,13 +11,13 @@
     style="@style/ListItem">
 
     <TextView
-        android:id="@+id/tv_device"
+        android:id="@+id/tv_no"
         android:gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="24sp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_gravity="center_vertical"
-        android:textSize="36sp"
         android:textColor="@color/table_text_selector" />
 
     <TextView
@@ -26,6 +26,7 @@
         android:layout_marginLeft="10dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:textSize="24sp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_gravity="center_vertical"
         android:textColor="@color/table_text_selector" />

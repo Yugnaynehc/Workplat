@@ -41,13 +41,13 @@ public class DefectListAdapter extends AlternatingColorListAdapter<Defect> {
 
     @Override
     protected int[] getChildViewIds() {
-        return new int[]{R.id.tv_device, R.id.tv_description};
+        return new int[]{R.id.tv_no, R.id.tv_description};
     }
 
     @Override
     protected void update(final int position, final Defect defect) {
         super.update(position, defect);
-        setText(0, defect.getDeviceid());
+        setText(0, String.valueOf(position + 1));
         setText(1, defect.getDescription());
     }
 }
