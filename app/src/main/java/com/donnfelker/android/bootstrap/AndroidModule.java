@@ -12,7 +12,7 @@ import android.net.wifi.WifiManager;
 import android.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
 import android.view.inputmethod.InputMethodManager;
-
+import static com.donnfelker.android.bootstrap.core.Constants.UPreference.*;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -30,10 +30,12 @@ public class AndroidModule {
         return BootstrapApplication.getInstance().getApplicationContext();
     }
 
+    /*
     @Provides
     SharedPreferences provideDefaultSharedPreferences(final Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
+    */
 
     @Provides
     PackageInfo providePackageInfo(Context context) {
@@ -87,6 +89,11 @@ public class AndroidModule {
     @Provides
     WifiManager provideWifiManager(final Context context) {
         return (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+    }
+
+    @Provides
+    SharedPreferences provideSharedPreferences(final Context context) {
+        return (SharedPreferences) context.getSharedPreferences(USER_INFO, Context.MODE_PRIVATE);
     }
 
 }

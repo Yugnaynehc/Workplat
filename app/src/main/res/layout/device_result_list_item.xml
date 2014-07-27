@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:FontAwesomeText="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -9,10 +10,18 @@
     android:paddingTop="5dp"
     style="@style/ListItem">
 
+    <com.beardedhen.androidbootstrap.FontAwesomeText
+        android:id="@+id/tv_icon"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        FontAwesomeText:fa_icon="fa-check"
+        android:textColor="@color/bbutton_info"
+        android:textSize="36sp">
+    </com.beardedhen.androidbootstrap.FontAwesomeText>
+
     <TextView
         android:id="@+id/tv_deviceName"
         android:gravity="left"
-        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"

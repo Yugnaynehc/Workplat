@@ -24,8 +24,9 @@ import java.io.IOException;
 import butterknife.InjectView;
 import butterknife.Views;
 
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ID;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_TYPE_ID;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ITEM_NO;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.RESULT_ID;
 
 public class ExceptionActivity extends Activity {
     @InjectView(R.id.button1)protected BootstrapButton button1;
@@ -35,7 +36,8 @@ public class ExceptionActivity extends Activity {
     @InjectView(R.id.imageView1)protected ImageView im;
     private String position;
     private String res;
-    private String deviceID;
+    private String resultID;
+    private String deviceTypeID;
     private int itemNo;
     int picIndex = 0;
 
@@ -49,7 +51,8 @@ public class ExceptionActivity extends Activity {
 
         position =  exIntent.getStringExtra("pos");
         res= exIntent.getStringExtra("res");
-        deviceID = exIntent.getStringExtra(DEVICE_ID);
+        resultID = exIntent.getStringExtra(RESULT_ID);
+        deviceTypeID = exIntent.getStringExtra(DEVICE_TYPE_ID);
         itemNo = exIntent.getIntExtra(DEVICE_ITEM_NO, -1);
 
         if (!res.equals("正常"))
@@ -100,7 +103,7 @@ public class ExceptionActivity extends Activity {
             im = (ImageView) findViewById(R.id.imageView1);
             im.setImageBitmap(bitmap);
             FileOutputStream b = null;
-            File file = new File(getFilesDir(), deviceID + "_" + itemNo + "_" + picIndex + ".jpg");
+            File file = new File(getFilesDir(), resultID + "_" + deviceTypeID + "_" + itemNo + "_" + picIndex + ".jpg");
             try {
                 b = new FileOutputStream(file);
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, b);// 把数据写入文件

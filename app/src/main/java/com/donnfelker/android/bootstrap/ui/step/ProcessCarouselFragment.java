@@ -218,6 +218,7 @@ public class ProcessCarouselFragment extends Fragment {
             // delete result files 删除结果文件
             if (uploadSuccess) {
                 Toast.makeText(getActivity(), getString(R.string.upload_success), Toast.LENGTH_LONG).show();
+                /*
                 try {
                     File[] files = getActivity().getFilesDir().listFiles();
                     for (File file : files) {
@@ -230,6 +231,7 @@ public class ProcessCarouselFragment extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                */
             }
             else
                 Toast.makeText(getActivity(), getString(R.string.upload_failed), Toast.LENGTH_LONG).show();

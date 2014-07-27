@@ -19,6 +19,7 @@ import butterknife.Views;
 public class DeviceInfoFragment extends Fragment {
 
     @InjectView(R.id.device_id) EditText deviceID;
+    @InjectView(R.id.device_type_id) EditText deviceTypeID;
     @InjectView(R.id.device_name) EditText deviceName;
     @InjectView(R.id.device_date) EditText deviceDate;
 
@@ -32,7 +33,8 @@ public class DeviceInfoFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceStete);
         View view = inflater.inflate(R.layout.fragment_device_info, container, false);
         Views.inject(this, view);
-        deviceID.setText(((DeviceInspectActivity)getActivity()).getDeviceID());
+        deviceID.setText(((DeviceInspectActivity) getActivity()).getDeviceID());
+        deviceTypeID.setText(((DeviceInspectActivity) getActivity()).getDeviceTypeID());
         deviceName.setText(((DeviceInspectActivity)getActivity()).getDeviceName());
         deviceDate.setText(((DeviceInspectActivity)getActivity()).getDeviceDate());
         return view;

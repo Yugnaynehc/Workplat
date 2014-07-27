@@ -26,13 +26,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.io.File;
-import java.io.FileOutputStream;
 
 import butterknife.InjectView;
 import butterknife.Views;
 
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ID;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_TYPE_ID;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NAME;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NO;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_RESULT;
@@ -62,7 +60,7 @@ public class DeviceActivity extends BootstrapFragmentActivity {
         Views.inject(this);
 
         Intent scanDevice = getIntent();
-        deviceID = scanDevice.getStringExtra(DEVICE_ID);
+        deviceID = scanDevice.getStringExtra(DEVICE_TYPE_ID);
         deviceNo = scanDevice.getIntExtra(DEVICE_NO, -1);
 
         if (deviceNo != -1) {
@@ -85,21 +83,12 @@ public class DeviceActivity extends BootstrapFragmentActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra(DEVICE_ID, deviceID);
+                intent.putExtra(DEVICE_TYPE_ID, deviceID);
                 intent.putExtra(DEVICE_NAME, deviceName);
                 intent.putExtra(DEVICE_NO, deviceNo);
                 intent.putExtra(DEVICE_CONTENT, inspectContent);
                 intent.putExtra(DEVICE_STANDARD, inspectStandard);
                 intent.putExtra(DEVICE_RESULT, getResultList());
-                /*
-                try {
-                    File file = new File(getFilesDir(), deviceID + ".xml");
-                    FileOutputStream out  = new FileOutputStream(file);
-                    saveFile(out);
-                } catch(IOException e) {
-                    Ln.d(e.toString());
-                }
-                */
                 DeviceActivity.this.setResult(RESULT_OK, intent);
                 DeviceActivity.this.finish();
             }
@@ -300,7 +289,7 @@ public class DeviceActivity extends BootstrapFragmentActivity {
                    Intent exIntent = new Intent();
                    exIntent.putExtra("pos", String.valueOf(position));
                    exIntent.putExtra("res",inspectResult.get(position));
-                   exIntent.putExtra(DEVICE_ID, deviceID);
+                   exIntent.putExtra(DEVICE_TYPE_ID, deviceID);
                    exIntent.setClass(DeviceActivity.this,ExceptionActivity.class);
 
                    startActivityForResult(exIntent, 1);

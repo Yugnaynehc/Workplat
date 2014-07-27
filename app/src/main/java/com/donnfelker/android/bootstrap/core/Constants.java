@@ -121,7 +121,11 @@ public final class Constants {
 
         public static final String WORK_ID = "work_id";
 
+        public static final String RESULT_ID = "result_id";
+
         public static final String DEVICE_ID = "device_id";
+
+        public static final String DEVICE_TYPE_ID = "device_type_id";
 
         public static final String DEVICE_NAME = "device_name";
 
@@ -247,10 +251,13 @@ public final class Constants {
      */
     public static class UPreference {
 
-        public static final String USER_INFO = "user_info";
-        public static final String USER_INFO_NAME = USER_INFO + "_name";
-        public static final String USER_INFO_ID = USER_INFO + "_id";
-        public static final String USER_INFO_SUBSTATION_ID = USER_INFO  + "_substationid";
+        public static final String USER_INFO = "user_info_";
+        public static final String USER_INFO_NAME = USER_INFO + "name";
+        public static final String USER_INFO_ID = USER_INFO + "id";
+        public static final String USER_INFO_SUBSTATION_ID = USER_INFO  + "substationid";
+        public static final String USER_INFO_SUBSTATION = USER_INFO  + "substation";
+        public static final String USER_INFO_DEPARTMENT = USER_INFO  + "department";
+        public static final String USER_INFO_POSITION = USER_INFO  + "position";
     }
 
 }

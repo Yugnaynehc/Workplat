@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.donnfelker.android.bootstrap.R;
+import com.donnfelker.android.bootstrap.core.Work;
 import com.donnfelker.android.bootstrap.core.inspect.security.Security;
 import com.donnfelker.android.bootstrap.ui.WorkActivity;
 import com.donnfelker.android.bootstrap.util.Ln;
@@ -31,6 +32,7 @@ public class SecurityFragment extends Fragment implements ValidationFragment {
 
     protected ListView securityList;
     private Security security;
+    private Work work;
     private SparseBooleanArray selectMap;
     private SecurityAdapter securityAdapter;
 
@@ -43,11 +45,16 @@ public class SecurityFragment extends Fragment implements ValidationFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_security, container, false);
+        work = ((WorkActivity)getActivity()).getWork();
         securityList = (ListView)view.findViewById(R.id.security_list);
         String securityType = ((WorkActivity)getActivity()).getWork().getType();
         Ln.d("securityType: %s", securityType);
         security = SecurityFactory.get(securityType);
-        securityAdapter = new SecurityAdapter(getActivity());
+        if (work.getStatus() == 0)
+            securityAdapter = new SecurityAdapter(getActivity());
+        else
+            securityAdapter = new hasSecurityAdapter(getActivity());
+
         securityList.setAdapter(securityAdapter);
         return view;
     }
@@ -75,6 +82,10 @@ public class SecurityFragment extends Fragment implements ValidationFragment {
     @Override
     public boolean validation() {
         Ln.d("security fragment validation");
+        for (int i=0; i<security.getCount(); ++i)
+            if (!selectMap.get(i)) {
+                return false;
+            }
         return true;
     }
 
@@ -96,7 +107,7 @@ public class SecurityFragment extends Fragment implements ValidationFragment {
             selectMap = initSelect();
         }
 
-        private SparseBooleanArray initSelect() {
+        protected SparseBooleanArray initSelect() {
             SparseBooleanArray select = new SparseBooleanArray();
             for (int i=0; i<security.getCount(); ++i)
                 select.put(i, false);
@@ -151,6 +162,50 @@ public class SecurityFragment extends Fragment implements ValidationFragment {
                     selectMap.put(position, isChecked);
                 }
             });
+            return convertView;
+        }
+    }
+
+    private class hasSecurityAdapter extends SecurityAdapter {
+
+        public hasSecurityAdapter(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected SparseBooleanArray initSelect() {
+            SparseBooleanArray select = new SparseBooleanArray();
+            for (int i=0; i<security.getCount(); ++i)
+                select.put(i, true);
+            return select;
+        }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+
+            final SecurityViewHolder holder;
+            String securityNo = String.valueOf(position + 1);
+            String securityPoint = security.getPoint()[position];
+            String securityMeasure = security.getMeasure()[position];
+
+            if (convertView == null) {
+                convertView = super.inflater.inflate(R.layout.security_list_item, null);
+                holder = new SecurityViewHolder();
+                holder.no = (TextView)convertView.findViewById(R.id.tv_security_no);
+                holder.point = (TextView)convertView.findViewById(R.id.tv_security_point);
+                holder.measure = (TextView)convertView.findViewById(R.id.tv_security_measure);
+                holder.select = (CheckBox)convertView.findViewById(R.id.cb_security_select);
+                convertView.setTag(holder);
+            }
+            else {
+                holder = (SecurityViewHolder)convertView.getTag();
+            }
+
+            holder.no.setText(securityNo);
+            holder.point.setText(securityPoint);
+            holder.measure.setText(securityMeasure);
+            holder.select.setChecked(true);
+            holder.select.setClickable(false);
             return convertView;
         }
     }

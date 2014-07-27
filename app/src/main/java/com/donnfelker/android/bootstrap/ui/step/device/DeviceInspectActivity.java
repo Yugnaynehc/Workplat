@@ -29,7 +29,9 @@ public class DeviceInspectActivity extends BootstrapFragmentActivity {
 
     protected FragmentManager fragmentManager;
 
+    private String resultID;
     private String deviceID;
+    private String deviceTypeID;
     private String deviceName;
     private String deviceDate;
     private int deviceNo;
@@ -51,11 +53,15 @@ public class DeviceInspectActivity extends BootstrapFragmentActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent scanDevice = getIntent();
+
+        resultID = scanDevice.getStringExtra(RESULT_ID);
         deviceID = scanDevice.getStringExtra(DEVICE_ID);
+        deviceTypeID = scanDevice.getStringExtra(DEVICE_TYPE_ID);
         deviceNo = scanDevice.getIntExtra(DEVICE_NO, -1);
         deviceDate = scanDevice.getStringExtra(DEVICE_DATE);
 
         if (deviceNo != -1) {
+            deviceName = scanDevice.getStringExtra(DEVICE_NAME);
             inspectContent = scanDevice.getStringArrayListExtra(DEVICE_CONTENT);
             inspectStandard = scanDevice.getStringArrayListExtra(DEVICE_STANDARD);
             initInspectResult(scanDevice.getStringArrayListExtra(DEVICE_RESULT));
@@ -158,7 +164,7 @@ public class DeviceInspectActivity extends BootstrapFragmentActivity {
              * 读取某一个巡检任务(设备)对应的XML文件->将XML文件的内容呈现至屏幕
              */
             inStream = getAssets().open("devices/"
-                    + deviceID + ".xml");
+                    + deviceTypeID + ".xml");
             parser.setInput(inStream, "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
@@ -212,8 +218,10 @@ public class DeviceInspectActivity extends BootstrapFragmentActivity {
     public ArrayList<String> getInspectContent() { return this.inspectContent; }
     public ArrayList<String> getInspectStandard() { return this.inspectStandard; }
     public SparseArray<String> getInspectResult() { return this.inspectResult; }
+    public String getDeviceTypeID() { return this.deviceTypeID; }
     public String getDeviceID() { return this.deviceID; }
     public String getDeviceName() { return this.deviceName; }
     public String getDeviceDate() { return this.deviceDate; }
     public int getDeviceNo() { return this.deviceNo; }
+    public String getResultID() { return this.resultID; }
 }

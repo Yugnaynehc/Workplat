@@ -4,18 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.util.MyTitlePageIndicator;
 import com.donnfelker.android.bootstrap.util.MyViewPager;
-import com.viewpagerindicator.TitlePageIndicator;
 
 import java.util.ArrayList;
 
@@ -105,6 +102,7 @@ public class DeviceCarouseFragment extends Fragment {
 
             Intent intent = new Intent();
             intent.putExtra(DEVICE_ID, ((DeviceInspectActivity)getActivity()).getDeviceID());
+            intent.putExtra(DEVICE_TYPE_ID, ((DeviceInspectActivity)getActivity()).getDeviceTypeID());
             intent.putExtra(DEVICE_NAME, ((DeviceInspectActivity)getActivity()).getDeviceName());
             intent.putExtra(DEVICE_DATE, ((DeviceInspectActivity)getActivity()).getDeviceDate());
             intent.putExtra(DEVICE_NO, ((DeviceInspectActivity)getActivity()).getDeviceNo());

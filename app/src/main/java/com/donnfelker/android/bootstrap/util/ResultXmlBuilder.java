@@ -89,6 +89,9 @@ public class ResultXmlBuilder {
 
             serializer.startTag(null, "device");
             serializer.attribute(null, "name", deviceResult.getDeviceName());
+            serializer.attribute(null, "id", deviceResult.getDeviceID());
+            serializer.attribute(null, "type", deviceResult.getDeviceTypeID());
+            serializer.attribute(null, "date", deviceResult.getDeviceDate());
             for (int i=0; i<inspectContent.size(); ++i) {
                 serializer.startTag(null, "item");
                 serializer.attribute(null, "name",inspectContent.get(i));
@@ -177,6 +180,9 @@ public class ResultXmlBuilder {
                     } else if (name.equalsIgnoreCase("device")) {
                         device = new DeviceResult();
                         device.setDeviceName(parser.getAttributeValue(0));
+                        device.setDeviceID(parser.getAttributeValue(1));
+                        device.setDeviceTypeID(parser.getAttributeValue(2));
+                        device.setDeviceDate(parser.getAttributeValue(3));
                         result.addDeviceResult(device);
                         deviceNum++;
                         Ln.d("get result %s", device.getDeviceName());

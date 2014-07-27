@@ -14,7 +14,9 @@ import com.donnfelker.android.bootstrap.ui.MainActivity;
 import com.donnfelker.android.bootstrap.ui.NavigationDrawerFragment;
 import com.donnfelker.android.bootstrap.ui.NewsActivity;
 import com.donnfelker.android.bootstrap.ui.NewsListFragment;
+import com.donnfelker.android.bootstrap.ui.SubstationInfoActivity;
 import com.donnfelker.android.bootstrap.ui.UserActivity;
+import com.donnfelker.android.bootstrap.ui.UserInfoActivity;
 import com.donnfelker.android.bootstrap.ui.UserListFragment;
 import com.donnfelker.android.bootstrap.ui.WorkActivity;
 import com.donnfelker.android.bootstrap.ui.WorkListFragment;
@@ -55,7 +57,9 @@ import dagger.Provides;
                 ResultListFragment.class,
                 DeviceInspectActivity.class,
                 ForecastFragment.class,
-                ApplyFragment.class
+                ApplyFragment.class,
+                UserInfoActivity.class,
+                SubstationInfoActivity.class
         }
 )
 public class BootstrapModule {

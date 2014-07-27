@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.donnfelker.android.bootstrap.R;
+import com.donnfelker.android.bootstrap.core.Work;
 import com.donnfelker.android.bootstrap.core.inspect.result.InspectTool;
 import com.donnfelker.android.bootstrap.core.inspect.result.Result;
 import com.donnfelker.android.bootstrap.ui.WorkActivity;
@@ -46,6 +47,7 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
     private SparseArray<String> typeMap;
     private SparseBooleanArray selectMap;
     private Result result;
+    private Work work;
     private List<InspectTool> toolList;
 
     @Override
@@ -58,14 +60,16 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_tools, container, false);
         result = ((WorkActivity)getActivity()).getResult();
+        work = ((WorkActivity)getActivity()).getWork();
         toolList = result.getTools();
         toolsList = (ListView)view.findViewById(R.id.tools_list);
         numMap = new SparseArray<String>();
         typeMap = new SparseArray<String>();
-        if (toolList != null)
-            adapter = new hasToolsAdapter(getActivity());
-        else
+        if (work.getStatus() == 0 || toolList == null)
             adapter = new ToolsAdapter(getActivity());
+        else
+            adapter = new hasToolsAdapter(getActivity());
+
         toolsList.setAdapter(adapter);
         return view;
     }
@@ -98,6 +102,15 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
     @Override
     public boolean validation() {
         Ln.d("tools prepare fragment validation");
+        for (int i=0;  i<toolsName.size(); ++i) {
+            if (selectMap.get(i)) {
+                if (typeMap.get(i) == null
+                        || typeMap.get(i).equals("")
+                        || numMap.get(i) == null
+                        || numMap.get(i).equals(""))
+                    return false;
+            }
+        }
         return true;
     }
 
@@ -311,6 +324,40 @@ public class ToolsPrepareFragment extends Fragment implements ValidationFragment
             }
             return select;
         }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+
+            final ToolsViewHolder holder;
+
+            String toolNo = String.valueOf(position + 1);
+            String toolName = toolsName.get(position);
+            String toolUnit = toolsUnit.get(position);
+            String toolRemark = toolsRemark.get(position);
+
+            if (convertView == null) {
+                convertView = super.inflater.inflate(R.layout.tools_list_item, null);
+                holder = new ToolsViewHolder(convertView);
+                convertView.setTag(holder);
+            }
+            else {
+                holder = (ToolsViewHolder)convertView.getTag();
+            }
+
+            holder.no.setText(toolNo);
+            holder.name.setText(toolName);
+            holder.type.setText(typeMap.get(position));
+            holder.type.setFocusable(false);
+            holder.unit.setText(toolUnit);
+            holder.num.setText(numMap.get(position));
+            holder.num.setFocusable(false);
+            holder.remark.setText(toolRemark);
+            holder.select.setChecked(selectMap.get(position));
+            holder.select.setClickable(false);
+            return convertView;
+
+        }
+
 
     }
 

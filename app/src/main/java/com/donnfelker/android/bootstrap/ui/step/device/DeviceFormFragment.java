@@ -1,12 +1,10 @@
 package com.donnfelker.android.bootstrap.ui.step.device;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.SparseArray;
-import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,28 +12,17 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.donnfelker.android.bootstrap.R;
 
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
 
 import butterknife.InjectView;
 import butterknife.Views;
 
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_CONTENT;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_DATE;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ID;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_TYPE_ID;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ITEM_NO;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NAME;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_NO;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_RESULT;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_STANDARD;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.RESULT_ID;
 
 /**
  * Created by feather on 14-7-17.
@@ -44,7 +31,8 @@ public class DeviceFormFragment extends Fragment {
 
     @InjectView(R.id.inspect_detail)protected ListView list;
     private DeviceAdapter adapter;
-    private String deviceID;
+    private String resultID;
+    private String deviceTypeID;
     private ArrayList<String> inspectContent;
     private ArrayList<String> inspectStandard;
     private SparseArray<String> inspectResult;
@@ -61,7 +49,8 @@ public class DeviceFormFragment extends Fragment {
         View view = inflater.inflate(R.layout.device_activity, container, false);
         Views.inject(this, view);
 
-        deviceID = ((DeviceInspectActivity)getActivity()).getDeviceID();
+        resultID = ((DeviceInspectActivity)getActivity()).getResultID();
+        deviceTypeID = ((DeviceInspectActivity)getActivity()).getDeviceTypeID();
         inspectContent = ((DeviceInspectActivity)getActivity()).getInspectContent();
         inspectStandard = ((DeviceInspectActivity)getActivity()).getInspectStandard();
         inspectResult = ((DeviceInspectActivity)getActivity()).getInspectResult();
@@ -131,7 +120,8 @@ public class DeviceFormFragment extends Fragment {
                         Intent exIntent = new Intent();
                         exIntent.putExtra("pos", String.valueOf(position));
                         exIntent.putExtra("res",inspectResult.get(position));
-                        exIntent.putExtra(DEVICE_ID, deviceID);
+                        exIntent.putExtra(RESULT_ID, resultID);
+                        exIntent.putExtra(DEVICE_TYPE_ID, deviceTypeID);
                         exIntent.putExtra(DEVICE_ITEM_NO, position);
                         exIntent.setClass(getActivity(), ExceptionActivity.class);
                         getActivity().startActivityForResult(exIntent, 1);

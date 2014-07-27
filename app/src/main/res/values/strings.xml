@@ -169,12 +169,19 @@
     <string name="device_standard">巡检标准</string>
     <string name="device_result">填写结果</string>
     <string name="device_id">设备ID</string>
+    <string name="device_type_id">设备类型ID</string>
     <string name="device_name">设备名称</string>
     <string name="device_date">投产时间</string>
     <string name='exception_input'>请输入异常信息</string>
     <string name="title_activity_exception">异常信息采集</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <!-- 用户信息 -->
+    <string name="user_name">姓名</string>
+    <string name="user_post">职位</string>
+    <string name="user_department">部门</string>
+    <string name="user_substation">所属变电站</string>
 
     <!-- Exception -->
     <string name="error_blank">Please fill the form.</string>

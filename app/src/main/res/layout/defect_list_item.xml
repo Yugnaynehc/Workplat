@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_gravity="center_vertical"
+        android:textSize="36sp"
         android:textColor="@color/table_text_selector" />
 
     <TextView

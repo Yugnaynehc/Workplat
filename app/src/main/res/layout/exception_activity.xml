@@ -1,58 +1,18 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.donnfelker.android.bootstrap.ui.step.device.ExceptionActivity"
     android:background="@drawable/back_2">
-
-    <com.beardedhen.androidbootstrap.BootstrapButton
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        bootstrapbutton:bb_roundedCorners="true"
-        bootstrapbutton:bb_type="default"
-        bootstrapbutton:bb_icon_right="fa-check"
-        android:textSize="20dp"
-        android:text="确定" />
-
-    <com.beardedhen.androidbootstrap.BootstrapButton
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="16dp"
-        bootstrapbutton:bb_roundedCorners="true"
-        bootstrapbutton:bb_type="default"
-        bootstrapbutton:bb_icon_right="fa-times"
-        android:textSize="20dp"
-        android:text="取消" />
-
-    <com.beardedhen.androidbootstrap.BootstrapButton
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        bootstrapbutton:bb_roundedCorners="true"
-        bootstrapbutton:bb_type="default"
-        bootstrapbutton:bb_icon_right="fa-camera"
-        android:textSize="20dp"
-        android:text="拍照" />
 
     <EditText
         android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/button3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="@string/exception_input"
@@ -67,9 +27,49 @@
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
         android:layout_marginTop="26dp"
          />
 
-</RelativeLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="center|bottom"
+        android:gravity="bottom"
+        android:layout_marginBottom="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="60dp"
+            android:layout_marginBottom="5dp"
+            bootstrapbutton:bb_roundedCorners="true"
+            bootstrapbutton:bb_type="default"
+            bootstrapbutton:bb_icon_right="fa-check"
+            android:text="确定" />
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            bootstrapbutton:bb_roundedCorners="true"
+            bootstrapbutton:bb_type="default"
+            bootstrapbutton:bb_icon_right="fa-times"
+            android:text="取消" />
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginBottom="5dp"
+            bootstrapbutton:bb_roundedCorners="true"
+            bootstrapbutton:bb_type="default"
+            bootstrapbutton:bb_icon_right="fa-camera"
+            android:text="拍照" />
+
+        </LinearLayout>
+
+</LinearLayout>

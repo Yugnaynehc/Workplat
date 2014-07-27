@@ -279,6 +279,9 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
                     userInfo.edit().putString(USER_INFO_NAME, model.getName()).commit();
                     userInfo.edit().putString(USER_INFO_ID, model.getId()).commit();
                     userInfo.edit().putString(USER_INFO_SUBSTATION_ID, model.getSubstationid()).commit();
+                    userInfo.edit().putString(USER_INFO_POSITION, model.getPost()).commit();
+                    userInfo.edit().putString(USER_INFO_SUBSTATION, model.getSubstation()).commit();
+                    userInfo.edit().putString(USER_INFO_DEPARTMENT, model.getDepartment()).commit();
                     token = model.getSessionToken();
                 }
 

@@ -66,8 +66,9 @@ public class WorkActivity extends BootstrapFragmentActivity {
             work = (Work) getIntent().getExtras().getSerializable(WORK_ITEM);
         }
         result = (Result)getIntent().getSerializableExtra(RESULT_ITEM);
-        if (result == null)
+        if (result == null) {
             result = new Result();
+        }
 
         result.setType(work.getType());
         result.setResultid(work.getPlanid());
@@ -171,7 +172,9 @@ public class WorkActivity extends BootstrapFragmentActivity {
         }
         final Intent scanDevice = new Intent(this, DeviceInspectActivity.class);
         try {
+            scanDevice.putExtra(RESULT_ID, result.getResultid());
             scanDevice.putExtra(DEVICE_ID, jsonObject.get("id").getAsString());
+            scanDevice.putExtra(DEVICE_TYPE_ID, jsonObject.get("type_id").getAsString());
             scanDevice.putExtra(DEVICE_DATE, jsonObject.get("date").getAsString());
             startActivityForResult(scanDevice, ADD_NEW_RESULT);
         } catch (Exception e) {
@@ -214,14 +217,16 @@ public class WorkActivity extends BootstrapFragmentActivity {
             case ADD_NEW_RESULT:
                 if (resultCode == RESULT_OK) {
                     Ln.d("Activity Result: ADD");
-                    String deviceName = data.getStringExtra(DEVICE_NAME);
                     String deviceID = data.getStringExtra(DEVICE_ID);
+                    String deviceTypeID = data.getStringExtra(DEVICE_TYPE_ID);
+                    String deviceName = data.getStringExtra(DEVICE_NAME);
                     String deviceDate = data.getStringExtra(DEVICE_DATE);
                     ArrayList<String> inspectContent = data.getStringArrayListExtra(DEVICE_CONTENT);
                     ArrayList<String> inspectStandard = data.getStringArrayListExtra(DEVICE_STANDARD);
                     ArrayList<String> inspectResult = data.getStringArrayListExtra(DEVICE_RESULT);
                     DeviceResult deviceResult = new DeviceResult(
                             deviceID,
+                            deviceTypeID,
                             deviceName,
                             deviceDate,
                             inspectContent,
