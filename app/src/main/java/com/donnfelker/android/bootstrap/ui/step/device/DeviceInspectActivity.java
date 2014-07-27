@@ -29,6 +29,7 @@ public class DeviceInspectActivity extends BootstrapFragmentActivity {
 
     protected FragmentManager fragmentManager;
 
+    private int workStatus;
     private String resultID;
     private String deviceID;
     private String deviceTypeID;
@@ -54,6 +55,7 @@ public class DeviceInspectActivity extends BootstrapFragmentActivity {
 
         Intent scanDevice = getIntent();
 
+        workStatus = scanDevice.getIntExtra(WORK_STATUS, 0);
         resultID = scanDevice.getStringExtra(RESULT_ID);
         deviceID = scanDevice.getStringExtra(DEVICE_ID);
         deviceTypeID = scanDevice.getStringExtra(DEVICE_TYPE_ID);
@@ -224,4 +226,5 @@ public class DeviceInspectActivity extends BootstrapFragmentActivity {
     public String getDeviceDate() { return this.deviceDate; }
     public int getDeviceNo() { return this.deviceNo; }
     public String getResultID() { return this.resultID; }
+    public int getWorkStatus() { return this.workStatus; }
 }

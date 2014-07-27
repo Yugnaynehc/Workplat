@@ -123,6 +123,8 @@ public final class Constants {
 
         public static final String WORK_ID = "work_id";
 
+        public static final String WORK_STATUS = "work_status";
+
         public static final String RESULT_ID = "result_id";
 
         public static final String DEVICE_ID = "device_id";

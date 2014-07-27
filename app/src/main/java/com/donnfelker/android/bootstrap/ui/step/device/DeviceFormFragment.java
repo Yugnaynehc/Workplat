@@ -20,9 +20,7 @@ import java.util.ArrayList;
 import butterknife.InjectView;
 import butterknife.Views;
 
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_TYPE_ID;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ITEM_NO;
-import static com.donnfelker.android.bootstrap.core.Constants.Extra.RESULT_ID;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.*;
 
 /**
  * Created by feather on 14-7-17.
@@ -31,6 +29,7 @@ public class DeviceFormFragment extends Fragment {
 
     @InjectView(R.id.inspect_detail)protected ListView list;
     private DeviceAdapter adapter;
+    private int workStatus;
     private String resultID;
     private String deviceTypeID;
     private ArrayList<String> inspectContent;
@@ -49,6 +48,7 @@ public class DeviceFormFragment extends Fragment {
         View view = inflater.inflate(R.layout.device_activity, container, false);
         Views.inject(this, view);
 
+        workStatus = ((DeviceInspectActivity)getActivity()).getWorkStatus();
         resultID = ((DeviceInspectActivity)getActivity()).getResultID();
         deviceTypeID = ((DeviceInspectActivity)getActivity()).getDeviceTypeID();
         inspectContent = ((DeviceInspectActivity)getActivity()).getInspectContent();
@@ -120,6 +120,7 @@ public class DeviceFormFragment extends Fragment {
                         Intent exIntent = new Intent();
                         exIntent.putExtra("pos", String.valueOf(position));
                         exIntent.putExtra("res",inspectResult.get(position));
+                        exIntent.putExtra(WORK_STATUS, workStatus);
                         exIntent.putExtra(RESULT_ID, resultID);
                         exIntent.putExtra(DEVICE_TYPE_ID, deviceTypeID);
                         exIntent.putExtra(DEVICE_ITEM_NO, position);

@@ -32,6 +32,7 @@ public class DeviceCarouseFragment extends Fragment {
 
     @InjectView(R.id.prev)BootstrapButton prev;
     @InjectView(R.id.next)BootstrapButton next;
+    private int workStatus;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class DeviceCarouseFragment extends Fragment {
 
         Views.inject(this, getView());
 
+        workStatus = ((DeviceInspectActivity)getActivity()).getWorkStatus();
         pagerAdapter = new DevicePagerAdapter(getResources(), getChildFragmentManager());
         pager.setAdapter(pagerAdapter);
         indicator.setViewPager(pager);
@@ -53,7 +55,10 @@ public class DeviceCarouseFragment extends Fragment {
 
         if (getActivity().getIntent().getIntExtra(DEVICE_NO, -1) != -1) {
             pager.setCurrentItem(2);
-            next.setText(getResources().getString(R.string.button_submit));
+            if (workStatus == 0)
+                next.setText(getResources().getString(R.string.button_submit));
+            else
+                next.setText(getResources().getString(R.string.button_close));
         }
 
         else {
@@ -83,15 +88,26 @@ public class DeviceCarouseFragment extends Fragment {
                 next.setOnClickListener(this);
             }
             else if (view.getId() == next.getId()) {
-                    int index = pager.getCurrentItem();
-                    if (index < pagerAdapter.getCount() - 1) {
-                        pager.setCurrentItem(index + 1);
-                        prev.setBootstrapButtonEnabled(true);
-                    }
-                    if (pager.getCurrentItem()  == pagerAdapter.getCount() - 1) {
+                int index = pager.getCurrentItem();
+                if (index < pagerAdapter.getCount() - 1) {
+                    pager.setCurrentItem(index + 1);
+                    prev.setBootstrapButtonEnabled(true);
+                }
+                if (pager.getCurrentItem()  == pagerAdapter.getCount() - 1) {
+                    if (workStatus == 0) {
                         next.setText(getResources().getString(R.string.button_submit));
                         next.setOnClickListener(new OnSubmitClickListener());
+                    } else {
+                        next.setText(getResources().getString(R.string.button_close));
+                        next.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                getActivity().setResult(Activity.RESULT_CANCELED);
+                                getActivity().finish();
+                            }
+                        });
                     }
+                }
             }
         }
     }

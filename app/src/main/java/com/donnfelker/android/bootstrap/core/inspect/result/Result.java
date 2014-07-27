@@ -1,5 +1,7 @@
 package com.donnfelker.android.bootstrap.core.inspect.result;
 
+import android.support.v7.appcompat.R;
+
 import com.donnfelker.android.bootstrap.core.inspect.security.Security;
 
 import java.io.Serializable;

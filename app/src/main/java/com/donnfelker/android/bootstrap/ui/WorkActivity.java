@@ -172,6 +172,7 @@ public class WorkActivity extends BootstrapFragmentActivity {
         }
         final Intent scanDevice = new Intent(this, DeviceInspectActivity.class);
         try {
+            scanDevice.putExtra(WORK_STATUS, work.getStatus());
             scanDevice.putExtra(RESULT_ID, result.getResultid());
             scanDevice.putExtra(DEVICE_ID, jsonObject.get("id").getAsString());
             scanDevice.putExtra(DEVICE_TYPE_ID, jsonObject.get("type_id").getAsString());

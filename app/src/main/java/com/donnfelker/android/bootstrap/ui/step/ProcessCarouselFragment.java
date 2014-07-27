@@ -178,11 +178,12 @@ public class ProcessCarouselFragment extends Fragment {
 
         public Boolean call() throws Exception {
 
-
+            HttpRequest request;
             String resultId = result.getResultid();
+            String userName = getActivity().getSharedPreferences(USER_INFO, Context.MODE_PRIVATE).getString(USER_INFO_NAME, "");
             String type = ((WorkActivity)getActivity()).getWork().getType();
             String query = String.format("?%s=%s&%s=%s&%s=%s&%s=%s&%s=%s",
-                    "username", getActivity().getSharedPreferences(USER_INFO, Context.MODE_PRIVATE).getString(USER_INFO_NAME, ""),
+                    "username", URLEncoder.encode(URLEncoder.encode(userName, "UTF-8"), "UTF-8"),
                     "substationid", ((WorkActivity)getActivity()).getWork().getSubstation(),
                     "resultid", resultId,
                     "type", URLEncoder.encode(URLEncoder.encode(type, "UTF-8"), "UTF-8"),
@@ -197,44 +198,29 @@ public class ProcessCarouselFragment extends Fragment {
             fos.flush();
             fos.close();
 
-            // upload images 先上传图片信息
-            String prefix = resultId + "_";
-            File root = new File(PICTURE_PATH);
-            for (File file : root.listFiles()) {
-                if (file.getName().contains(prefix)) {
-                    HttpRequest request = HttpRequest.post(URL_UPLOAD + query);
-                    request.part("upload", file.getName(), "image/jpeg", file);
-                    Ln.d("upload result jpg");
-                    if (!request.ok())
-                        return false;
-                }
-            }
-
-            HttpRequest request = HttpRequest.post(URL_UPLOAD + query);
+            request = HttpRequest.post(URL_UPLOAD + query);
             request.part("upload", xmlResult.getName(), "text/plain", xmlResult);
             Ln.d("upload result code: %s", request.code());
-            return request.ok();
+            if (!request.ok())
+                return false;
+
+            // upload images 上传图片信息
+            File root = new File(PICTURE_PATH + resultId + "/");
+            for (File file : root.listFiles()) {
+                request = HttpRequest.post(URL_UPLOAD + query);
+                request.part("upload", file.getName(), "image/jpeg", file);
+                Ln.d("upload result jpg");
+                if (!request.ok())
+                    return false;
+            }
+            return true;
         }
 
         @Override
         public void onSuccess(final Boolean uploadSuccess) {
-            // delete result files 删除结果文件
             if (uploadSuccess) {
                 Toast.makeText(getActivity(), getString(R.string.upload_success), Toast.LENGTH_LONG).show();
                 getActivity().finish();
-                /*
-                try {
-                    File[] files = getActivity().getFilesDir().listFiles();
-                    for (File file : files) {
-                        if (!file.getName().contains("result"))
-                            FileUtils.forceDelete(file);
-                    }
-                    Ln.d("upload result clean");
-                    Ln.d("upload result success");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                */
             }
             else
                 Toast.makeText(getActivity(), getString(R.string.upload_failed), Toast.LENGTH_LONG).show();

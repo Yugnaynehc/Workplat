@@ -86,6 +86,7 @@ public class ResultListFragment extends ItemListFragment<DeviceResult> implement
     public void onListItemClick(final ListView l, final View v, final int position, final long id) {
         DeviceResult deviceResult = ((DeviceResult) l.getItemAtPosition(position));
         Intent intent = new Intent(getActivity(), DeviceInspectActivity.class);
+        intent.putExtra(WORK_STATUS, ((WorkActivity)getActivity()).getWork().getStatus());
         intent.putExtra(RESULT_ID, ((WorkActivity)getActivity()).getResult().getResultid());
         intent.putExtra(DEVICE_ID, deviceResult.getDeviceID());
         intent.putExtra(DEVICE_TYPE_ID, deviceResult.getDeviceTypeID());

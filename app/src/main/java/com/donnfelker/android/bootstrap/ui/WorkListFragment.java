@@ -107,7 +107,6 @@ public class WorkListFragment extends ItemListFragment<Work> {
         final Work work = ((Work) l.getItemAtPosition(position));
         Intent intent = new Intent(getActivity(), WorkActivity.class);
         intent.putExtra(WORK_ITEM, work);
-        Ln.d("get result %d", work.getStatus());
         if (work.getStatus() == 1) {
             try {
                 Result result = ResultXmlBuilder.GET(getActivity(), work.getPlanid());

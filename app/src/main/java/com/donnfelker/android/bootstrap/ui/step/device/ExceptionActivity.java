@@ -39,6 +39,7 @@ import butterknife.Views;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_TYPE_ID;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.DEVICE_ITEM_NO;
 import static com.donnfelker.android.bootstrap.core.Constants.Extra.RESULT_ID;
+import static com.donnfelker.android.bootstrap.core.Constants.Extra.WORK_STATUS;
 import static com.donnfelker.android.bootstrap.core.Constants.FileURI.PICTURE_PATH;
 
 public class ExceptionActivity extends Activity implements AdapterView.OnItemSelectedListener, ViewSwitcher.ViewFactory {
@@ -52,6 +53,7 @@ public class ExceptionActivity extends Activity implements AdapterView.OnItemSel
 
     private String position;
     private String res;
+    private int workStatus;
     private String resultID;
     private String deviceTypeID;
     private int itemNo;
@@ -68,6 +70,7 @@ public class ExceptionActivity extends Activity implements AdapterView.OnItemSel
 
         position =  exIntent.getStringExtra("pos");
         res = exIntent.getStringExtra("res");
+        workStatus = exIntent.getIntExtra(WORK_STATUS, 0);
         resultID = exIntent.getStringExtra(RESULT_ID);
         deviceTypeID = exIntent.getStringExtra(DEVICE_TYPE_ID);
         itemNo = exIntent.getIntExtra(DEVICE_ITEM_NO, -1);
@@ -96,10 +99,11 @@ public class ExceptionActivity extends Activity implements AdapterView.OnItemSel
         camera.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                String pictureName = resultID + "_" + deviceTypeID + "_" + itemNo + "_" + picIndex + ".jpg";
+                String basePath = PICTURE_PATH + resultID + "/";
+                String pictureName = deviceTypeID + "_" + itemNo + "_" + picIndex + ".jpg";
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        Uri.fromFile(new File(PICTURE_PATH, pictureName)));
+                        Uri.fromFile(new File(basePath, pictureName)));
                 startActivityForResult(intent, 1);
             }
         });
@@ -112,6 +116,11 @@ public class ExceptionActivity extends Activity implements AdapterView.OnItemSel
             }
         });
 
+        if (workStatus == 1) {
+            ed.setFocusable(false);
+            submit.setVisibility(View.INVISIBLE);
+            camera.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -120,8 +129,9 @@ public class ExceptionActivity extends Activity implements AdapterView.OnItemSel
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK)
         {
-            String pictureName = resultID + "_" + deviceTypeID + "_" + itemNo + "_" + picIndex + ".jpg";
-            Bitmap bitmap = BitmapFactory.decodeFile(PICTURE_PATH + pictureName);
+            String basePath = PICTURE_PATH + resultID + "/";
+            String pictureName = deviceTypeID + "_" + itemNo + "_" + picIndex + ".jpg";
+            Bitmap bitmap = BitmapFactory.decodeFile(basePath + pictureName);
             Drawable drawable = new BitmapDrawable(getResources(), bitmap);
             imageList.add(drawable);
             imageAdapter.notifyDataSetChanged();
@@ -131,8 +141,10 @@ public class ExceptionActivity extends Activity implements AdapterView.OnItemSel
 
     private void initImages() {
         imageList = new ArrayList<Drawable>();
-        String prefix = resultID + "_" + deviceTypeID + "_" + itemNo;
-        File root = new File(PICTURE_PATH);
+        File root = new File(PICTURE_PATH + resultID + "/");
+        String prefix = deviceTypeID;
+        if (!root.exists())
+            root.mkdir();
         for (File file : root.listFiles()) {
             if (file.getName().contains(prefix)) {
                 Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
